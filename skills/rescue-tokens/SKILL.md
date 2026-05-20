@@ -11,16 +11,21 @@ description: Use when user hits rate limits, quota exceeded errors, context exce
 
 ## Emergency Red Flags
 
-**STOP and act if ANY present:**
-- Rate limit warnings
-- Context ≥40% full
-- $20-$100/month plan after 2pm
-- Conversation >90 minutes old
-- 5+ MCP plugins loaded
-- User says "don't lose context"
-- Opus 4.7 for simple tasks
+**STOP and act if ONE OR MORE present (OR logic):**
+- Rate limit warnings ⚠️
+- Context ≥40% full ⚠️
+- $20-$100/month plan after 2pm ⚠️
+- Conversation >90 minutes old ⚠️
+- 5+ MCP plugins loaded ⚠️
+- User says "don't lose context" ⚠️
+- Opus 4.7 for simple tasks ⚠️
 
-**These are emergencies, not optimizations.**
+**Each flag ALONE triggers emergency mode. These are emergencies, not optimizations.**
+
+**Examples:**
+- Context 15% + rate limit warning → EMERGENCY (1 flag)
+- Context 45% + no rate limit → EMERGENCY (1 flag)
+- Context 9% + no rate limit + Sonnet → NOT emergency (0 flags)
 
 ## Action Matrix (No User Confirmation)
 
