@@ -1,0 +1,18 @@
+{
+  // Default state for all rules
+  "default": true,
+
+  // MD013 - Line length - Disabled (skills have long lines)
+  "MD013": false,
+
+  // MD033 - Inline HTML - Allow (useful for complex formatting)
+  "MD033": false,
+
+  // MD041 - First line in file should be a top level heading - Allow
+  "MD041": false,
+
+  // MD046 - Code block style - Consistent but allow both fenced and indented
+  "MD046": {
+    "style": "consistent"
+  }
+}
