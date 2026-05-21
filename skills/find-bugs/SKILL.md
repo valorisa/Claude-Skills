@@ -1,34 +1,34 @@
 # Find Bugs
 
-Analyse un fichier pour détecter des bugs et propose des corrections.
+Analyze a file to detect bugs and propose fixes.
 
 ## Trigger
 
 Slash command: `/find-bugs`
 
-Auto-détection : "cherche les bugs", "find bugs", "debug ce fichier", "quels bugs dans", "analyse ce fichier pour les erreurs", "bug hunt".
+Auto-detection: "find bugs", "debug this file", "what bugs in", "analyze this file for errors", "bug hunt", "cherche les bugs", "quels bugs dans", "analyse ce fichier pour les erreurs".
 
 ## Process
 
-1. Identifier le fichier cible. Si l'utilisateur ne le précise pas, demander quel fichier analyser.
-2. Lire le fichier avec Read.
-3. Si pertinent, lancer les outils d'analyse statique disponibles (linter, type-checker, compilateur) via Bash pour collecter des signaux supplémentaires.
-4. Analyser le code pour détecter les bugs : erreurs logiques, off-by-one, null/undefined non gérés, race conditions, fuites de ressources, mauvaise gestion d'erreurs, vulnérabilités de sécurité.
-5. Présenter les résultats sous forme de liste numérotée. Pour chaque bug :
-   - **Ligne(s)** : numéro(s) de ligne concerné(s)
-   - **Problème** : description claire du bug
-   - **Impact** : ce qui peut mal se passer
-   - **Fix proposé** : le correctif sous forme de diff ou snippet
-6. Demander à l'utilisateur : "Veux-tu que j'applique ces corrections ? (toutes / certaines / aucune)"
-7. Appliquer uniquement les corrections confirmées via Edit.
+1. Identify the target file. If the user doesn't specify, ask which file to analyze.
+2. Read the file with Read.
+3. If relevant, run available static analysis tools (linter, type-checker, compiler) via Bash to collect additional signals.
+4. Analyze the code to detect bugs: logical errors, off-by-one, unhandled null/undefined, race conditions, resource leaks, poor error handling, security vulnerabilities.
+5. Present results as a numbered list. For each bug:
+   - **Line(s)**: affected line number(s)
+   - **Issue**: clear description of the bug
+   - **Impact**: what can go wrong
+   - **Proposed fix**: the correction as a diff or snippet
+6. Ask the user: "Do you want me to apply these fixes? (all / some / none)"
+7. Apply only the confirmed fixes via Edit.
 
 ## Constraints
 
-- Ne jamais modifier le fichier sans confirmation explicite de l'utilisateur.
-- Se concentrer sur les vrais bugs — pas de refactoring, pas de suggestions stylistiques, pas d'optimisations de performance sauf si elles causent un bug.
-- Un fichier à la fois. Si l'utilisateur demande plusieurs fichiers, traiter séquentiellement en demandant confirmation pour chaque.
-- Si aucun bug n'est trouvé, le dire clairement plutôt qu'inventer des problèmes.
+- Never modify the file without explicit user confirmation.
+- Focus on real bugs — no refactoring, no stylistic suggestions, no performance optimizations unless they cause a bug.
+- One file at a time. If the user requests multiple files, process sequentially asking confirmation for each.
+- If no bugs are found, say so clearly rather than inventing problems.
 
 ## Output
 
-Une liste numérotée des bugs avec explication et fix, suivie d'une proposition d'appliquer les corrections après accord de l'utilisateur.
+A numbered list of bugs with explanation and fix, followed by a proposal to apply the corrections after user agreement.
