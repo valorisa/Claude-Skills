@@ -3,16 +3,19 @@
 ## About Section
 
 ### Description (348 caractères)
+
 ```
 Community skills for Claude Code: token optimization, productivity workflows, and development best practices. All skills tested with TDD methodology (RED-GREEN-REFACTOR). Features rescue-tokens skill: 90% verbosity reduction, eliminates rate limits through 9 optimization patterns.
 ```
 
 ### Website URL
+
 ```
 https://docs.anthropic.com/en/docs/build-with-claude/claude-code
 ```
 
 ### Topics (20 labels)
+
 ```
 claude-code
 anthropic
@@ -39,6 +42,7 @@ ai-development
 ## Badges pour README
 
 ### Version US (README.md)
+
 ```markdown
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/skills-1-blue.svg)](./skills)
@@ -49,6 +53,7 @@ ai-development
 ```
 
 ### Version FR (README_FR.md)
+
 ```markdown
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Skills](https://img.shields.io/badge/skills-1-blue.svg)](./skills)

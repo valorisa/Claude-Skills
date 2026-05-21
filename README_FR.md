@@ -33,11 +33,13 @@ Les **Skills** sont des guides de processus réutilisables qui aident Claude Cod
 ### Pourquoi les Skills sont Importantes
 
 Sans skills, les agents IA :
+
 - ❌ Prennent des décisions incohérentes
 - ❌ Tombent dans des pièges courants (gaspillage tokens, sortie verbeuse, mauvais outils)
 - ❌ Rationalisent les mauvaises pratiques ("Je vais expliquer d'abord" = gaspillage de tokens)
 
 Avec skills, les agents IA :
+
 - ✅ Suivent des workflows validés
 - ✅ Appliquent des optimisations éprouvées
 - ✅ Contrent leurs propres rationalisations
@@ -63,6 +65,7 @@ Avec skills, les agents IA :
 #### Le Problème
 
 Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont envoyé trop de messages, mais parce qu'ils **brûlent des tokens silencieusement** :
+
 - Conversations éternelles (contexte gonflé)
 - Sortie verbeuse (les explications coûtent des tokens)
 - Mauvais choix de modèle (Opus 4.7 pour tâches simples = coût 5x)
@@ -76,6 +79,7 @@ Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont e
 #### Quand l'Utiliser
 
 **La skill s'active quand UNE OU PLUSIEURS conditions présentes (logique OR) :**
+
 - ⚠️ Avertissements de rate limit
 - ⚠️ Contexte ≥40% plein
 - ⚠️ Plan à $20-$100/mois après 14h
@@ -89,6 +93,7 @@ Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont e
 #### Ce qu'Elle Fait
 
 **Matrice d'Actions** (Pas de confirmation utilisateur) :
+
 - Contexte 40-70% → `/compact` faits clés
 - Contexte >70% → Nouvelle conversation, résumé 3 phrases
 - Rate limit + urgence → Sous-agent en Sonnet immédiatement
@@ -97,6 +102,7 @@ Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont e
 - 5+ MCPs → Désactiver inutilisés
 
 **Discipline de Réponse Sous Pression :**
+
 - <100 mots total
 - PAS de sections markdown
 - PAS de blocs "Raisonnement :"
@@ -105,6 +111,7 @@ Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont e
 
 **Rationalisations Contrées :**
 La skill contre explicitement 9 rationalisations d'agents :
+
 - "Laisse-moi expliquer pourquoi" → Les explications brûlent des tokens
 - "Je vais ajouter sections Raisonnement" → Énoncer décision seulement
 - "Les tableaux aident à comparer" → Tableaux coûtent 5x tokens
@@ -114,6 +121,7 @@ La skill contre explicitement 9 rationalisations d'agents :
 #### Résultats Vérifiés
 
 **Résultats tests TDD (7 scénarios) :**
+
 - **Baseline :** 950 mots moyenne (agent sans skill)
 - **Phase GREEN :** 525 mots (45% amélioration)
 - **Phase REFACTOR :** 97 mots (90% amélioration)
@@ -202,11 +210,13 @@ Cette collection applique les principes TDD à la **création de skills** (docum
 **Objectif :** Observer comment les agents échouent SANS la skill
 
 **Processus :**
+
 1. Créer 3+ scénarios de pression (pression temps + coût irréversible + autorité)
 2. Lancer scénarios avec sous-agents (skill non chargée)
 3. Documenter comportements exacts et rationalisations mot pour mot
 
 **Exemple de Scénario :**
+
 ```
 Contexte : 78% plein, avertissements rate limit, deadline 2 heures
 Utilisateur : "Ne me fais pas perdre le contexte ! Lis juste ce PDF de 40 pages et corrige."
@@ -222,6 +232,7 @@ Comportement observé :
 **Objectif :** Écrire juste assez pour passer les tests
 
 **Processus :**
+
 1. Créer skill adressant échecs spécifiques de phase RED
 2. Ajouter Matrice d'Actions (quoi faire dans chaque situation)
 3. Ajouter tableau Rationalisations (contrer excuses des agents)
@@ -229,6 +240,7 @@ Comportement observé :
 5. Vérifier améliorations
 
 **Exemple Résultat :**
+
 ```
 Même scénario avec skill :
 - L'agent a écrit 525 mots (45% amélioration)
@@ -241,12 +253,14 @@ Même scénario avec skill :
 **Objectif :** Trouver et colmater faiblesses restantes
 
 **Processus :**
+
 1. Analyser résultats GREEN pour nouvelles rationalisations
 2. Ajouter contre-mesures explicites à la skill
 3. Mettre à jour tableau Rationalisations
 4. Re-tester jusqu'à bulletproof
 
 **Exemple Résultat :**
+
 ```
 Après ajout règle "PAS de blocs Raisonnement :" :
 - L'agent a écrit 97 mots (90% amélioration)
@@ -257,12 +271,14 @@ Après ajout règle "PAS de blocs Raisonnement :" :
 ### Pourquoi TDD pour les Skills ?
 
 **Avantages :**
+
 - ✅ **Validé :** Chaque règle basée sur échecs observés
 - ✅ **Bulletproof :** Testé contre multiples scénarios de pression
 - ✅ **Mesurable :** Métriques claires avant/après
 - ✅ **Maintenable :** Tests détectent régressions lors mises à jour
 
 **Sans TDD :**
+
 - ❌ Règles basées sur suppositions (peuvent être fausses)
 - ❌ Efficacité inconnue (pas de mesures)
 - ❌ Failles découvertes en production
@@ -343,6 +359,7 @@ Claude : [détecte "rate limit" → invoque rescue-tokens → suit règles]
 ```
 
 **Dépend de :**
+
 - Bonne description skill (mots-clés riches)
 - Claude Code Search Optimization (CSO)
 
@@ -375,6 +392,7 @@ Pour tests, forcer invocation skill :
 Chaque skill a :
 
 1. **Frontmatter (YAML)**
+
    ```yaml
    ---
    name: nom-skill
@@ -435,6 +453,7 @@ Voir [CONTRIBUTING_FR.md](./CONTRIBUTING_FR.md) pour méthodologie TDD complète
 ### Impact Monde Réel
 
 Basé sur tests :
+
 - **Économies tokens :** ~600K tokens par tâche refactoring (séquentiel vs sous-agents parallèles)
 - **Prévention rate limit :** Mode urgence activé à 40% contexte (avant problèmes)
 - **Temps économisé :** Action décisive immédiate (pas d'aller-retour pour permission)
@@ -477,11 +496,13 @@ Voir [LICENSE](./LICENSE) pour termes complets.
 **Créé par :** [@valorisa](https://github.com/valorisa)
 
 **Inspiré par :**
+
 - Méthodologie [Anthropic's Superpowers](https://github.com/anthropics/claude-code)
 - Principes Test-Driven Development
 - Patterns d'utilisation réels Claude Code
 
 **Remerciements Spéciaux :**
+
 - Équipe Anthropic pour plateforme Claude Code
 - Contributeurs communauté (voir [CONTRIBUTING_FR.md](./CONTRIBUTING_FR.md))
 - Tous utilisateurs testant et fournissant feedback

@@ -68,6 +68,7 @@ Type any of these triggers followed by your question:
 Give it context. The richer the input, the sharper the output.
 
 You'll get:
+
 - A visual HTML report that opens automatically
 - A full markdown transcript saved alongside it
 
@@ -76,6 +77,7 @@ You'll get:
 ## When To Use It
 
 **Good council questions:**
+
 - "Should I launch a $97 workshop or a $497 course?"
 - "Which of these 3 positioning angles is strongest?"
 - "I'm thinking of pivoting from X to Y. Am I crazy?"
@@ -83,6 +85,7 @@ You'll get:
 - "Should I hire a VA or build an automation first?"
 
 **Skip the council for:**
+
 - Factual questions with one right answer
 - Pure creation tasks ("write me a tweet")
 - Summaries or processing tasks

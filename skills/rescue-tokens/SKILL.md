@@ -12,6 +12,7 @@ description: Use when user hits rate limits, quota exceeded errors, context exce
 ## Emergency Red Flags
 
 **STOP and act if ONE OR MORE present (OR logic):**
+
 - Rate limit warnings ⚠️
 - Context ≥40% full ⚠️
 - $20-$100/month plan after 2pm ⚠️
@@ -23,6 +24,7 @@ description: Use when user hits rate limits, quota exceeded errors, context exce
 **Each flag ALONE triggers emergency mode. These are emergencies, not optimizations.**
 
 **Examples:**
+
 - Context 15% + rate limit warning → EMERGENCY (1 flag)
 - Context 45% + no rate limit → EMERGENCY (1 flag)
 - Context 9% + no rate limit + Sonnet → NOT emergency (0 flags)
@@ -45,40 +47,50 @@ description: Use when user hits rate limits, quota exceeded errors, context exce
 ## The Nine Token Traps
 
 ### 1. Eternal Conversations
+
 **Symptom:** Same conversation for hours, context bloating
 **Fix:** `/clear` when prior messages irrelevant, `/compact` when needed, new conversation at 40% context
 
 ### 2. Verbose Output  
+
 **Symptom:** Long explanations, "let me know if...", markdown sections
 **Fix:** Terse responses under pressure. Example: "Switched to Sonnet. Starting OAuth." (7 words, not 200)
 
 ### 3. Wrong Model Choice
+
 **Fix:**
+
 - Haiku: Renames, simple tasks, info retrieval
 - Sonnet: All implementation, refactoring, debugging
 - Opus: Architecture, deep planning only
 
 ### 4. MCP Plugin Bloat
+
 **Symptom:** 5+ plugins loaded, user doesn't know
 **Fix:** `/context` to audit, `/mcp` to disable unused
 
 ### 5. Obese CLAUDE.md
+
 **Symptom:** 200+ lines in Claude.md
 **Fix:** Keep <200 lines, use `@see` references for detail
 
 ### 6. Cache Invalidation
+
 **Symptom:** Model changes mid-conversation, MCP added after start
 **Fix:** Set model/MCPs at conversation START, never mid-stream
 
 ### 7. Expensive Files
+
 **Symptom:** PDFs, images, Excel files
 **Fix:** Request text conversion, extract specific pages (e.g., `Read pages: "1-3"`), ask for screenshot text instead of image
 
 ### 8. Sub-Agent Misuse
+
 **Use sub-agents for:** Isolated research, disposable exploration, independent tasks
 **NEVER for:** Shared context work (migrations, refactors with common dependencies)
 
 **Decision flow:**
+
 ```dot
 digraph subagent_decision {
     "Task needs shared context?" [shape=diamond];
@@ -91,6 +103,7 @@ digraph subagent_decision {
 ```
 
 ### 9. Message vs Token Confusion
+
 **Reality:** Plans count messages, but tokens are the real cost. Long Opus conversation = 50+ short Sonnet messages.
 
 ## Common Rationalizations
@@ -112,6 +125,7 @@ digraph subagent_decision {
 ## Response Discipline Under Pressure
 
 **Rate limit warning present:**
+
 - Response budget: <100 words total
 - NO markdown sections (##, ###)
 - NO "Reasoning:" blocks
@@ -123,6 +137,7 @@ digraph subagent_decision {
 - Action verbs only: "Switched to Sonnet. Created sub-agent. Starting OAuth."
 
 **Formatting rules under pressure:**
+
 - Plain text sentences only
 - Decisions stated directly
 - Zero justifications (unless explicitly asked)
@@ -132,19 +147,21 @@ digraph subagent_decision {
 
 ❌ Verbose with "Reasoning" (250 tokens):
 > "**Action: Switch to Sonnet immediately.**
-> 
+>
 > **Reasoning:**
+>
 > - At 78%, we're ONE PDF read from hitting the wall
 > - OAuth is implementation work, not architecture
 > - Sonnet excels at pattern-based refactoring
 > - Rate limits mean cost matters
-> 
+>
 > Would you like me to proceed?"
 
 ✅ Terse (15 tokens):
 > "Switched to Sonnet. Starting OAuth sub-agent."
 
 ❌ Table format (100+ tokens):
+
 ```
 | Approach | Tokens | Time |
 |----------|--------|------|
@@ -158,6 +175,7 @@ digraph subagent_decision {
 ## Verification Questions
 
 **Before claiming "token optimized":**
+
 - [ ] Context <40% or compacted in last 10 messages?
 - [ ] Model matches task type (Sonnet for implementation)?
 - [ ] MCPs relevant to current task?

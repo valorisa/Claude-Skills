@@ -45,24 +45,29 @@ Mode transitions: explicit. Announce at phase start: `[MODE: NAME] Phase X`.
 ## FULL Pipeline
 
 ### SPEC (budget: 500 tokens max)
+
 Produce: objective (1 sentence), scope, constraints, acceptance criteria (pass/fail), out of scope.
 Gate: STOP after SPEC. Do NOT produce PLAN in same response. Wait for user validation. "Go" is enough.
 
 ### PLAN (budget: 800 tokens max)
+
 Produce: numbered sub-tasks, order, dependencies, technical risks (1 line each).
 If >5 tasks: propose breakdown into deliverable phases.
 Gate: wait for user confirmation before IMPL. Silence + new message without objection = confirmation.
 
 ### IMPL (budget: 5k tokens baseline, max 20k for >5 sub-tasks. If >20k estimated: decompose into multi-cycle.)
+
 Code aligned to spec. Small changes, one logical commit per sub-task.
 Rule: if a task is independent from another, propose parallel execution (subagents).
 Hard stop: if spec divergence detected, signal [DIVERGENCE] + cause + 2 options (amend spec OR reduce scope), wait for directive.
 
 ### VERIF (budget: 1000 tokens max for report)
+
 Acceptance criteria conformity (pass/fail checklist). Test commands executed, not simulated.
 If a criterion fails: return to IMPL for correction. Max 2 iterations. If failure persists: signal [VERIF-BLOCKED] + root cause, request SPEC or PLAN revision.
 
 ### SYNTHESE (budget: 300 tokens max)
+
 3 elements: what is valid, remaining gaps/uncertainties, recommended next action.
 Feed-forward: if uncertainties detected, list them as constraints for next cycle.
 Cycle end: wait for user directive for next cycle.
@@ -70,9 +75,11 @@ Cycle end: wait for user directive for next cycle.
 ## LIGHT Pipeline
 
 ### SPEC (3 lines: problem, approach, success criterion)
+
 Gate: STOP after SPEC. Wait for "go" or confirmation before IMPL.
 
 ### IMPL → VERIF
+
 Same rules as FULL but reduced scope. No formal PLAN or SYNTHESE.
 
 ## SHIP Pipeline

@@ -140,13 +140,13 @@ Execute sequentially. Before each circle, emit a trace block:
 **Council Proposal:** If self-critique score is < 4/5 OR if domain is critical (security, compliance, production), propose:
 
 > 💡 **Want an external audit by the LLM Council?**
-> 
+>
 > The Council will submit your prompt to 5 independent advisors with blind peer review to detect blind spots and weaknesses not visible in self-critique.
-> 
+>
 > - **Estimated cost:** ~11x higher (5 advisors + 5 reviewers + 1 chairman)
 > - **Time:** +2-3 minutes
 > - **Recommended if:** prompt for critical production, high-risk domain, or first exploration of complex domain
-> 
+>
 > Add `[COUNCIL]` to your next response to activate.
 
 **D — Interrogation.** 2-5 questions max to iterate. Simple language + example adapted to DOMAIN.
@@ -281,6 +281,7 @@ Answer these 3 questions (< 200 words, reference by letter):
 #### Step 4: Chairman Synthesis
 
 One final agent receives:
+
 - Framed question + context
 - The 5 advisor responses (de-anonymized, names revealed)
 - The 5 peer reviews
@@ -342,6 +343,7 @@ After Chairman synthesis, generate two files:
 **1. Visual HTML report**: `council-report-{{timestamp}}.html`
 
 Content:
+
 - Question submitted at top
 - Chairman verdict (main section, highly visible)
 - Visual agreement/disagreement matrix of advisors
@@ -354,6 +356,7 @@ Design: white background, system typography (sans-serif), subtle borders, soft a
 **2. Complete Markdown transcript**: `council-transcript-{{timestamp}}.md`
 
 Content:
+
 - Original user question
 - Framed question + enriched context
 - The 5 advisor responses (with names)
@@ -454,6 +457,7 @@ When max iterations are reached without complete PASS: deliver best-effort promp
 ## When to Activate Council?
 
 **✅ Activate if:**
+
 - User explicitly adds `[COUNCIL]` to request
 - Self-critique < 4/5 AND critical domain (security, compliance, production, legal)
 - Prompt for production system with business impact
@@ -461,6 +465,7 @@ When max iterations are reached without complete PASS: deliver best-effort promp
 - User confirms after Phase 3C proposal
 
 **❌ Do NOT activate if:**
+
 - Experimental / internal / throwaway prompt
 - Rapid iteration (A/B testing)
 - Self-critique >= 4/5 on non-critical domain
@@ -561,6 +566,7 @@ When max iterations are reached without complete PASS: deliver best-effort promp
 **User:** "Create a prompt for moderating user content in production [COUNCIL]"
 
 **Promptor Phase 1-2-3:**
+
 - C1-C5 executed → detects DOMAIN=security, risks related to edge cases
 - 18 Hacks applied (#1, #4, #9, #11, #18 prioritized)
 - A-B-C-D generated

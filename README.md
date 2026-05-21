@@ -33,11 +33,13 @@
 ### Why Skills Matter
 
 Without skills, AI agents:
+
 - ❌ Make inconsistent decisions
 - ❌ Fall into common traps (token waste, verbose output, wrong tools)
 - ❌ Rationalize bad practices ("I'll explain first" = wasting tokens)
 
 With skills, AI agents:
+
 - ✅ Follow validated workflows
 - ✅ Apply battle-tested optimizations
 - ✅ Counter their own rationalizations
@@ -63,6 +65,7 @@ With skills, AI agents:
 #### The Problem
 
 Users hit "rate limit" errors not because they sent too many messages, but because they're **burning tokens silently**:
+
 - Eternal conversations (bloated context)
 - Verbose output (explanations cost tokens)
 - Wrong model choice (Opus 4.7 for simple tasks = 5x cost)
@@ -76,6 +79,7 @@ Users hit "rate limit" errors not because they sent too many messages, but becau
 #### When to Use
 
 **Skill activates when ONE OR MORE conditions present (OR logic):**
+
 - ⚠️ Rate limit warnings
 - ⚠️ Context ≥40% full
 - ⚠️ $20-$100/month plan after 2pm
@@ -89,6 +93,7 @@ Users hit "rate limit" errors not because they sent too many messages, but becau
 #### What It Does
 
 **Action Matrix** (No user confirmation needed):
+
 - Context 40-70% → `/compact` key facts
 - Context >70% → New conversation, 3-sentence handoff
 - Rate limit + urgent → Sub-agent in Sonnet immediately
@@ -97,6 +102,7 @@ Users hit "rate limit" errors not because they sent too many messages, but becau
 - 5+ MCPs → Disable unused
 
 **Response Discipline Under Pressure:**
+
 - <100 words total
 - NO markdown sections
 - NO "Reasoning:" blocks
@@ -105,6 +111,7 @@ Users hit "rate limit" errors not because they sent too many messages, but becau
 
 **Rationalizations Countered:**
 The skill explicitly counters 9 agent rationalizations:
+
 - "Let me explain why" → Explanations burn tokens
 - "I'll add Reasoning sections" → State decision only
 - "Tables help compare" → Tables cost 5x tokens
@@ -114,6 +121,7 @@ The skill explicitly counters 9 agent rationalizations:
 #### Verified Results
 
 **TDD test results (7 scenarios):**
+
 - **Baseline:** 950 words average (agent without skill)
 - **GREEN Phase:** 525 words (45% improvement)
 - **REFACTOR Phase:** 97 words (90% improvement)
@@ -202,11 +210,13 @@ This collection applies TDD principles to **skill creation** (documentation):
 **Goal:** Observe how agents fail WITHOUT the skill
 
 **Process:**
+
 1. Create 3+ pressure scenarios (time pressure + sunk cost + authority)
 2. Run scenarios with sub-agents (no skill loaded)
 3. Document exact behaviors and rationalizations verbatim
 
 **Example Scenario:**
+
 ```
 Context: 78% full, rate limit warnings, 2-hour deadline
 User: "Don't make me lose context! Just read this 40-page PDF and fix it."
@@ -222,6 +232,7 @@ Observed behavior:
 **Goal:** Write just enough to pass the tests
 
 **Process:**
+
 1. Create skill addressing specific failures from RED phase
 2. Add Action Matrix (what to do in each situation)
 3. Add Rationalization table (counter excuses agents made)
@@ -229,6 +240,7 @@ Observed behavior:
 5. Verify improvements
 
 **Example Result:**
+
 ```
 Same scenario with skill:
 - Agent wrote 525 words (45% improvement)
@@ -241,12 +253,14 @@ Same scenario with skill:
 **Goal:** Find and plug remaining weaknesses
 
 **Process:**
+
 1. Analyze GREEN results for new rationalizations
 2. Add explicit counters to skill
 3. Update Rationalization table
 4. Re-test until bulletproof
 
 **Example Result:**
+
 ```
 After adding "NO Reasoning: blocks" rule:
 - Agent wrote 97 words (90% improvement)
@@ -257,12 +271,14 @@ After adding "NO Reasoning: blocks" rule:
 ### Why TDD for Skills?
 
 **Benefits:**
+
 - ✅ **Validated:** Every rule based on observed failures
 - ✅ **Bulletproof:** Tested against multiple pressure scenarios
 - ✅ **Measurable:** Clear before/after metrics
 - ✅ **Maintainable:** Tests catch regressions when updating
 
 **Without TDD:**
+
 - ❌ Rules based on assumptions (might be wrong)
 - ❌ Unknown effectiveness (no measurements)
 - ❌ Loopholes discovered in production
@@ -343,6 +359,7 @@ Claude: [detects "rate limit" → invokes rescue-tokens → follows rules]
 ```
 
 **Depends on:**
+
 - Good skill description (rich keywords)
 - Claude Code Search Optimization (CSO)
 
@@ -375,6 +392,7 @@ For testing purposes, force skill invocation:
 Every skill has:
 
 1. **Frontmatter (YAML)**
+
    ```yaml
    ---
    name: skill-name
@@ -435,6 +453,7 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for complete TDD methodology, structure
 ### Real-World Impact
 
 Based on testing:
+
 - **Token savings:** ~600K tokens per refactoring task (sequential vs parallel sub-agents)
 - **Rate limit prevention:** Emergency mode activates at 40% context (before issues)
 - **Time saved:** Immediate decisive action (no back-and-forth for permission)
@@ -477,11 +496,13 @@ See [LICENSE](./LICENSE) for full terms.
 **Created by:** [@valorisa](https://github.com/valorisa)
 
 **Inspired by:**
+
 - [Anthropic's Superpowers](https://github.com/anthropics/claude-code) methodology
 - Test-Driven Development principles
 - Real-world Claude Code usage patterns
 
 **Special Thanks:**
+
 - Anthropic team for Claude Code platform
 - Community contributors (see [CONTRIBUTING.md](./CONTRIBUTING.md))
 - All users who test and provide feedback
