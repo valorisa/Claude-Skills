@@ -192,27 +192,27 @@ This creates:
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 2: ISSUE BREAKDOWN                                    │
 │ /create-github-issues                                       │
-│ → Converts spec into vertical-slice GitHub issues          │
-│ → Each issue = UI → API → DB (complete feature slice)      │
+│ → Converts spec into vertical-slice GitHub issues           │
+│ → Each issue = UI → API → DB (complete feature slice)       │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 3: IMPLEMENTATION (Per Issue)                         │
 │ /tdd-hybrid                                                 │
-│ → Test-first development with LIGHT/FULL triage            │
-│ → RED → GREEN → REFACTOR cycle                             │
-│ → Mandatory verification before completion                 │
+│ → Test-first development with LIGHT/FULL triage             │
+│ → RED → GREEN → REFACTOR cycle                              │
+│ → Mandatory verification before completion                   │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 4: DEBUGGING (When Needed)                            │
 │ /diagnose                                                   │
-│ → Reproduce → Minimize → Hypothesize → Fix → Regression    │
+│ → Reproduce → Minimize → Hypothesize → Fix → Regression     │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 5: PERIODIC MAINTENANCE                               │
-│ /improve-codebase-architecture                             │
+│ /improve-codebase-architecture                              │
 │ → Find deepening opportunities                              │
 │ → Consolidate tightly-coupled modules                       │
 │ → Improve testability                                       │
