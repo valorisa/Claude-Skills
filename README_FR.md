@@ -186,33 +186,33 @@ Ceci crée :
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 1 : SPÉCIFICATION                                     │
 │ /spec-driven                                                │
-│ → Crée spec détaillée avec exigences, contraintes          │
+│ → Crée spec détaillée avec exigences, contraintes           │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 2 : DÉCOUPAGE EN ISSUES                               │
 │ /create-github-issues                                       │
-│ → Convertit spec en issues GitHub vertical-slice           │
-│ → Chaque issue = UI → API → DB (tranche fonctionnelle)     │
+│ → Convertit spec en issues GitHub vertical-slice            │
+│ → Chaque issue = UI → API → DB (tranche fonctionnelle)      │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 3 : IMPLÉMENTATION (Par Issue)                        │
 │ /tdd-hybrid                                                 │
-│ → Développement test-first avec triage LIGHT/FULL          │
-│ → Cycle RED → GREEN → REFACTOR                             │
-│ → Vérification obligatoire avant complétion                │
+│ → Développement test-first avec triage LIGHT/FULL           │
+│ → Cycle RED → GREEN → REFACTOR                              │
+│ → Vérification obligatoire avant complétion                 │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 4 : DÉBOGAGE (Si Nécessaire)                          │
 │ /diagnose                                                   │
-│ → Reproduire → Minimiser → Hypothèse → Corriger → Test     │
+│ → Reproduire → Minimiser → Hypothèse → Corriger → Test      │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
 │ Phase 5 : MAINTENANCE PÉRIODIQUE                            │
-│ /improve-codebase-architecture                             │
+│ /improve-codebase-architecture                              │
 │ → Trouver opportunités approfondissement                    │
 │ → Consolider modules couplés                                │
 │ → Améliorer testabilité                                     │
