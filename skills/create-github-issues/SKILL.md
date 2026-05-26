@@ -1,9 +1,9 @@
 ---
-name: to-issues
-description: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+name: create-github-issues
+description: Break a plan, spec, or PRD into independently-grabbable GitHub issues using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into GitHub issues.
 ---
 
-# To Issues
+# Create GitHub Issues
 
 Break a plan into independently-grabbable issues using vertical slices (tracer bullets).
 
