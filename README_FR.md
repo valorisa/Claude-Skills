@@ -65,6 +65,7 @@ Cette collection comprend **12 skills** organisées en workflows et utilitaires.
 **Workflow recommandé :** `/spec-driven` → `/create-github-issues` → `/tdd-hybrid` (par issue)
 
 #### 1. [spec-driven](./skills/spec-driven/README.md)
+
 **Développement piloté par specs avec pipeline strict et budgets tokens.**
 
 Active un workflow structuré spec-first (SPEC→PLAN→IMPL→VERIF→SYNTHESE) avec triage 3 voies (FULL/LIGHT/SHIP), budgets tokens, et gates explicites. À utiliser au démarrage de fonctionnalités ou tâches complexes.
@@ -72,6 +73,7 @@ Active un workflow structuré spec-first (SPEC→PLAN→IMPL→VERIF→SYNTHESE)
 **Déclencheurs :** `spec-driven`, `/spec-driven`, `mode spec`, `spec first`, `pipeline complet`
 
 #### 2. [create-github-issues](./skills/create-github-issues/README.md)
+
 **Découpage de plans en issues GitHub vertical-slice.**
 
 Convertit plans, specs ou PRDs en issues GitHub indépendantes via tranches verticales tracer-bullet. Chaque issue est une tranche fonctionnelle complète (UI → API → DB).
@@ -79,6 +81,7 @@ Convertit plans, specs ou PRDs en issues GitHub indépendantes via tranches vert
 **Déclencheurs :** Convertir plan en issues, créer tickets d'implémentation, découper travail
 
 #### 3. [tdd-hybrid](./skills/tdd-hybrid/README.md)
+
 **Développement piloté par tests avec discipline stricte et workflow intelligent.**
 
 Combine rigueur TDD (Loi de Fer, vérification obligatoire) avec planification intelligente, découpage vertical, et conscience du domaine. Inclut triage LIGHT/FULL et gates spec/verify optionnelles.
@@ -86,6 +89,7 @@ Combine rigueur TDD (Loi de Fer, vérification obligatoire) avec planification i
 **Déclencheurs :** Implémenter fonctionnalités ou corriger bugs avec TDD, `/tdd-hybrid`
 
 #### 4. [diagnose](./skills/diagnose/README.md)
+
 **Boucle de diagnostic disciplinée pour bugs difficiles et régressions performance.**
 
 Débogage structuré : reproduire → minimiser → hypothèse → instrumentation → correction → test régression. Prévient conclusions hâtives et assure corrections reproductibles.
@@ -93,6 +97,7 @@ Débogage structuré : reproduire → minimiser → hypothèse → instrumentati
 **Déclencheurs :** `diagnose this`, `debug this`, rapports bugs, quelque chose cassé/défaillant, régressions performance
 
 #### 5. [improve-codebase-architecture](./skills/improve-codebase-architecture/README.md)
+
 **Trouver opportunités d'approfondissement dans codebases.**
 
 Analyse codebases pour améliorations architecturales informées par langage domaine (CONTEXT.md) et décisions architecturales (docs/adr/). Suggère consolidation modules couplés et améliorations testabilité.
@@ -106,6 +111,7 @@ Analyse codebases pour améliorations architecturales informées par langage dom
 #### Setup & Configuration
 
 ##### [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md)
+
 **Configuration initiale du repository (exécuter une fois).**
 
 Configure issue tracker, crée 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX), met en place structure CONTEXT.md + docs/adr/. Configuration unique par repository.
@@ -115,6 +121,7 @@ Configure issue tracker, crée 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
 #### Optimisation Tokens & Contexte
 
 ##### [rescue-tokens](./skills/rescue-tokens/README.md)
+
 **Prévient épuisement tokens via 9 patterns d'optimisation.**
 
 Détecte et corrige automatiquement gaspillage tokens : conversations éternelles, sortie verbeuse, mauvais choix modèle, surcharge MCP, fichiers coûteux. Active quand contexte ≥40%, rate limits, ou 5+ MCPs chargés.
@@ -128,6 +135,7 @@ Détecte et corrige automatiquement gaspillage tokens : conversations éternelle
 #### Prise de Décision Avancée
 
 ##### [llm-council](./skills/llm-council/README.md)
+
 **Analyse décisionnelle multi-perspective via conseil 5 conseillers.**
 
 Soumet questions à conseil de 5 conseillers IA analysant indépendamment, révisant anonymement, et synthétisant verdict. Basé sur méthodologie LLM Council de Karpathy.
@@ -135,6 +143,7 @@ Soumet questions à conseil de 5 conseillers IA analysant indépendamment, révi
 **Déclencheurs obligatoires :** `council this`, `run the council`, `war room this`, `pressure-test this`
 
 ##### [promptor](./skills/promptor/README.md)
+
 **Génération prompts optimisés via pipeline validation 5 cercles.**
 
 Produit prompts agnostiques domaine, auditables, prêts copier-coller via 18 hacks optimisation fusionnés avec validation 5 cercles.
@@ -142,6 +151,7 @@ Produit prompts agnostiques domaine, auditables, prêts copier-coller via 18 hac
 **Déclencheurs :** `create a prompt`, `optimize this prompt`, `promptor`, `generate a system prompt`
 
 ##### [promptor-council](./skills/promptor-council/README.md)
+
 **Promptor v3 avec délibération multi-perspective.**
 
 Version améliorée de promptor avec validation basée conseil et délibération architecturale.
@@ -151,11 +161,13 @@ Version améliorée de promptor avec validation basée conseil et délibération
 #### Utilitaires Développement
 
 ##### [skill-creator](./skills/skill-creator/README.md)
+
 **Créer nouvelles skills selon bonnes pratiques.**
 
 Guide processus création skill avec méthodologie TDD, structure appropriée, et validation.
 
 ##### [find-bugs](./skills/find-bugs/README.md)
+
 **Détection et analyse systématique bugs.**
 
 Approche structurée pour trouver et documenter bugs dans codebases.
@@ -175,6 +187,7 @@ Cette collection implémente un **workflow spec-first, test-driven, vertical-sli
 ```
 
 Ceci crée :
+
 - Configuration GitHub Issues via `gh` CLI
 - 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
 - `CONTEXT.md` pour documentation domaine
@@ -265,6 +278,7 @@ Chaque skill et issue utilise **5 labels canoniques** :
 | **WONTFIX** | Intentionnellement ignoré | Hors scope, obsolète |
 
 **Avantages :**
+
 - Communication claire (équipe connaît niveau risque)
 - Rigueur appropriée (pas de sur-ingénierie corrections simples)
 - Workflow efficace (ignorer processus inutile pour LIGHT)

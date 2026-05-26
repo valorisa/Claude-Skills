@@ -65,6 +65,7 @@ This collection includes **12 skills** organized into workflows and utilities.
 **Recommended workflow:** `/spec-driven` → `/create-github-issues` → `/tdd-hybrid` (per issue)
 
 #### 1. [spec-driven](./skills/spec-driven/README.md)
+
 **Spec-driven development with enforced pipeline and token budgets.**
 
 Activates structured spec-first workflow (SPEC→PLAN→IMPL→VERIF→SYNTHESE) with 3-way triage (FULL/LIGHT/SHIP), token budgets, and explicit gates. Use when starting features or complex tasks.
@@ -72,6 +73,7 @@ Activates structured spec-first workflow (SPEC→PLAN→IMPL→VERIF→SYNTHESE)
 **Triggers:** `spec-driven`, `/spec-driven`, `mode spec`, `spec first`, `pipeline complet`
 
 #### 2. [create-github-issues](./skills/create-github-issues/README.md)
+
 **Break plans into vertical-slice GitHub issues.**
 
 Converts plans, specs, or PRDs into independently-grabbable GitHub issues using tracer-bullet vertical slices. Each issue is a complete feature slice (UI → API → DB).
@@ -79,6 +81,7 @@ Converts plans, specs, or PRDs into independently-grabbable GitHub issues using 
 **Triggers:** User wants to convert plan into issues, create implementation tickets, or break down work
 
 #### 3. [tdd-hybrid](./skills/tdd-hybrid/README.md)
+
 **Test-driven development with strict discipline and intelligent workflow.**
 
 Combines TDD rigor (Iron Law, mandatory verification) with intelligent planning, vertical slicing, and domain awareness. Includes LIGHT/FULL triage and optional spec/verify gates.
@@ -86,6 +89,7 @@ Combines TDD rigor (Iron Law, mandatory verification) with intelligent planning,
 **Triggers:** Implementing features or fixing bugs with TDD, `/tdd-hybrid`
 
 #### 4. [diagnose](./skills/diagnose/README.md)
+
 **Disciplined diagnosis loop for hard bugs and performance regressions.**
 
 Structured debugging: reproduce → minimize → hypothesize → instrument → fix → regression-test. Prevents premature conclusions and ensures reproducible fixes.
@@ -93,6 +97,7 @@ Structured debugging: reproduce → minimize → hypothesize → instrument → 
 **Triggers:** `diagnose this`, `debug this`, bug reports, something broken/failing, performance regressions
 
 #### 5. [improve-codebase-architecture](./skills/improve-codebase-architecture/README.md)
+
 **Find deepening opportunities in codebases.**
 
 Analyzes codebases for architectural improvements informed by domain language (CONTEXT.md) and architectural decisions (docs/adr/). Suggests consolidation of tightly-coupled modules and testability improvements.
@@ -106,6 +111,7 @@ Analyzes codebases for architectural improvements informed by domain language (C
 #### Setup & Configuration
 
 ##### [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md)
+
 **Initial repository configuration (run once).**
 
 Configures issue tracker, creates 5 triage labels (LIGHT/FULL/SHIP/BLOCKED/WONTFIX), sets up CONTEXT.md + docs/adr/ structure. One-time setup per repository.
@@ -115,6 +121,7 @@ Configures issue tracker, creates 5 triage labels (LIGHT/FULL/SHIP/BLOCKED/WONTF
 #### Token & Context Optimization
 
 ##### [rescue-tokens](./skills/rescue-tokens/README.md)
+
 **Prevents token exhaustion through 9 optimization patterns.**
 
 Automatically detects and fixes token waste: eternal conversations, verbose output, wrong model choice, MCP bloat, expensive files. Activates when context ≥40%, rate limits, or 5+ MCPs loaded.
@@ -128,6 +135,7 @@ Automatically detects and fixes token waste: eternal conversations, verbose outp
 #### Advanced Decision-Making
 
 ##### [llm-council](./skills/llm-council/README.md)
+
 **Multi-perspective decision analysis via 5-advisor council.**
 
 Runs questions through a council of 5 AI advisors who independently analyze, peer-review anonymously, and synthesize a verdict. Based on Karpathy's LLM Council methodology.
@@ -135,6 +143,7 @@ Runs questions through a council of 5 AI advisors who independently analyze, pee
 **Mandatory triggers:** `council this`, `run the council`, `war room this`, `pressure-test this`
 
 ##### [promptor](./skills/promptor/README.md)
+
 **Generate optimized prompts via 5-circle validation pipeline.**
 
 Produces domain-agnostic, auditable, copy-paste-ready prompts using 18 optimization hacks fused with 5-circle validation.
@@ -142,6 +151,7 @@ Produces domain-agnostic, auditable, copy-paste-ready prompts using 18 optimizat
 **Triggers:** `create a prompt`, `optimize this prompt`, `promptor`, `generate a system prompt`
 
 ##### [promptor-council](./skills/promptor-council/README.md)
+
 **Promptor v3 with multi-perspective deliberation.**
 
 Enhanced version of promptor with council-based validation and architectural deliberation.
@@ -151,11 +161,13 @@ Enhanced version of promptor with council-based validation and architectural del
 #### Development Utilities
 
 ##### [skill-creator](./skills/skill-creator/README.md)
+
 **Create new skills following best practices.**
 
 Guides skill creation process with TDD methodology, proper structure, and validation.
 
 ##### [find-bugs](./skills/find-bugs/README.md)
+
 **Systematic bug detection and analysis.**
 
 Structured approach to finding and documenting bugs in codebases.
@@ -175,6 +187,7 @@ This collection implements a **spec-first, test-driven, vertical-slice workflow*
 ```
 
 This creates:
+
 - GitHub Issues configuration via `gh` CLI
 - 5 triage labels (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
 - `CONTEXT.md` for domain documentation
@@ -265,6 +278,7 @@ Each skill and issue uses **5 canonical labels**:
 | **WONTFIX** | Intentionally skipped | Out of scope, obsolete |
 
 **Benefits:**
+
 - Clear communication (team knows risk level)
 - Appropriate rigor (no over-engineering simple fixes)
 - Efficient workflow (skip unnecessary process for LIGHT)
