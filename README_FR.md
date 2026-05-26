@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-1-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-12-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -58,76 +58,216 @@ Avec skills, les agents IA :
 
 ## 📦 Skills Disponibles
 
-### 🚀 rescue-tokens
+Cette collection comprend **12 skills** organisées en workflows et utilitaires.
 
-**Prévient l'épuisement des tokens et les rate limits via 9 patterns d'optimisation.**
+### 🎯 Workflow de Développement Principal
 
-#### Le Problème
+**Workflow recommandé :** `/spec-driven` → `/create-github-issues` → `/tdd-hybrid` (par issue)
 
-Les utilisateurs rencontrent des erreurs "rate limit" non pas parce qu'ils ont envoyé trop de messages, mais parce qu'ils **brûlent des tokens silencieusement** :
+#### 1. [spec-driven](./skills/spec-driven/README.md)
+**Développement piloté par specs avec pipeline strict et budgets tokens.**
 
-- Conversations éternelles (contexte gonflé)
-- Sortie verbeuse (les explications coûtent des tokens)
-- Mauvais choix de modèle (Opus 4.7 pour tâches simples = coût 5x)
-- Surcharge de plugins MCP (overhead à chaque message)
-- Fichiers coûteux (PDF, images = 10-50x tokens)
+Active un workflow structuré spec-first (SPEC→PLAN→IMPL→VERIF→SYNTHESE) avec triage 3 voies (FULL/LIGHT/SHIP), budgets tokens, et gates explicites. À utiliser au démarrage de fonctionnalités ou tâches complexes.
 
-#### La Solution
+**Déclencheurs :** `spec-driven`, `/spec-driven`, `mode spec`, `spec first`, `pipeline complet`
 
-`rescue-tokens` détecte et corrige 9 patterns de gaspillage de tokens **automatiquement**.
+#### 2. [create-github-issues](./skills/create-github-issues/README.md)
+**Découpage de plans en issues GitHub vertical-slice.**
 
-#### Quand l'Utiliser
+Convertit plans, specs ou PRDs en issues GitHub indépendantes via tranches verticales tracer-bullet. Chaque issue est une tranche fonctionnelle complète (UI → API → DB).
 
-**La skill s'active quand UNE OU PLUSIEURS conditions présentes (logique OR) :**
+**Déclencheurs :** Convertir plan en issues, créer tickets d'implémentation, découper travail
 
-- ⚠️ Avertissements de rate limit
-- ⚠️ Contexte ≥40% plein
-- ⚠️ Plan à $20-$100/mois après 14h
-- ⚠️ Conversation >90 minutes
-- ⚠️ 5+ plugins MCP chargés
-- ⚠️ Utilisateur dit "ne perds pas le contexte"
-- ⚠️ Opus 4.7 pour tâches simples
+#### 3. [tdd-hybrid](./skills/tdd-hybrid/README.md)
+**Développement piloté par tests avec discipline stricte et workflow intelligent.**
 
-**Note :** Chaque flag SEUL déclenche le mode urgence. Vous n'avez pas besoin de toutes les conditions.
+Combine rigueur TDD (Loi de Fer, vérification obligatoire) avec planification intelligente, découpage vertical, et conscience du domaine. Inclut triage LIGHT/FULL et gates spec/verify optionnelles.
 
-#### Ce qu'Elle Fait
+**Déclencheurs :** Implémenter fonctionnalités ou corriger bugs avec TDD, `/tdd-hybrid`
 
-**Matrice d'Actions** (Pas de confirmation utilisateur) :
+#### 4. [diagnose](./skills/diagnose/README.md)
+**Boucle de diagnostic disciplinée pour bugs difficiles et régressions performance.**
 
-- Contexte 40-70% → `/compact` faits clés
-- Contexte >70% → Nouvelle conversation, résumé 3 phrases
-- Rate limit + urgence → Sous-agent en Sonnet immédiatement
-- Opus 4.7 pour CRUD → Changer vers Sonnet
-- PDF/image → Demander extraits texte
-- 5+ MCPs → Désactiver inutilisés
+Débogage structuré : reproduire → minimiser → hypothèse → instrumentation → correction → test régression. Prévient conclusions hâtives et assure corrections reproductibles.
 
-**Discipline de Réponse Sous Pression :**
+**Déclencheurs :** `diagnose this`, `debug this`, rapports bugs, quelque chose cassé/défaillant, régressions performance
 
-- <100 mots total
-- PAS de sections markdown
-- PAS de blocs "Raisonnement :"
-- PAS de tableaux
-- Verbes d'action seulement : "Changé vers Sonnet. Démarre OAuth."
+#### 5. [improve-codebase-architecture](./skills/improve-codebase-architecture/README.md)
+**Trouver opportunités d'approfondissement dans codebases.**
 
-**Rationalisations Contrées :**
-La skill contre explicitement 9 rationalisations d'agents :
+Analyse codebases pour améliorations architecturales informées par langage domaine (CONTEXT.md) et décisions architecturales (docs/adr/). Suggère consolidation modules couplés et améliorations testabilité.
 
-- "Laisse-moi expliquer pourquoi" → Les explications brûlent des tokens
-- "Je vais ajouter sections Raisonnement" → Énoncer décision seulement
-- "Les tableaux aident à comparer" → Tableaux coûtent 5x tokens
-- "L'utilisateur veut le contexte" → 80% est du poids mort
-- ...et 5 de plus
+**Déclencheurs :** Améliorer architecture, trouver opportunités refactoring, revue périodique codebase
 
-#### Résultats Vérifiés
+---
 
-**Résultats tests TDD (7 scénarios) :**
+### 🛠️ Skills de Support
 
-- **Baseline :** 950 mots moyenne (agent sans skill)
-- **Phase GREEN :** 525 mots (45% amélioration)
-- **Phase REFACTOR :** 97 mots (90% amélioration)
-- **Rationalisations :** 0 dans tests finaux
+#### Setup & Configuration
+
+##### [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md)
+**Configuration initiale du repository (exécuter une fois).**
+
+Configure issue tracker, crée 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX), met en place structure CONTEXT.md + docs/adr/. Configuration unique par repository.
+
+---
+
+#### Optimisation Tokens & Contexte
+
+##### [rescue-tokens](./skills/rescue-tokens/README.md)
+**Prévient épuisement tokens via 9 patterns d'optimisation.**
+
+Détecte et corrige automatiquement gaspillage tokens : conversations éternelles, sortie verbeuse, mauvais choix modèle, surcharge MCP, fichiers coûteux. Active quand contexte ≥40%, rate limits, ou 5+ MCPs chargés.
+
+**Résultats vérifiés :** 90% réduction tokens en scénarios urgence.
 
 [📖 Documentation Complète](./skills/rescue-tokens/SKILL.md)
+
+---
+
+#### Prise de Décision Avancée
+
+##### [llm-council](./skills/llm-council/README.md)
+**Analyse décisionnelle multi-perspective via conseil 5 conseillers.**
+
+Soumet questions à conseil de 5 conseillers IA analysant indépendamment, révisant anonymement, et synthétisant verdict. Basé sur méthodologie LLM Council de Karpathy.
+
+**Déclencheurs obligatoires :** `council this`, `run the council`, `war room this`, `pressure-test this`
+
+##### [promptor](./skills/promptor/README.md)
+**Génération prompts optimisés via pipeline validation 5 cercles.**
+
+Produit prompts agnostiques domaine, auditables, prêts copier-coller via 18 hacks optimisation fusionnés avec validation 5 cercles.
+
+**Déclencheurs :** `create a prompt`, `optimize this prompt`, `promptor`, `generate a system prompt`
+
+##### [promptor-council](./skills/promptor-council/README.md)
+**Promptor v3 avec délibération multi-perspective.**
+
+Version améliorée de promptor avec validation basée conseil et délibération architecturale.
+
+---
+
+#### Utilitaires Développement
+
+##### [skill-creator](./skills/skill-creator/README.md)
+**Créer nouvelles skills selon bonnes pratiques.**
+
+Guide processus création skill avec méthodologie TDD, structure appropriée, et validation.
+
+##### [find-bugs](./skills/find-bugs/README.md)
+**Détection et analyse systématique bugs.**
+
+Approche structurée pour trouver et documenter bugs dans codebases.
+
+---
+
+## 🔄 Workflow de Développement Complet
+
+Cette collection implémente un **workflow spec-first, test-driven, vertical-slice** inspiré de la méthodologie de Matt Pocock.
+
+### Configuration Initiale du Repository (Une Fois)
+
+```bash
+# 1. Installer skills dans ~/.claude/skills/
+# 2. Dans votre repository projet :
+/setup-matt-pocock-skills
+```
+
+Ceci crée :
+- Configuration GitHub Issues via `gh` CLI
+- 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
+- `CONTEXT.md` pour documentation domaine
+- `docs/adr/` pour décisions architecturales
+
+### Cycle de Développement (Par Fonctionnalité)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 1 : SPÉCIFICATION                                     │
+│ /spec-driven                                                │
+│ → Crée spec détaillée avec exigences, contraintes          │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 2 : DÉCOUPAGE EN ISSUES                               │
+│ /create-github-issues                                       │
+│ → Convertit spec en issues GitHub vertical-slice           │
+│ → Chaque issue = UI → API → DB (tranche fonctionnelle)     │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 3 : IMPLÉMENTATION (Par Issue)                        │
+│ /tdd-hybrid                                                 │
+│ → Développement test-first avec triage LIGHT/FULL          │
+│ → Cycle RED → GREEN → REFACTOR                             │
+│ → Vérification obligatoire avant complétion                │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 4 : DÉBOGAGE (Si Nécessaire)                          │
+│ /diagnose                                                   │
+│ → Reproduire → Minimiser → Hypothèse → Corriger → Test     │
+└─────────────────────────────────────────────────────────────┘
+                            ↓
+┌─────────────────────────────────────────────────────────────┐
+│ Phase 5 : MAINTENANCE PÉRIODIQUE                            │
+│ /improve-codebase-architecture                             │
+│ → Trouver opportunités approfondissement                    │
+│ → Consolider modules couplés                                │
+│ → Améliorer testabilité                                     │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Exemple de Session
+
+```bash
+# Démarrer nouvelle fonctionnalité
+Vous : "Ajouter authentification utilisateur avec OAuth2"
+
+# 1. Créer spécification
+/spec-driven
+
+# 2. Découper en issues (après approbation spec)
+/create-github-issues
+
+# 3. Prendre première issue de GitHub
+# Exemple : "Issue #42 : Bouton login OAuth2 UI"
+
+# 4. Implémenter avec TDD
+/tdd-hybrid
+# → Crée tests échouant
+# → Implémente code minimal
+# → Refactorise
+# → Vérifie tous tests passent
+
+# 5. Si bug trouvé
+/diagnose
+# → Reproduit problème
+# → Crée reproduction minimale
+# → Corrige cause racine
+# → Ajoute test régression
+
+# 6. Revue architecture périodique
+/improve-codebase-architecture
+```
+
+### Système de Triage
+
+Chaque skill et issue utilise **5 labels canoniques** :
+
+| Label | Signification | Quand Utiliser |
+|-------|---------------|----------------|
+| **LIGHT** | Simple, faible risque | Petits changements, corrections évidentes |
+| **FULL** | Complexe, nécessite rigueur | Nouvelles fonctionnalités, refactors, bugs critiques |
+| **SHIP** | Prêt à merger | Tous tests passent, révisé |
+| **BLOCKED** | Ne peut pas procéder | Dépendances manquantes, design pas clair |
+| **WONTFIX** | Intentionnellement ignoré | Hors scope, obsolète |
+
+**Avantages :**
+- Communication claire (équipe connaît niveau risque)
+- Rigueur appropriée (pas de sur-ingénierie corrections simples)
+- Workflow efficace (ignorer processus inutile pour LIGHT)
 
 ---
 
