@@ -16,8 +16,11 @@
 ## 📋 Table of Contents
 
 - [What Are Claude Skills?](#-what-are-claude-skills)
-- [Available Skills](#-available-skills)
+- [Quick Start](#-quick-start-5-minutes)
+- [Which Skill Should I Use?](#-which-skill-should-i-use)
 - [Installation](#-installation)
+- [Complete Development Workflow](#-complete-development-workflow)
+- [Available Skills](#-available-skills-detailed-reference)
 - [TDD Methodology](#-tdd-methodology-explained)
 - [Acronyms & Terminology](#-acronyms--terminology)
 - [How Skills Work](#-how-skills-work)
@@ -56,9 +59,101 @@ With skills, AI agents:
 
 ---
 
-## 📦 Available Skills
+## 🚀 Quick Start (5 minutes)
+
+**New to Claude Skills? Start here:**
+
+### Try Your First Skill
+
+```bash
+# 1. Clone this repository
+git clone https://github.com/valorisa/Claude-Skills.git
+cd Claude-Skills
+
+# 2. Install one skill to try (rescue-tokens is great for beginners)
+cp -r skills/rescue-tokens ~/.claude/skills/
+```
+
+### Test It in Claude Code
+
+1. Open Claude Code (CLI, desktop app, or web)
+2. Start a conversation and mention: **"I'm getting rate limit warnings"**
+3. Claude will automatically activate the `rescue-tokens` skill
+4. Watch how Claude optimizes its behavior to save tokens!
+
+### What Happens?
+
+**Without skill:** Claude might write verbose explanations (950 words), wasting tokens
+
+**With skill:** Claude responds concisely (97 words), taking immediate action
+
+### Next Steps
+
+- **Want the full development workflow?** → See [Complete Development Workflow](#-complete-development-workflow)
+- **Not sure which skill to use?** → See [Which Skill Should I Use?](#-which-skill-should-i-use)
+- **Ready to install all skills?** → See [Installation](#-installation)
+
+---
+
+## 🎯 Which Skill Should I Use?
+
+**Choose your path based on what you need:**
+
+### For Everyone
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [rescue-tokens](./skills/rescue-tokens/README.md) | Getting rate limits, context warnings, or slow responses | Prevents token waste that causes rate limits. **Start here if unsure!** |
+
+### For Starting New Work
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [spec-driven](./skills/spec-driven/README.md) | Starting a new feature or complex task | Prevents "coding too early" syndrome. Forces you to think through requirements before writing code, avoiding costly rewrites. |
+| [create-github-issues](./skills/create-github-issues/README.md) | You have a plan/spec and need to break it into tasks | Converts big plans into small, independent, shippable chunks. Each issue = complete feature slice (UI → API → DB). |
+
+### For Writing Code
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [tdd-hybrid](./skills/tdd-hybrid/README.md) | Implementing any feature or bugfix | Write tests before code = fewer bugs, better design. Prevents "it works on my machine" problems. |
+| [diagnose](./skills/diagnose/README.md) | Stuck on a hard bug or performance issue | Systematic debugging prevents guessing. Reproduce → minimize → fix → test. Ensures bug stays fixed. |
+
+### For Improving Existing Code
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [improve-codebase-architecture](./skills/improve-codebase-architecture/README.md) | Periodic codebase reviews, or code feels messy | Finds architectural improvements based on your domain language (CONTEXT.md). Suggests consolidation opportunities. |
+
+### For Advanced Decision-Making
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [llm-council](./skills/llm-council/README.md) | Big decisions, tradeoff analysis, architecture choices | Gets 5 independent AI perspectives, peer-reviewed. Catches blind spots you'd miss alone. |
+| [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
+
+### Setup (Run Once Per Repo)
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md) | First time setting up a new repository | Creates issue tracker, triage labels, and documentation structure. One-time setup. |
+
+### Utilities
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [skill-creator](./skills/skill-creator/README.md) | Creating your own custom skills | Guides you through TDD methodology and proper structure. |
+| [find-bugs](./skills/find-bugs/README.md) | Systematic bug hunting in codebase | Structured approach to finding and documenting bugs. |
+
+**💡 Tip:** Skills work together! Common workflow: `spec-driven` → `create-github-issues` → `tdd-hybrid` (per issue) → `diagnose` (if bugs found)
+
+---
+
+## 📦 Available Skills (Detailed Reference)
 
 This collection includes **12 skills** organized into workflows and utilities.
+
+> **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 
 ### 🎯 Core Development Workflow
 
