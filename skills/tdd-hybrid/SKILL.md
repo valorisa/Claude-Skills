@@ -38,6 +38,7 @@ NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
 Write code before the test? **Delete it. Start over.**
 
 **No exceptions:**
+
 - Don't keep it as "reference"
 - Don't "adapt" it while writing tests
 - Don't look at it
@@ -52,6 +53,7 @@ Thinking "skip TDD just this once"? Stop. That's rationalization.
 **DO NOT write all tests first, then all implementation.** This is "horizontal slicing" — treating RED as "write all tests" and GREEN as "write all code."
 
 This produces **crap tests:**
+
 - Tests written in bulk test _imagined_ behavior, not _actual_ behavior
 - You end up testing the _shape_ of things (data structures, function signatures) rather than user-facing behavior
 - Tests become insensitive to real changes
@@ -76,9 +78,11 @@ RIGHT (vertical):
 For bug fixes, simple functions (<20 lines), or <3 behaviors.
 
 ### 1. Quick Planning
+
 Ask user: **"Which behaviors should we test?"** (prioritize — can't test everything)
 
 ### 2. Tracer Bullet
+
 Write ONE test that confirms ONE thing end-to-end:
 
 ```
@@ -89,9 +93,11 @@ Verify GREEN (mandatory)
 ```
 
 ### 3. Incremental Loop
+
 For each remaining behavior:
 
 #### RED - Write Failing Test
+
 One minimal test showing what should happen.
 
 <Good>
@@ -109,6 +115,7 @@ test('retries failed operations 3 times', async () => {
   expect(result).toBe('success');
   expect(attempts).toBe(3);
 });
+
 ```
 Clear name, tests real behavior, one thing
 </Good>
@@ -124,10 +131,12 @@ test('retry works', async () => {
   expect(mock).toHaveBeenCalledTimes(3);
 });
 ```
+
 Vague name, tests mock not code
 </Bad>
 
 **Requirements:**
+
 - One behavior
 - Clear name
 - Real code (no mocks unless unavoidable)
@@ -139,6 +148,7 @@ npm test path/to/test.test.ts
 ```
 
 Confirm:
+
 - Test fails (not errors)
 - Failure message is expected
 - Fails because feature missing (not typos)
@@ -187,6 +197,7 @@ npm test path/to/test.test.ts
 ```
 
 Confirm:
+
 - Test passes
 - Other tests still pass
 - Output pristine (no errors, warnings)
@@ -194,7 +205,9 @@ Confirm:
 **Test fails?** Fix code, not test.
 
 ### 4. Refactor (Basique)
+
 After all tests pass:
+
 - [ ] Remove duplication
 - [ ] Improve names
 - [ ] Run tests after each change
@@ -302,6 +315,7 @@ If ANY of these present, **delete code and restart with TDD:**
 **Bug:** Empty email accepted
 
 **RED**
+
 ```typescript
 test('rejects empty email', async () => {
   const result = await submitForm({ email: '' });
@@ -310,12 +324,14 @@ test('rejects empty email', async () => {
 ```
 
 **Verify RED**
+
 ```bash
 $ npm test
 FAIL: expected 'Email required', got undefined
 ```
 
 **GREEN**
+
 ```typescript
 function submitForm(data: FormData) {
   if (!data.email?.trim()) {
@@ -326,6 +342,7 @@ function submitForm(data: FormData) {
 ```
 
 **Verify GREEN**
+
 ```bash
 $ npm test
 PASS
@@ -358,6 +375,7 @@ Can't check all boxes? You skipped TDD. Start over.
 ## Integration with Ecosystem
 
 This skill integrates with:
+
 - `/setup-matt-pocock-skills` — configures CONTEXT.md + ADRs location (required for FULL workflow)
 - `/grill-with-docs` — builds domain glossary we use for test names
 - `/to-issues` — creates vertical slices we implement with TDD
@@ -365,6 +383,7 @@ This skill integrates with:
 - `/spec-driven` — generates spec before invoking this skill
 
 **Typical workflow:**
+
 ```
 /spec-driven → /tdd-hybrid → implementation with tests
 ```
