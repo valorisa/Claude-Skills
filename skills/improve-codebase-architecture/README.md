@@ -11,6 +11,7 @@ Find deepening opportunities in a codebase using domain language and ADRs.
 ## What it does
 
 Finds opportunities to:
+
 - Deepen modules (small interface, rich implementation)
 - Consolidate tightly-coupled code
 - Improve testability and AI-navigability
