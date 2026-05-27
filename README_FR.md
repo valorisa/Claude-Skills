@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-12-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-13-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -151,7 +151,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Skills Disponibles (Référence Détaillée)
 
-Cette collection comprend **12 skills** organisées en workflows et utilitaires.
+Cette collection comprend **13 skills** organisées en workflows et utilitaires.
 
 > **💡 Note sur les Déclencheurs :** Quand vous mentionnez un mot-clé déclencheur dans votre conversation avec Claude, la skill s'active automatiquement. Par exemple, dire "J'ai des avertissements rate limit" active `rescue-tokens`.
 
@@ -224,6 +224,14 @@ Détecte et corrige automatiquement gaspillage tokens : conversations éternelle
 **Résultats vérifiés :** 90% réduction tokens en scénarios urgence.
 
 [📖 Documentation Complète](./skills/rescue-tokens/SKILL.md)
+
+##### [standardize-github-repo](./skills/standardize-github-repo/README.md)
+
+**Standardisation repositories GitHub avec READMEs bilingues et CI linting.**
+
+Crée READMEs bilingues complets (EN/FR) avec contenu pédagogique, optimisation About GitHub (<350 chars, 20 topics), badges contextuels, et CI linting Markdown zéro violations. Workflow interactif 5 phases.
+
+**Déclencheurs :** `/standardize-github-repo`, ou automatique en disant "on va faire un repo GitHub", "je vais publier sur GitHub", "git push origin"
 
 ---
 
