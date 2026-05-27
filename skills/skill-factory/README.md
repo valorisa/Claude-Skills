@@ -1,3 +1,5 @@
+🇺🇸 [English](README.md) | 🇫🇷 [Français](README.fr.md)
+
 # Skill Factory
 
 **Production-ready meta-skill for creating, validating, and optimizing Claude skills.**
