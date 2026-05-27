@@ -1,7 +1,7 @@
 # Claude Skills Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-13-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-14-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/methodology-TDD-green.svg)](https://en.wikipedia.org/wiki/Test-driven_development)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -142,7 +142,8 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | When to Use | Why You Need This |
 |-------|-------------|-------------------|
-| [skill-creator](./skills/skill-creator/README.md) | Creating your own custom skills | Guides you through TDD methodology and proper structure. |
+| [skill-factory](./skills/skill-factory/README.md) | Creating production-ready skills with validation and tests | Advanced meta-skill following Anthropic's official guide. Generates complete skill packages with validation scripts, test suites, and distribution-ready structure. Use for professional-grade skills. |
+| [skill-creator](./skills/skill-creator/README.md) | Quick prototyping of custom skills | Lightweight tool for fast iteration. Guides you through basic structure. Use for simple skills or rapid experimentation. |
 | [find-bugs](./skills/find-bugs/README.md) | Systematic bug hunting in codebase | Structured approach to finding and documenting bugs. |
 
 **💡 Tip:** Skills work together! Common workflow: `spec-driven` → `create-github-issues` → `tdd-hybrid` (per issue) → `diagnose` (if bugs found)
