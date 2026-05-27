@@ -1,10 +1,6 @@
 ---
-name: github-standardization-process
+name: standardize-github-repo
 description: "Automatic GitHub repo standardization at publication checkpoints with bilingual READMEs (EN/FR), CI linting, badges, and About configuration"
-metadata: 
-  node_type: memory
-  type: process
-  originSessionId: 40fb3600-9bc1-42ea-a0ef-2ca75a220c56
 ---
 
 # GitHub Repository Standardization Process
