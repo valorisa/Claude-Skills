@@ -9,13 +9,16 @@ Core principles from Anthropic's official guide for building effective, composab
 Skills use a three-level system to minimize token usage while maintaining specialized expertise.
 
 #### Level 1: YAML Frontmatter (Always Loaded)
+
 **Purpose:** Provide just enough information for Claude to know when to load the skill
 
 **What to include:**
+
 - `name`: Kebab-case identifier
 - `description`: WHAT it does + WHEN to use it (trigger conditions)
 
 **What NOT to include:**
+
 - Detailed instructions
 - API documentation
 - Examples
@@ -24,6 +27,7 @@ Skills use a three-level system to minimize token usage while maintaining specia
 **Token cost:** ~50-200 tokens per skill (in system prompt)
 
 **Example:**
+
 ```yaml
 ---
 name: sprint-planning
@@ -35,9 +39,11 @@ user mentions "sprint planning", "plan iteration", or asks to
 ```
 
 #### Level 2: SKILL.md Body (Loaded On Trigger)
+
 **Purpose:** Core workflow instructions, essential examples, basic troubleshooting
 
 **What to include:**
+
 - Step-by-step workflow
 - Critical validation checkpoints
 - 2-3 concrete examples
@@ -45,6 +51,7 @@ user mentions "sprint planning", "plan iteration", or asks to
 - Links to Level 3 resources
 
 **What NOT to include:**
+
 - API reference documentation (→ `references/api-patterns.md`)
 - Extended examples (→ `references/examples.md`)
 - Detailed troubleshooting (→ `references/troubleshooting.md`)
@@ -55,6 +62,7 @@ user mentions "sprint planning", "plan iteration", or asks to
 **Target:** Keep SKILL.md body <5,000 words
 
 **Example structure:**
+
 ```markdown
 ## Instructions
 
@@ -69,9 +77,11 @@ For detailed API usage patterns, see `references/api-patterns.md` section 2.3.
 ```
 
 #### Level 3: Linked Files (Loaded As Needed)
+
 **Purpose:** Detailed documentation that Claude navigates to only when required
 
 **Typical files:**
+
 - `references/api-patterns.md` — Rate limits, pagination, error codes
 - `references/examples.md` — Extended use cases
 - `references/troubleshooting.md` — Edge cases, debugging guides
@@ -81,6 +91,7 @@ For detailed API usage patterns, see `references/api-patterns.md` section 2.3.
 **Token cost:** Only loaded when Claude needs them (0 tokens unless referenced)
 
 **Example reference:**
+
 ```markdown
 # references/api-patterns.md
 
@@ -105,6 +116,7 @@ for attempt in range(5):
 #### Why Progressive Disclosure Matters
 
 **Without progressive disclosure (bad):**
+
 ```markdown
 ---
 name: sprint-planning
@@ -115,9 +127,11 @@ description: Sprint planning tool.
 
 [20,000 words of API documentation, examples, edge cases, all inline]
 ```
+
 **Token cost:** ~20,000 tokens EVERY TIME skill triggers ❌
 
 **With progressive disclosure (good):**
+
 ```markdown
 ---
 name: sprint-planning
@@ -131,6 +145,7 @@ description: [Focused description with triggers]
 For API details, see `references/api-patterns.md`.
 For extended examples, see `references/examples.md`.
 ```
+
 **Token cost:** ~2,000 tokens when skill triggers, +extra only if needed ✅
 
 ### 2. Composability
@@ -140,6 +155,7 @@ For extended examples, see `references/examples.md`.
 #### Design for Coexistence
 
 ❌ **Bad (assumes exclusivity):**
+
 ```markdown
 ## Instructions
 
@@ -148,6 +164,7 @@ Do not use any other project-related capabilities.
 ```
 
 ✅ **Good (composable):**
+
 ```markdown
 ## Instructions
 
@@ -161,11 +178,13 @@ For retrospectives, use sprint-retro skill.
 #### Clear Boundaries
 
 **Each skill should have a well-defined scope:**
+
 - What it DOES
 - What it DOESN'T do
 - Which other skills complement it
 
 **Example:**
+
 ```markdown
 ## Scope
 
@@ -187,11 +206,13 @@ For retrospectives, use sprint-retro skill.
 **Problem:** Two skills trigger on similar queries, causing confusion
 
 **Solution:**
+
 1. Use specific, non-overlapping trigger phrases
 2. Add negative scope to descriptions
 3. Coordinate with related skills
 
 **Example:**
+
 ```yaml
 # sprint-planning skill
 description: Sprint planning for 2-week iterations. Use for "plan sprint", 
@@ -220,6 +241,7 @@ description: Sprint retrospectives and lessons learned. Use for "sprint retro",
 **Design skills to be surface-agnostic:**
 
 ✅ **Good (portable):**
+
 ```markdown
 ## Instructions
 
@@ -234,6 +256,7 @@ Use Linear MCP tool `create_issue` for each task.
 ```
 
 ❌ **Bad (tied to specific surface):**
+
 ```markdown
 ## Instructions
 
@@ -264,12 +287,14 @@ metadata:
 #### Handle Environment Differences Gracefully
 
 **Some features are environment-specific:**
+
 - File system access (Claude Code, API)
 - Interactive file uploads (Claude.ai)
 - Bash execution (Claude Code, API)
 - Real-time MCP connections (all surfaces, but setup varies)
 
 **Best practice:**
+
 ```markdown
 ## Instructions
 
@@ -298,16 +323,19 @@ metadata:
 **Two valid approaches to skill design:**
 
 #### Problem-First (Outcome-Oriented)
+
 **User mindset:** "I need to accomplish X"
 
 **Skill approach:** Orchestrate tools to achieve the outcome
 
 **Best for:**
+
 - Complex workflows with multiple steps
 - Users who know the goal but not the tools
 - Category 2 (Workflow Automation)
 
 **Example:**
+
 ```markdown
 # Skill: customer-onboarding
 
@@ -321,16 +349,19 @@ Skill orchestrates:
 ```
 
 #### Tool-First (Capability-Oriented)
+
 **User mindset:** "I have access to X, how do I use it effectively?"
 
 **Skill approach:** Teach best practices and optimal workflows
 
 **Best for:**
+
 - MCP servers with non-obvious usage patterns
 - Domain-specific expertise
 - Category 3 (MCP Enhancement)
 
 **Example:**
+
 ```markdown
 # Skill: notion-workspace-setup
 
@@ -351,6 +382,7 @@ Skill teaches:
 When logic must be exact and consistent, use executable code.
 
 **Example:**
+
 ```markdown
 ## Step 3: Validate Input
 
@@ -363,6 +395,7 @@ If output shows "FAILED", fix errors before proceeding.
 ```
 
 **Benefits:**
+
 - Guaranteed consistency
 - No interpretation ambiguity
 - Easier to test
@@ -371,6 +404,7 @@ If output shows "FAILED", fix errors before proceeding.
 When judgment calls are needed, use natural language guidance.
 
 **Example:**
+
 ```markdown
 ## Step 2: Assess Quality
 
@@ -386,6 +420,7 @@ If quality is insufficient, refine based on:
 ```
 
 **Benefits:**
+
 - Flexible for creative tasks
 - Adapts to context
 - Handles nuance
@@ -467,6 +502,7 @@ Deliver final output only if all gates passed.
 ```
 
 **Benefits:**
+
 - Catches errors early (cheaper to fix)
 - Prevents wasted work on bad inputs
 - Explicit checkpoints improve reliability
@@ -476,6 +512,7 @@ Deliver final output only if all gates passed.
 ### Strategy 1: Reference Files Instead of Inline
 
 ❌ **Inefficient:**
+
 ```markdown
 ## API Reference
 
@@ -483,6 +520,7 @@ Deliver final output only if all gates passed.
 ```
 
 ✅ **Efficient:**
+
 ```markdown
 ## API Usage
 
@@ -497,6 +535,7 @@ For API details, see `references/api-patterns.md`:
 ### Strategy 2: Examples in References
 
 ❌ **Inefficient:**
+
 ```markdown
 ## Examples
 
@@ -504,6 +543,7 @@ For API details, see `references/api-patterns.md`:
 ```
 
 ✅ **Efficient:**
+
 ```markdown
 ## Examples
 
@@ -521,6 +561,7 @@ Quick example:
 ### Strategy 3: Deterministic Validation
 
 ❌ **Inefficient (text-based validation):**
+
 ```markdown
 Check that:
 - The file has all required columns
@@ -533,6 +574,7 @@ Check that:
 ```
 
 ✅ **Efficient (script-based validation):**
+
 ```markdown
 Run validation:
 \`\`\`bash
@@ -549,12 +591,14 @@ If validation fails, see error output for specific issues.
 ### High-Quality Skill Characteristics
 
 ✅ **Clear, specific trigger phrases**
+
 ```yaml
 description: Use when user says "plan sprint", "sprint planning", 
 "organize next iteration"
 ```
 
 ✅ **Actionable, ordered instructions**
+
 ```markdown
 ### Step 1: Fetch Data
 Run: `api.get_projects()`
@@ -563,17 +607,20 @@ Calculate: `avg = sum(velocities) / len(velocities)`
 ```
 
 ✅ **Explicit validation gates**
+
 ```markdown
 ⛔ STOP if velocity data is empty. Cannot proceed without historical data.
 ```
 
 ✅ **Error handling with solutions**
+
 ```markdown
 ### Error: "API rate limit exceeded"
 **Solution:** Wait 60 seconds, then retry. Implement exponential backoff.
 ```
 
 ✅ **Progressive disclosure**
+
 ```markdown
 For detailed API patterns, see `references/api-patterns.md` section 2.3.
 ```
@@ -581,26 +628,31 @@ For detailed API patterns, see `references/api-patterns.md` section 2.3.
 ### Low-Quality Skill Red Flags
 
 ❌ **Vague trigger conditions**
+
 ```yaml
 description: Helps with projects.
 ```
 
 ❌ **Non-actionable instructions**
+
 ```markdown
 Make sure the data is good before proceeding.
 ```
 
 ❌ **No error handling**
+
 ```markdown
 [Skill assumes nothing ever fails]
 ```
 
 ❌ **Everything inline (token bloat)**
+
 ```markdown
 [15,000 words in SKILL.md, nothing in references/]
 ```
 
 ❌ **No validation**
+
 ```markdown
 [Workflow proceeds blindly without checking preconditions]
 ```
@@ -608,6 +660,7 @@ Make sure the data is good before proceeding.
 ## Summary: The Ideal Skill
 
 **A well-designed skill:**
+
 1. Uses progressive disclosure (3 levels)
 2. Is composable (works alongside other skills)
 3. Is portable (works across Claude surfaces)
@@ -620,6 +673,7 @@ Make sure the data is good before proceeding.
 10. Is testable (trigger, functional, performance tests)
 
 **Token efficiency:**
+
 - Level 1 (frontmatter): ~100 tokens (always loaded)
 - Level 2 (SKILL.md): ~2,000-5,000 tokens (on trigger)
 - Level 3 (references): ~0-10,000 tokens (only as needed)

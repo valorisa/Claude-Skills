@@ -9,11 +9,13 @@ Common issues when building and deploying Claude skills, with solutions.
 **Symptom:** Skill won't upload to Claude.ai or Claude Code rejects it
 
 **Causes:**
+
 1. File not named exactly `SKILL.md` (case-sensitive)
 2. File is in a subdirectory instead of skill root
 3. Folder structure incorrect
 
 **Solution:**
+
 ```bash
 # Check filename (must be exact)
 ls -la | grep SKILL.md  # Should show: SKILL.md
@@ -39,6 +41,7 @@ tree my-skill/
 ```
 
 **Fix:**
+
 ```bash
 # Rename if wrong case
 mv skill.md SKILL.md
@@ -52,12 +55,14 @@ mv docs/SKILL.md ./SKILL.md
 **Symptom:** Upload fails with YAML parsing error
 
 **Causes:**
+
 1. Missing `---` delimiters
 2. Unclosed quotes
 3. Invalid YAML syntax
 4. Special characters not escaped
 
 **Solution:**
+
 ```yaml
 # ❌ Wrong: Missing delimiters
 name: my-skill
@@ -83,7 +88,8 @@ description: Does things with proper YAML
 ```
 
 **Debug steps:**
-1. Validate YAML online: https://www.yamllint.com/
+
+1. Validate YAML online: <https://www.yamllint.com/>
 2. Check for unclosed quotes
 3. Ensure `---` on its own line at start and end
 4. Run validation script: `python scripts/validate_skill.py .`
@@ -93,12 +99,14 @@ description: Does things with proper YAML
 **Symptom:** Name rejected during upload
 
 **Causes:**
+
 1. Name has spaces
 2. Name has capitals
 3. Name has underscores
 4. Name starts with reserved prefix (`claude-`, `anthropic-`)
 
 **Solution:**
+
 ```yaml
 # ❌ Wrong formats:
 name: My Cool Skill          # Spaces, capitals
@@ -111,6 +119,7 @@ name: my-cool-skill          # Kebab-case only
 ```
 
 **Fix:**
+
 ```bash
 # Convert to kebab-case
 # "My Cool Skill" → "my-cool-skill"
@@ -123,9 +132,11 @@ name: my-cool-skill          # Kebab-case only
 **Symptom:** Warning during validation, potential confusion
 
 **Causes:**
+
 - Folder named differently than `name` in frontmatter
 
 **Solution:**
+
 ```bash
 # ❌ Mismatch:
 # Folder: sprint-planning/
@@ -137,6 +148,7 @@ name: my-cool-skill          # Kebab-case only
 ```
 
 **Fix:**
+
 ```bash
 # Rename folder to match frontmatter
 mv sprint-planner/ sprint-planning/
@@ -150,16 +162,19 @@ mv sprint-planner/ sprint-planning/
 ### Issue: Skill doesn't trigger when it should (under-triggering)
 
 **Symptom:**
+
 - User says trigger phrase, skill doesn't load
 - Must manually enable skill
 - Skill appears irrelevant to Claude
 
 **Causes:**
+
 1. Description too vague
 2. Missing trigger phrases
 3. No mention of specific tasks/file types
 
 **Diagnosis:**
+
 ```bash
 # Ask Claude: "When would you use the [skill-name] skill?"
 # Claude will quote the description back
@@ -169,11 +184,13 @@ mv sprint-planner/ sprint-planning/
 **Solution:**
 
 ❌ **Before (vague):**
+
 ```yaml
 description: Helps with projects.
 ```
 
 ✅ **After (specific):**
+
 ```yaml
 description: Manages Linear project workflows including sprint planning, 
 task creation, backlog grooming, and status tracking. Use when user 
@@ -182,12 +199,14 @@ mentions "sprint", "Linear tasks", "project planning", "create tickets",
 ```
 
 **Fix process:**
+
 1. List 10 realistic phrases users would actually say
 2. Add top 5-7 to description
 3. Test each phrase
 4. Iterate until >90% trigger rate
 
 **Advanced fix:**
+
 ```yaml
 # Add file type triggers if applicable
 description: ... Use when user uploads .fig files, mentions "Figma", 
@@ -205,16 +224,19 @@ description: ... Use when user says "plan sprint", "organize iteration",
 ### Issue: Skill triggers when it shouldn't (over-triggering)
 
 **Symptom:**
+
 - Skill loads on unrelated queries
 - Users disable skill due to noise
 - Confusion about skill purpose
 
 **Causes:**
+
 1. Description too broad
 2. No negative scope
 3. Generic trigger words
 
 **Diagnosis:**
+
 ```bash
 # Test negative cases
 # Try: "What's the weather?" "Write a poem" "Explain X"
@@ -224,11 +246,13 @@ description: ... Use when user says "plan sprint", "organize iteration",
 **Solution:**
 
 ❌ **Before (too broad):**
+
 ```yaml
 description: Processes documents.
 ```
 
 ✅ **After (scoped with negatives):**
+
 ```yaml
 description: Processes PDF legal documents for contract review, clause 
 extraction, and compliance checking. Use for legal PDF analysis ONLY. 
@@ -239,12 +263,14 @@ PDFs (use pdf-tools skill).
 **Fix techniques:**
 
 **1. Add negative scope:**
+
 ```yaml
 description: ... Use for sprint planning. NOT for retrospectives 
 (use sprint-retro skill) or daily standups (use standup-assistant).
 ```
 
 **2. Be more specific about domain:**
+
 ```yaml
 # ❌ Too broad:
 description: Manages projects.
@@ -254,6 +280,7 @@ description: Manages Linear software development projects for Agile teams.
 ```
 
 **3. Narrow to concrete tasks:**
+
 ```yaml
 # ❌ Abstract:
 description: Helps with planning.
@@ -265,6 +292,7 @@ description: Creates sprint task lists with estimates and assignments.
 ### Issue: Skill triggers on paraphrases inconsistently
 
 **Symptom:**
+
 - Works for "plan sprint" but not "organize iteration"
 - Requires exact wording
 
@@ -278,6 +306,7 @@ planning", or asks to "get ready for next sprint".
 ```
 
 **Paraphrase discovery process:**
+
 1. Ask 5 people how they'd describe the task
 2. Document all variations
 3. Add top 7 to description
@@ -289,11 +318,13 @@ planning", or asks to "get ready for next sprint".
 ### Issue: Instructions ignored or skipped
 
 **Symptom:**
+
 - Claude doesn't follow steps
 - Critical validations skipped
 - Inconsistent results
 
 **Causes:**
+
 1. Instructions too verbose (buried in text)
 2. Ambiguous language
 3. Critical steps not emphasized
@@ -302,11 +333,13 @@ planning", or asks to "get ready for next sprint".
 **Solution:**
 
 ❌ **Before (vague, easy to skip):**
+
 ```markdown
 Make sure to validate things properly before continuing.
 ```
 
 ✅ **After (specific, emphatic):**
+
 ```markdown
 ## Step 3: Validation (CRITICAL)
 
@@ -331,6 +364,7 @@ ONLY after seeing "All checks passed" → Continue to Step 4.
 **Advanced techniques:**
 
 **1. Use scripts for critical logic:**
+
 ```markdown
 # Instead of:
 "Check that dates are valid"
@@ -341,6 +375,7 @@ Proceed ONLY if exit code is 0.
 ```
 
 **2. Add explicit "DO NOT" statements:**
+
 ```markdown
 DO NOT skip the compliance check.
 DO NOT create duplicate resources.
@@ -348,6 +383,7 @@ DO NOT proceed if API returns error.
 ```
 
 **3. Add "model encouragement":**
+
 ```markdown
 IMPORTANT: Take time to do this thoroughly.
 Quality is more important than speed.
@@ -355,6 +391,7 @@ Do not skip validation steps to save time.
 ```
 
 **4. Put critical steps first:**
+
 ```markdown
 # ❌ Critical step buried at end:
 ## Step 1: Fetch data
@@ -371,11 +408,13 @@ Do not skip validation steps to save time.
 ### Issue: Inconsistent results across runs
 
 **Symptom:**
+
 - Same query produces different outputs
 - Quality varies unpredictably
 - Sometimes works, sometimes doesn't
 
 **Causes:**
+
 1. Non-deterministic instructions (too much interpretation)
 2. No quality gates
 3. Missing validation
@@ -384,6 +423,7 @@ Do not skip validation steps to save time.
 **Solution:**
 
 **1. Add explicit quality checklist:**
+
 ```markdown
 ## Quality Gate
 
@@ -398,6 +438,7 @@ Deliver ONLY if all 5 checks passed.
 ```
 
 **2. Use deterministic validation:**
+
 ```markdown
 # Instead of:
 "Make sure the output looks good"
@@ -412,6 +453,7 @@ python validate.py   # Must output "PASS"
 ```
 
 **3. Add iteration bounds:**
+
 ```markdown
 ## Refinement Loop
 
@@ -427,6 +469,7 @@ Deliver best version after loop completes.
 ### Issue: API/MCP calls fail
 
 **Symptom:**
+
 - "Connection refused"
 - "Rate limit exceeded"
 - "Authentication failed"
@@ -434,6 +477,7 @@ Deliver best version after loop completes.
 **Diagnosis:**
 
 **1. Check MCP connection:**
+
 ```markdown
 # In Claude.ai or Claude Code:
 Settings > Extensions > [Service Name]
@@ -441,6 +485,7 @@ Status should show: "Connected ✅"
 ```
 
 **2. Test MCP directly (bypass skill):**
+
 ```markdown
 # Ask Claude:
 "Use [Service] MCP to list my projects"
@@ -452,6 +497,7 @@ Status should show: "Connected ✅"
 **Solutions by error:**
 
 **Error: "Connection refused"**
+
 ```markdown
 **Cause:** MCP server not running or not authenticated
 
@@ -464,6 +510,7 @@ Status should show: "Connected ✅"
 ```
 
 **Error: "Rate limit exceeded"**
+
 ```markdown
 **Cause:** API called too frequently
 
@@ -488,6 +535,7 @@ See `references/api-patterns.md` section 2.3 for details.
 ```
 
 **Error: "Authentication failed"**
+
 ```markdown
 **Cause:** API token expired or invalid
 
@@ -500,16 +548,19 @@ See `references/api-patterns.md` section 2.3 for details.
 ### Issue: Skill produces partial results then stops
 
 **Symptom:**
+
 - Workflow starts correctly
 - Stops midway without explanation
 - Some outputs created, others missing
 
 **Causes:**
+
 1. Error occurred but not handled
 2. Validation failed silently
 3. Resource limit hit (tokens, time, API quota)
 
 **Diagnosis:**
+
 ```bash
 # Check for errors in logs
 # Claude Code: View > Output > Claude Code Extension
@@ -522,6 +573,7 @@ See `references/api-patterns.md` section 2.3 for details.
 **Solutions:**
 
 **1. Add checkpoints:**
+
 ```markdown
 ## Workflow with Checkpoints
 
@@ -544,6 +596,7 @@ If ANY checkpoint fails:
 ```
 
 **2. Add explicit error handling:**
+
 ```markdown
 ## Step 2: Create Resources
 
@@ -567,16 +620,19 @@ After loop:
 ### Issue: Skill loads slowly
 
 **Symptom:**
+
 - Long delay after trigger
 - High token consumption
 - Slow responses
 
 **Causes:**
+
 1. SKILL.md too large (>5,000 words)
 2. Too many references loaded inline
 3. Verbose examples
 
 **Diagnosis:**
+
 ```bash
 # Check SKILL.md size
 wc -w SKILL.md
@@ -593,6 +649,7 @@ wc -c SKILL.md  # Characters
 **Solution:**
 
 **1. Move content to references:**
+
 ```markdown
 # Before (10,000 words in SKILL.md):
 ## API Documentation
@@ -627,6 +684,7 @@ Common issues:
 **Token reduction:** ~8,000 tokens → ~2,000 tokens ✅
 
 **2. Compress verbose instructions:**
+
 ```markdown
 # Before (verbose):
 First, you need to make sure that you have properly configured 
@@ -644,17 +702,20 @@ Prerequisites:
 ### Issue: Too many skills enabled (context saturation)
 
 **Symptom:**
+
 - Slow overall performance
 - Skills not triggering reliably
 - Responses less coherent
 
 **Cause:**
+
 - Too many skills loaded simultaneously (>20-50)
 - All frontmatter in system prompt
 
 **Solution:**
 
 **1. Audit enabled skills:**
+
 ```bash
 # Claude Code:
 # Settings > Skills > View enabled
@@ -664,6 +725,7 @@ Prerequisites:
 ```
 
 **2. Organize by use case:**
+
 ```markdown
 # Instead of enabling ALL skills:
 # Enable skill "packs" based on current work
@@ -687,6 +749,7 @@ Enable only the pack you're currently using.
 ```
 
 **3. Remove duplicate/overlapping skills:**
+
 ```markdown
 # Audit for overlap:
 # Do you have 3 different "project management" skills?
@@ -699,10 +762,12 @@ Enable only the pack you're currently using.
 ### Issue: README.md inside skill folder causes confusion
 
 **Symptom:**
+
 - Users expect README.md to be documentation
 - Skill structure unclear
 
 **Solution:**
+
 ```bash
 # ❌ Wrong:
 my-skill/
@@ -723,6 +788,7 @@ my-skill-repo/       ← GitHub repo root
 ### Issue: Skill works locally but not when shared
 
 **Causes:**
+
 1. Hardcoded paths (e.g., `/Users/yourname/...`)
 2. Missing dependencies
 3. Environment-specific assumptions
@@ -730,6 +796,7 @@ my-skill-repo/       ← GitHub repo root
 **Solution:**
 
 **1. Use relative paths:**
+
 ```markdown
 # ❌ Hardcoded:
 Read file at: /Users/myname/Documents/template.md
@@ -739,6 +806,7 @@ Read file at: references/template.md
 ```
 
 **2. Document dependencies:**
+
 ```yaml
 ---
 name: my-skill
@@ -753,6 +821,7 @@ metadata:
 ```
 
 **3. Test in clean environment:**
+
 ```bash
 # Before distributing:
 # 1. Copy skill to /tmp/test-skill/
@@ -766,40 +835,47 @@ metadata:
 When a skill isn't working, check in this order:
 
 ### 1. Structure (30 seconds)
+
 - [ ] File named exactly `SKILL.md`?
 - [ ] Frontmatter has `---` delimiters?
 - [ ] Name is kebab-case?
 - [ ] Folder name matches skill name?
 
 ### 2. Triggering (2 minutes)
+
 - [ ] Description includes trigger phrases?
 - [ ] Trigger phrases are specific, not generic?
 - [ ] Test with 5 positive cases → >90% trigger?
 - [ ] Test with 5 negative cases → <10% trigger?
 
 ### 3. Execution (5 minutes)
+
 - [ ] Instructions are actionable?
 - [ ] Critical steps emphasized?
 - [ ] Validation gates present?
 - [ ] Error handling explicit?
 
 ### 4. Performance (2 minutes)
+
 - [ ] SKILL.md <5,000 words?
 - [ ] Details moved to references/?
 - [ ] No token bloat?
 
 ### 5. External (if using MCP/APIs)
+
 - [ ] MCP connection working?
 - [ ] Test MCP directly (bypass skill)?
 - [ ] API rate limits respected?
 - [ ] Authentication valid?
 
 Run validation script:
+
 ```bash
 python scripts/validate_skill.py .
 ```
 
 If all checks pass but skill still doesn't work:
+
 1. Create minimal test case
 2. Share in Claude Developers Discord
 3. Include: skill frontmatter + minimal SKILL.md + test query

@@ -15,11 +15,13 @@ Skill Factory transforms workflows, processes, or repeated tasks into reliable, 
 ## Key Features
 
 ✅ **Follows Anthropic's Official Patterns**
+
 - 3-level progressive disclosure (frontmatter → SKILL.md → references/)
 - Category-based design (Document Creation, Workflow Automation, MCP Enhancement)
 - Token-efficient structure (<5,000 words in main file)
 
 ✅ **Complete Production Package**
+
 - Optimized YAML frontmatter with trigger phrases
 - Structured instructions with validation gates
 - Reference files for progressive disclosure
@@ -27,12 +29,14 @@ Skill Factory transforms workflows, processes, or repeated tasks into reliable, 
 - Test suites (trigger, functional, performance)
 
 ✅ **Quality Assurance**
+
 - Automated validation (structure, security, triggers)
 - Trigger accuracy testing (>90% target)
 - Performance baseline comparison
 - Iterative refinement process
 
 ✅ **Distribution-Ready**
+
 - GitHub-ready structure
 - Installation instructions
 - CI/CD workflow templates
@@ -51,6 +55,7 @@ Use Skill Factory when you need to:
 - **Prepare skills for team deployment** or public release
 
 **Don't use for:**
+
 - Quick prototyping → Use `/skill-creator` instead
 - Simple one-off tasks without reuse value
 - General coding or documentation tasks
@@ -67,6 +72,7 @@ Think of skill-creator as "sketch mode" and skill-factory as "production mode".
 ### For Claude Code
 
 1. Copy the `skill-factory/` folder to your Claude skills directory:
+
    ```bash
    cp -r skill-factory ~/.claude/skills/
    ```
@@ -74,6 +80,7 @@ Think of skill-creator as "sketch mode" and skill-factory as "production mode".
 2. Restart Claude Code or refresh skills.
 
 3. Verify installation:
+
    ```bash
    ls ~/.claude/skills/skill-factory/
    # Should show: SKILL.md, references/, scripts/, tests/
@@ -82,6 +89,7 @@ Think of skill-creator as "sketch mode" and skill-factory as "production mode".
 ### For Claude.ai
 
 1. Zip the `skill-factory/` folder:
+
    ```bash
    zip -r skill-factory.zip skill-factory/
    ```
@@ -101,6 +109,7 @@ Think of skill-creator as "sketch mode" and skill-factory as "production mode".
 ```
 
 Skill Factory will:
+
 1. Classify the use case (Category 1, 2, or 3)
 2. Choose the architectural pattern
 3. Design optimal frontmatter with trigger phrases
@@ -118,6 +127,7 @@ Skill Factory will:
 ```
 
 Skill Factory will:
+
 1. Validate structure and security
 2. Analyze trigger phrase coverage
 3. Check instruction quality
@@ -215,6 +225,7 @@ python ../skill-factory/scripts/validate_skill.py .
 ```
 
 Expected output:
+
 ```
 ✅ Skill validation PASSED
    ✅ SKILL.md found
@@ -284,6 +295,7 @@ See `references/examples.md` for complete real-world examples:
 **Issue:** Skill Factory doesn't load when you ask to create a skill
 
 **Fix:** Try more specific phrases:
+
 - "Use skill-factory to create a skill for X"
 - "Build a production-ready skill for Y"
 - "Generate a complete Claude skill package"
@@ -293,6 +305,7 @@ See `references/examples.md` for complete real-world examples:
 **Issue:** The skill you created doesn't trigger reliably
 
 **Fix:** Run through Skill Factory's review mode:
+
 ```
 "Review this skill for trigger quality"
 ```
@@ -304,6 +317,7 @@ Skill Factory will audit trigger phrases and suggest improvements.
 **Issue:** `python scripts/validate_skill.py .` reports errors
 
 **Common issues:**
+
 1. File not named exactly `SKILL.md` (case-sensitive)
 2. Frontmatter missing `---` delimiters
 3. Name not kebab-case (use hyphens, not spaces/underscores)

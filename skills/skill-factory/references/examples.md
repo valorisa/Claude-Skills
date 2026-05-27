@@ -9,6 +9,7 @@ Concrete examples demonstrating the three skill categories and common patterns.
 **Use case:** Generate production-grade frontend interfaces
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: frontend-design
@@ -25,12 +26,14 @@ metadata:
 ```
 
 **Key techniques used:**
+
 - Embedded style guide (progressive disclosure → `references/style-guide.md`)
 - Quality checklist before finalization
 - Iterative refinement loop
 - No external tools required (uses Claude's built-in capabilities)
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow
 
@@ -60,6 +63,7 @@ Present final code with usage instructions
 ```
 
 **Why this works:**
+
 - Clear trigger phrases users actually say
 - Quality gates prevent generic output
 - Iterative refinement improves quality
@@ -72,6 +76,7 @@ Present final code with usage instructions
 **Use case:** Generate formatted Word documents
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: docx-creator
@@ -90,11 +95,13 @@ metadata:
 ```
 
 **Key techniques:**
+
 - Template system (`templates/report-template.docx`)
 - Deterministic formatting via scripts
 - Style guide enforcement
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow
 
@@ -130,6 +137,7 @@ Provide download link and preview
 ```
 
 **Why this works:**
+
 - Scripts ensure consistent formatting
 - Templates provide professional appearance
 - Validation prevents incomplete output
@@ -143,6 +151,7 @@ Provide download link and preview
 **Use case:** Automate Agile sprint planning workflow
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: sprint-planning-automation
@@ -158,12 +167,14 @@ metadata:
 ```
 
 **Key techniques:**
+
 - Sequential workflow with validation gates
 - Velocity analysis (data-driven)
 - Optional MCP integration
 - Falls back gracefully if MCP unavailable
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow
 
@@ -212,6 +223,7 @@ Report:
 ```
 
 **Why this works:**
+
 - Works with OR without MCP (flexible)
 - Validation gates prevent bad data
 - Data-driven (velocity, capacity)
@@ -224,6 +236,7 @@ Report:
 **Use case:** Generate release notes from git commits
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: release-notes-generator
@@ -242,6 +255,7 @@ metadata:
 ```
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow
 
@@ -291,6 +305,7 @@ Format:
 ```
 
 **Why this works:**
+
 - Deterministic (parses structured commit messages)
 - Follows standards (Conventional Commits, SemVer)
 - Handles missing categories gracefully
@@ -305,6 +320,7 @@ Format:
 **Use case:** Automated bug fixing using Sentry error data
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: sentry-code-review
@@ -322,12 +338,14 @@ compatibility: Claude Code, API
 ```
 
 **Key techniques:**
+
 - Multi-MCP coordination (Sentry + GitHub)
 - Domain expertise (error analysis patterns)
 - Auto-fix for common issues
 - Manual review for complex cases
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow (Multi-MCP Coordination)
 
@@ -377,6 +395,7 @@ FOR each manual-review error:
 ```
 
 **Why this works:**
+
 - Combines data from multiple sources (Sentry + GitHub)
 - Embeds domain knowledge (error patterns)
 - Graduated response (auto-fix simple, flag complex)
@@ -389,6 +408,7 @@ FOR each manual-review error:
 **Use case:** Initialize Notion workspace with best practices
 
 **Frontmatter:**
+
 ```yaml
 ---
 name: notion-workspace-setup
@@ -404,6 +424,7 @@ metadata:
 ```
 
 **Workflow pattern:**
+
 ```markdown
 ## Workflow (Problem-First Approach)
 
@@ -461,6 +482,7 @@ Provide:
 ```
 
 **Why this works:**
+
 - User describes outcome, skill orchestrates tools
 - Best practices embedded (patterns)
 - Examples reduce onboarding friction
@@ -619,6 +641,7 @@ Report to user: "Stored in [Service] because [Reason]"
 **Skill:** `sprint-planning-automation`
 
 **Should TRIGGER ✅**
+
 ```
 - "Help me plan this sprint"
 - "Create sprint tasks from backlog"
@@ -631,6 +654,7 @@ Report to user: "Stored in [Service] because [Reason]"
 ```
 
 **Should NOT Trigger ❌**
+
 ```
 - "What's the weather today?" (unrelated)
 - "Write a Python function" (coding, not planning)
@@ -651,6 +675,7 @@ Report to user: "Stored in [Service] because [Reason]"
 **Test Case:** Happy Path
 
 **Given:**
+
 - Git repo with 15 commits since last tag
 - Commits follow Conventional Commits format
 - Mix of feat, fix, and docs commits
@@ -659,6 +684,7 @@ Report to user: "Stored in [Service] because [Reason]"
 User says: "Generate release notes for v2.1.0"
 
 **Then:**
+
 1. ✅ Fetches commits since last tag (v2.0.0)
 2. ✅ Categorizes correctly:
    - 5 features
@@ -671,6 +697,7 @@ User says: "Generate release notes for v2.1.0"
 7. ✅ Output has no placeholders
 
 **Verification:**
+
 ```bash
 # Output file created
 test -f RELEASE_NOTES.md
@@ -694,6 +721,7 @@ grep "# Release v2.1.0" RELEASE_NOTES.md
 **Scenario:** Build a landing page for a SaaS product
 
 **Without Skill (Baseline):**
+
 - User messages: 8
 - Claude messages: 12
 - Total: 20 messages
@@ -703,6 +731,7 @@ grep "# Release v2.1.0" RELEASE_NOTES.md
 - Output quality: 6/10 (generic, Bootstrap-style)
 
 **With Skill (Target):**
+
 - User messages: 2
 - Claude messages: 3
 - Total: 5 messages (-75%)
@@ -712,6 +741,7 @@ grep "# Release v2.1.0" RELEASE_NOTES.md
 - Output quality: 9/10 (distinctive, production-ready)
 
 **Success Criteria Met:**
+
 - ✅ ≥50% reduction in messages (75% achieved)
 - ✅ ≥40% reduction in tokens (57% achieved)
 - ✅ ≥50% reduction in time (75% achieved)
@@ -726,6 +756,7 @@ grep "# Release v2.1.0" RELEASE_NOTES.md
 ### Anti-Pattern 1: The Kitchen Sink
 
 ❌ **Bad:**
+
 ```yaml
 description: Does everything related to project management, 
 documentation, code generation, bug fixing, testing, deployment, 
@@ -735,6 +766,7 @@ monitoring, analytics, reporting, and team collaboration.
 **Problem:** Too broad, triggers on everything, does nothing well
 
 ✅ **Good:**
+
 ```yaml
 description: Automates sprint planning workflow including velocity 
 analysis and task creation. Use for "sprint planning" only. NOT for 
@@ -744,6 +776,7 @@ retrospectives, reporting, or deployment.
 ### Anti-Pattern 2: The Mystery Box
 
 ❌ **Bad:**
+
 ```yaml
 description: Advanced project tool.
 ```
@@ -751,6 +784,7 @@ description: Advanced project tool.
 **Problem:** No trigger phrases, too vague, never loads
 
 ✅ **Good:**
+
 ```yaml
 description: [Specific task] + [Clear triggers] + [Domain context]
 ```
@@ -758,6 +792,7 @@ description: [Specific task] + [Clear triggers] + [Domain context]
 ### Anti-Pattern 3: The Token Bomb
 
 ❌ **Bad:**
+
 ```markdown
 # SKILL.md (25,000 words)
 [Everything inline, no references, massive context]
@@ -766,6 +801,7 @@ description: [Specific task] + [Clear triggers] + [Domain context]
 **Problem:** Slow to load, wastes tokens, hurts performance
 
 ✅ **Good:**
+
 ```markdown
 # SKILL.md (2,500 words)
 [Core workflow + links to references/ for details]
@@ -774,6 +810,7 @@ description: [Specific task] + [Clear triggers] + [Domain context]
 ### Anti-Pattern 4: The Assumption Trap
 
 ❌ **Bad:**
+
 ```markdown
 ## Instructions
 Assume the user has already configured MCP.
@@ -784,6 +821,7 @@ Assume they want the default behavior.
 **Problem:** Breaks for new users, not portable
 
 ✅ **Good:**
+
 ```markdown
 ## Instructions
 

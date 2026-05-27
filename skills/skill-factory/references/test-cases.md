@@ -5,6 +5,7 @@ Complete test suite template for skill validation.
 ## Test Suite Structure
 
 Every production-ready skill should have:
+
 1. **Trigger tests** (when to load)
 2. **Functional tests** (does it work)
 3. **Performance baseline** (is it better than manual)

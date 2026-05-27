@@ -140,6 +140,7 @@ For detailed guidance, see:
 ## Description Formula
 
 **Template:**
+
 ```
 [Action verb] + [domain/output] + [techniques/tools]. 
 Use when user [trigger phrase 1], [trigger phrase 2], 
@@ -149,6 +150,7 @@ or asks to [task 3]. [Optional negative scope].
 **Examples:**
 
 ✅ **Category 1 (Document Creation):**
+
 ```yaml
 description: Creates production-grade frontend interfaces with 
 distinctive design, semantic HTML, modern CSS, and accessibility 
@@ -157,6 +159,7 @@ a page", "design an interface", or uploads design mockups.
 ```
 
 ✅ **Category 2 (Workflow Automation):**
+
 ```yaml
 description: Automates sprint planning workflow including velocity 
 analysis, task creation, estimation, and team assignment. Use when 
@@ -165,6 +168,7 @@ or asks to "organize the backlog for next sprint".
 ```
 
 ✅ **Category 3 (MCP Enhancement):**
+
 ```yaml
 description: Manages Notion workspaces including page creation, 
 database setup, template application, and permission configuration 
@@ -176,24 +180,29 @@ Notion MCP connection.
 ## Common Mistakes to Avoid
 
 ❌ **Too vague:**
+
 ```yaml
 description: Helps with projects.
 ```
 
 ❌ **Missing triggers:**
+
 ```yaml
 description: Creates sophisticated multi-page documentation systems 
 with advanced navigation.
 ```
+
 *(No mention of what user would say)*
 
 ❌ **Too technical, no user language:**
+
 ```yaml
 description: Implements the Project entity model with hierarchical 
 relationships and CRUD operations via GraphQL mutations.
 ```
 
 ❌ **Over-broad scope:**
+
 ```yaml
 description: Does anything related to data analysis, visualization, 
 reporting, or data science.

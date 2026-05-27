@@ -5,12 +5,14 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 ## Phase 1: Structure Validation
 
 ### File System
+
 - [ ] Folder name is `kebab-case` (lowercase, hyphens only)
 - [ ] Main file is exactly `SKILL.md` (case-sensitive)
 - [ ] No `README.md` inside skill folder (only at repo level)
 - [ ] Optional folders named correctly: `references/`, `scripts/`, `tests/`
 
 ### YAML Frontmatter
+
 - [ ] Frontmatter starts with `---` on its own line
 - [ ] Frontmatter ends with `---` on its own line
 - [ ] `name` field exists
@@ -21,6 +23,7 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 - [ ] No reserved names (`claude-*`, `anthropic-*`)
 
 ### Optional Metadata
+
 - [ ] `metadata.author` present (recommended)
 - [ ] `metadata.version` present (recommended for public skills)
 - [ ] `metadata.category` matches one of: document-creation, workflow-automation, mcp-enhancement
@@ -32,6 +35,7 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 ### Description Field (Most Critical)
 
 **Formula check:**
+
 - [ ] Describes WHAT the skill does (action + domain)
 - [ ] Describes WHEN to use it (trigger conditions)
 - [ ] Includes 2-3 realistic trigger phrases
@@ -40,6 +44,7 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 - [ ] Includes negative scope if needed ("NOT for X")
 
 **Trigger language audit:**
+
 - [ ] Contains at least one of: "Use when", "triggers on", "asks to", "says", "mentions"
 - [ ] Trigger phrases are specific, not generic
 - [ ] Includes paraphrases/synonyms
@@ -47,6 +52,7 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 - [ ] Clear enough that Claude knows when to load it
 
 **Scope audit:**
+
 - [ ] Not too broad (avoid "helps with X" without specifics)
 - [ ] Not too narrow (should cover 2-3 related use cases, not just 1)
 - [ ] Boundaries clear (what it does AND doesn't do)
@@ -54,6 +60,7 @@ Comprehensive quality audit checklist based on Anthropic's official guide.
 **Examples of quality descriptions:**
 
 ✅ **Good:**
+
 ```yaml
 description: Analyzes Figma design files and generates developer handoff 
 documentation with component specs, design tokens, and asset exports. 
@@ -63,6 +70,7 @@ workflows.
 ```
 
 ✅ **Good (with negative scope):**
+
 ```yaml
 description: Processes PDF legal documents for contract review, clause 
 extraction, and compliance checking. Use for legal PDF analysis ONLY. 
@@ -71,11 +79,13 @@ PDFs (use pdf-tools skill).
 ```
 
 ❌ **Bad (too vague):**
+
 ```yaml
 description: Helps with projects.
 ```
 
 ❌ **Bad (no triggers):**
+
 ```yaml
 description: Creates sophisticated multi-page documentation systems.
 ```
@@ -83,6 +93,7 @@ description: Creates sophisticated multi-page documentation systems.
 ## Phase 3: Instruction Quality
 
 ### Structure
+
 - [ ] Has clear section headers (## Instructions, ## Examples, ## Troubleshooting)
 - [ ] Steps are numbered or clearly ordered
 - [ ] Each step is actionable (tells what to do, not just what happens)
@@ -90,6 +101,7 @@ description: Creates sophisticated multi-page documentation systems.
 - [ ] Error handling is explicit
 
 ### Content Quality
+
 - [ ] Instructions are specific, not vague
 - [ ] Commands/code include concrete examples
 - [ ] Expected outputs are described
@@ -100,6 +112,7 @@ description: Creates sophisticated multi-page documentation systems.
 **Example checks:**
 
 ✅ **Specific and actionable:**
+
 ```markdown
 Run `python scripts/validate.py --input {filename}`.
 
@@ -110,11 +123,13 @@ If validation fails with "Missing required field", common fixes:
 ```
 
 ❌ **Vague and generic:**
+
 ```markdown
 Validate the data before proceeding.
 ```
 
 ### Progressive Disclosure
+
 - [ ] SKILL.md body is <5,000 words
 - [ ] API documentation moved to `references/api-patterns.md`
 - [ ] Extended examples in `references/examples.md`
@@ -124,6 +139,7 @@ Validate the data before proceeding.
 ## Phase 4: Testing Coverage
 
 ### Trigger Tests
+
 - [ ] Test suite exists (`tests/trigger-tests.md` or inline)
 - [ ] Includes 5-10 positive trigger cases (should trigger)
 - [ ] Includes 5-10 negative cases (should NOT trigger)
@@ -132,6 +148,7 @@ Validate the data before proceeding.
 - [ ] Target: >90% accuracy on positive cases, <10% false positives
 
 ### Functional Tests
+
 - [ ] Happy path test defined (ideal scenario)
 - [ ] Error handling test defined (expected failures)
 - [ ] Edge case test defined (boundary conditions)
@@ -139,6 +156,7 @@ Validate the data before proceeding.
 - [ ] Success criteria are measurable
 
 ### Performance Baseline
+
 - [ ] Baseline measurement exists (without skill)
 - [ ] Target metrics defined (with skill)
 - [ ] Metrics include: token count, message count, API errors, time
@@ -147,6 +165,7 @@ Validate the data before proceeding.
 ## Phase 5: Error Handling
 
 ### Coverage
+
 - [ ] Common errors identified and documented
 - [ ] Each error has: cause + solution
 - [ ] MCP connection issues covered (if applicable)
@@ -155,6 +174,7 @@ Validate the data before proceeding.
 - [ ] Partial failures handled (rollback/cleanup)
 
 ### Quality
+
 - [ ] Error messages are specific, not generic
 - [ ] Solutions are actionable (steps to fix, not just "try again")
 - [ ] Diagnostic steps provided for debugging
@@ -163,6 +183,7 @@ Validate the data before proceeding.
 ## Phase 6: Security & Safety
 
 ### Security Checks
+
 - [ ] No hardcoded credentials or API keys
 - [ ] No XML injection vectors (`<` or `>` in frontmatter)
 - [ ] No command injection risks in examples
@@ -170,6 +191,7 @@ Validate the data before proceeding.
 - [ ] Sensitive data handling documented if applicable
 
 ### Safety Checks
+
 - [ ] Destructive operations require confirmation
 - [ ] Critical steps have validation gates
 - [ ] No "skip validation" shortcuts
@@ -179,6 +201,7 @@ Validate the data before proceeding.
 ## Phase 7: Distribution Readiness
 
 ### For Public Release
+
 - [ ] `README.md` exists at repo level (not in skill folder)
 - [ ] `LICENSE` file present
 - [ ] Installation instructions clear
@@ -188,6 +211,7 @@ Validate the data before proceeding.
 - [ ] GitHub Actions validation workflow (optional but recommended)
 
 ### For Team/Internal Use
+
 - [ ] Internal documentation exists
 - [ ] Team onboarding guide present
 - [ ] Support contact identified
@@ -196,6 +220,7 @@ Validate the data before proceeding.
 ## Phase 8: Composability
 
 ### Skill Interaction
+
 - [ ] Works standalone (doesn't assume other skills)
 - [ ] Doesn't conflict with built-in Claude capabilities
 - [ ] Clear boundaries (doesn't overlap with similar skills)
@@ -205,12 +230,14 @@ Validate the data before proceeding.
 ## Phase 9: Maintenance
 
 ### Versioning
+
 - [ ] Version number in metadata
 - [ ] Version history documented
 - [ ] Breaking changes noted
 - [ ] Migration guide for major versions
 
 ### Sustainability
+
 - [ ] Skill owner identified
 - [ ] Update cadence defined (if applicable)
 - [ ] Deprecation path considered
@@ -219,28 +246,34 @@ Validate the data before proceeding.
 ## Common Issues & Quick Fixes
 
 ### Issue: Under-triggering
+
 **Symptom:** Skill doesn't load when it should  
 **Fix:** Add more trigger phrases, synonyms, paraphrases to description
 
 ### Issue: Over-triggering
+
 **Symptom:** Skill loads on unrelated queries  
 **Fix:** Narrow scope, add negative examples ("NOT for X")
 
 ### Issue: Inconsistent results
+
 **Symptom:** Same query produces different outputs  
 **Fix:** Add validation scripts, explicit checkpoints, "DO NOT skip" language
 
 ### Issue: Token bloat
+
 **Symptom:** Skill loads slowly, large context  
 **Fix:** Move details to `references/`, keep SKILL.md <5k words
 
 ### Issue: Instructions ignored
+
 **Symptom:** Claude doesn't follow steps  
 **Fix:** Make deterministic (scripts), put critical steps first, add explicit validation
 
 ## Scoring System (Optional)
 
 Rate each phase 0-10:
+
 - Phase 1 (Structure): ___/10
 - Phase 2 (Triggering): ___/10  
 - Phase 3 (Instructions): ___/10

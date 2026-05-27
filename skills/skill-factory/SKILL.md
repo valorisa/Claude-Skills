@@ -32,6 +32,7 @@ Use this skill when you need to:
 - **Prepare skills for distribution** (team deployment or public release)
 
 **Don't use for:**
+
 - Quick prototyping (use `/skill-creator` instead)
 - Simple one-off tasks without reuse value
 - General coding or documentation tasks
@@ -43,21 +44,25 @@ Use this skill when you need to:
 **First, identify the skill category:**
 
 #### Category 1: Document & Asset Creation
+
 **Signals:** "create X", "generate Y", "build Z artifact"
 **Examples:** frontend-design, docx-creator, pptx-builder
 **Key pattern:** Embedded style guides, templates, quality checklists, no external tools
 
 #### Category 2: Workflow Automation  
+
 **Signals:** "automate X", "multi-step process", "coordinate Y"
 **Examples:** sprint-planning, release-notes, code-review-flow
 **Key pattern:** Sequential steps, validation gates, iterative refinement
 
 #### Category 3: MCP Enhancement
+
 **Signals:** "use [Service] MCP", "integrate with X", "enhance Y connector"
 **Examples:** sentry-code-review, notion-workspace-setup, linear-sprint-automation
 **Key pattern:** Workflow guidance layered on top of MCP tool access
 
 **Ask the user:**
+
 1. What's the end goal? (concrete outcome, not abstract capability)
 2. Which category fits best? (show examples if unclear)
 3. What are 2-3 realistic trigger phrases?
@@ -71,36 +76,47 @@ Use this skill when you need to:
 Based on category, choose the architectural pattern:
 
 #### Pattern 1: Sequential Workflow Orchestration
+
 **Best for:** Category 2 & 3 with clear step order
+
 ```
 Step 1 → Validation → Step 2 → Validation → Step 3 → Output
 ```
 
 #### Pattern 2: Multi-MCP Coordination
+
 **Best for:** Category 3 spanning multiple services
+
 ```
 Phase 1 (MCP A) → Phase 2 (MCP B) → Phase 3 (MCP C) → Notification
 ```
 
 #### Pattern 3: Iterative Refinement
+
 **Best for:** Category 1 with quality improvement loops
+
 ```
 Draft → Quality Check → Refine → Re-validate → Finalize
 ```
 
 #### Pattern 4: Context-Aware Tool Selection
+
 **Best for:** Category 2 with conditional logic
+
 ```
 Analyze Context → Choose Tool → Execute → Validate
 ```
 
 #### Pattern 5: Domain-Specific Intelligence
+
 **Best for:** Category 3 with embedded expertise
+
 ```
 Compliance Check → Business Logic → Execution → Audit Trail
 ```
 
 **Output a 1-page architecture doc** showing:
+
 - Chosen pattern
 - Major phases/steps
 - Decision points
@@ -112,6 +128,7 @@ Compliance Check → Business Logic → Execution → Audit Trail
 The frontmatter is **the most important part** — it controls when Claude loads your skill.
 
 **Required structure:**
+
 ```yaml
 ---
 name: your-skill-name
@@ -120,6 +137,7 @@ description: [WHAT it does] + [WHEN to use it] + [Key capabilities]
 ```
 
 **Description formula (1-3 sentences, <1024 chars):**
+
 ```
 [Action verb] + [domain/output] + [techniques/tools]. 
 Use when user [trigger phrase 1], [trigger phrase 2], 
@@ -129,6 +147,7 @@ or asks to [task 3]. [Optional: negative scope if needed].
 **Examples of good descriptions:**
 
 ✅ **Good (specific, actionable, clear triggers):**
+
 ```yaml
 description: Analyzes Figma design files and generates developer 
 handoff documentation with component specs, design tokens, and asset 
@@ -138,6 +157,7 @@ Figma-to-development workflows.
 ```
 
 ✅ **Good (includes domain, triggers, and negative scope):**
+
 ```yaml
 description: End-to-end customer onboarding workflow for PayFlow. 
 Handles account creation, payment setup, subscription management, and 
@@ -147,22 +167,26 @@ customer support (use customer-support skill instead).
 ```
 
 ❌ **Bad (too vague, no triggers):**
+
 ```yaml
 description: Helps with projects.
 ```
 
 ❌ **Bad (technical but no user triggers):**
+
 ```yaml
 description: Implements the Project entity model with hierarchical 
 relationships and CRUD operations.
 ```
 
 **Ask user to validate:**
+
 - Does this description capture the actual task language they'd use?
 - Are there paraphrases or synonyms missing?
 - Is the scope too broad or too narrow?
 
 **Add optional metadata:**
+
 ```yaml
 metadata:
   author: Your Name
@@ -177,6 +201,7 @@ metadata:
 **Keep SKILL.md body focused — use progressive disclosure.**
 
 **Standard structure:**
+
 ```markdown
 # Skill Name
 
@@ -223,6 +248,7 @@ For compliance rules, see `references/compliance-checklist.md`.
 **Best practices for instructions:**
 
 ✅ **Specific and actionable:**
+
 ```markdown
 Run `python scripts/validate.py --input {filename}` to check format.
 
@@ -233,11 +259,13 @@ If validation fails with "Missing required field", common fixes:
 ```
 
 ❌ **Vague and generic:**
+
 ```markdown
 Validate the data before proceeding.
 ```
 
 ✅ **Progressive disclosure:**
+
 ```markdown
 Before writing queries, consult `references/api-patterns.md` for:
 - Rate limiting guidance (section 2.1)
@@ -246,6 +274,7 @@ Before writing queries, consult `references/api-patterns.md` for:
 ```
 
 ❌ **Everything inline (bloats context):**
+
 ```markdown
 [5 pages of API documentation inline in SKILL.md]
 ```
@@ -257,6 +286,7 @@ Before writing queries, consult `references/api-patterns.md` for:
 Create supporting files in `references/` for:
 
 **Typical reference files:**
+
 - `api-patterns.md` — Detailed API usage, pagination, rate limits
 - `examples.md` — Extended use cases beyond core examples
 - `troubleshooting.md` — Edge cases, error codes, debugging
@@ -264,6 +294,7 @@ Create supporting files in `references/` for:
 - `style-guide.md` — Brand standards, templates, design rules
 
 **Example: `references/troubleshooting.md`**
+
 ```markdown
 # Troubleshooting
 
@@ -315,6 +346,7 @@ Create supporting files in `references/` for:
 ```
 
 **How to test triggers:**
+
 1. Run each query in Claude Code
 2. Check if skill loads (visible in context)
 3. Track: triggered / total queries
@@ -469,17 +501,20 @@ if __name__ == "__main__":
 #### Issue: Under-triggering (skill doesn't load when it should)
 
 **Signals:**
+
 - User says "use skill-name" explicitly
 - Skill doesn't appear in loaded skills list
 - Manual enabling required
 
 **Fixes:**
+
 1. Add more trigger phrases to description
 2. Include synonyms and paraphrases
 3. Mention relevant file types (.fig, .csv, etc.)
 4. Add domain-specific jargon users actually say
 
 **Example fix:**
+
 ```yaml
 # Before (under-triggers)
 description: Manages project workflows.
@@ -494,16 +529,19 @@ mentions "sprint", "Linear tasks", "project planning", "create tickets",
 #### Issue: Over-triggering (skill loads for irrelevant queries)
 
 **Signals:**
+
 - Skill loads on general queries
 - User disables skill
 - Confusion about purpose
 
 **Fixes:**
+
 1. Add negative scope: "NOT for X, use Y skill instead"
 2. Be more specific about domain
 3. Narrow the use case to concrete tasks
 
 **Example fix:**
+
 ```yaml
 # Before (over-triggers)
 description: Processes documents.
@@ -518,17 +556,20 @@ PDFs (use pdf-tools skill).
 #### Issue: Inconsistent results
 
 **Signals:**
+
 - Same query produces different outputs
 - Steps skipped randomly
 - Quality varies
 
 **Fixes:**
+
 1. Move detailed instructions from text to validation scripts
 2. Add explicit validation gates between steps
 3. Include "DO NOT skip" language for critical steps
 4. Add quality checklist that must be satisfied
 
 **Example fix:**
+
 ```markdown
 ## Step 3: Create Tasks
 
@@ -575,6 +616,7 @@ skill-name/
 ```
 
 **Generate README.md for humans:**
+
 ```markdown
 # [Skill Name]
 
@@ -620,6 +662,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 ```
 
 **Generate GitHub Actions workflow (optional):**
+
 ```yaml
 # .github/workflows/validate-skill.yml
 name: Validate Skill
@@ -702,6 +745,7 @@ When asked to review a skill, output:
 Before delivering a skill, verify:
 
 ### Structure
+
 - [ ] Folder name is kebab-case
 - [ ] `SKILL.md` is exactly named (case-sensitive)
 - [ ] YAML frontmatter has `---` delimiters
@@ -710,6 +754,7 @@ Before delivering a skill, verify:
 - [ ] No XML angle brackets anywhere
 
 ### Content
+
 - [ ] Instructions are actionable and ordered
 - [ ] Examples include realistic user queries
 - [ ] Error handling is explicit
@@ -717,18 +762,21 @@ Before delivering a skill, verify:
 - [ ] Critical validations use scripts, not just text
 
 ### Testing
+
 - [ ] Trigger tests exist (positive + negative + paraphrases)
 - [ ] Functional tests cover happy path + errors + edge cases
 - [ ] Performance baseline defined
 - [ ] Validation script runs successfully
 
 ### Distribution
+
 - [ ] README.md exists (for humans)
 - [ ] LICENSE file present
 - [ ] Installation instructions clear
 - [ ] Version in metadata
 
 ### Compatibility
+
 - [ ] Works standalone (composable)
 - [ ] No assumptions about other skills
 - [ ] Portable across Claude surfaces (where supported)
@@ -740,6 +788,7 @@ Before delivering a skill, verify:
 **Problem:** Large skills consume too much context.
 
 **Solutions:**
+
 1. Keep `SKILL.md` <5,000 words
 2. Move API docs to `references/api-patterns.md`
 3. Move examples to `references/examples.md`
@@ -750,7 +799,9 @@ Before delivering a skill, verify:
 **Problem:** Claude skips critical validation steps.
 
 **Solutions:**
+
 1. Add explicit encouragement:
+
    ```markdown
    IMPORTANT: Take time to do this thoroughly. 
    Quality matters more than speed. 
@@ -758,12 +809,14 @@ Before delivering a skill, verify:
    ```
 
 2. Make validations programmatic:
+
    ```markdown
    Run `python scripts/validate.py` and paste output.
    Proceed ONLY if output shows "All checks passed".
    ```
 
 3. Add "DO NOT" statements for critical constraints:
+
    ```markdown
    DO NOT create duplicate projects.
    DO NOT skip compliance checks.
@@ -857,11 +910,13 @@ ONLY after all 4 checks pass: Call payment MCP.
 ### Skill doesn't trigger
 
 **Quick diagnostic:**
+
 1. Ask Claude: "When would you use the [skill-name] skill?"
 2. Claude will quote the description back
 3. If description doesn't match user's actual language → revise
 
 **Fix process:**
+
 1. Add trigger phrases users actually say
 2. Test with paraphrases
 3. Iterate description until >90% trigger rate
@@ -869,6 +924,7 @@ ONLY after all 4 checks pass: Call payment MCP.
 ### Skill triggers too often
 
 **Fix:**
+
 1. Add negative scope: "NOT for X"
 2. Be more specific about domain
 3. Narrow to concrete tasks only
@@ -887,6 +943,7 @@ ONLY after all 4 checks pass: Call payment MCP.
 ## References
 
 For detailed guidance, see:
+
 - `references/skill-template.md` — Reusable template
 - `references/review-checklist.md` — Quality audit checklist  
 - `references/test-cases.md` — Example test suites

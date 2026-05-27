@@ -9,6 +9,7 @@ Test suite to validate when skill-factory should and should not load.
 ## Positive Cases (Should TRIGGER ✅)
 
 ### Category: Direct Skill Creation Requests
+
 - [ ] "Build a skill for sprint planning"
 - [ ] "Create a Claude skill for Notion workspace setup"
 - [ ] "Generate a skill to convert CSV to JSON"
@@ -16,12 +17,14 @@ Test suite to validate when skill-factory should and should not load.
 - [ ] "Design a skill for frontend component creation"
 
 ### Category: Production-Ready Language
+
 - [ ] "Create a production-ready skill for X"
 - [ ] "Build a complete skill package for Y"
 - [ ] "Generate a validated skill for Z"
 - [ ] "Make a distribution-ready Claude skill"
 
 ### Category: Skill Review/Audit
+
 - [ ] "Review this skill for quality"
 - [ ] "Audit my skill for best practices"
 - [ ] "Check why my skill doesn't trigger"
@@ -29,27 +32,32 @@ Test suite to validate when skill-factory should and should not load.
 - [ ] "Improve this skill's trigger phrases"
 
 ### Category: Skill Optimization
+
 - [ ] "Optimize this skill for token efficiency"
 - [ ] "My skill over-triggers, fix it"
 - [ ] "Add test suites to this skill"
 - [ ] "Make this skill more reliable"
 
 ### Category: Explicit Invocation
+
 - [ ] "Use skill-factory to create a skill"
 - [ ] "Run skill-factory on this SKILL.md"
 - [ ] "Apply skill-factory to improve this"
 
 ### Category: Package/Distribution
+
 - [ ] "Package this skill for GitHub"
 - [ ] "Prepare this skill for distribution"
 - [ ] "Generate complete skill documentation"
 - [ ] "Create a skill with all the files"
 
 ### Category: Meta-Skill Language
+
 - [ ] "Build a skill to generate skills" (meta!)
 - [ ] "Create a skill that helps make other skills"
 
 ### Category: Paraphrases
+
 - [ ] "Help me make a Claude Code skill"
 - [ ] "I need to build a skill for my workflow"
 - [ ] "Can you create a skill that automates X"
@@ -57,6 +65,7 @@ Test suite to validate when skill-factory should and should not load.
 - [ ] "Make this process into a Claude skill"
 
 ### Category: With Context
+
 - [ ] "Build a skill for sprint planning using Linear MCP"
 - [ ] "Create a Notion skill that sets up workspaces"
 - [ ] "Generate a frontend design skill with templates"
@@ -66,18 +75,21 @@ Test suite to validate when skill-factory should and should not load.
 ## Negative Cases (Should NOT Trigger ❌)
 
 ### Category: General Questions
+
 - [ ] "What is a skill?"
 - [ ] "Explain how skills work"
 - [ ] "Tell me about Claude Code"
 - [ ] "What's the difference between a skill and a prompt?"
 
 ### Category: Unrelated Tasks
+
 - [ ] "What's the weather in Paris?"
 - [ ] "Write a poem about coding"
 - [ ] "Summarize this article"
 - [ ] "Translate this to French"
 
 ### Category: Code Tasks (Not Skill Creation)
+
 - [ ] "Write a Python function"
 - [ ] "Debug this JavaScript code"
 - [ ] "Create a React component" (actual component, not skill to create components)
@@ -85,34 +97,40 @@ Test suite to validate when skill-factory should and should not load.
 - [ ] "Generate SQL queries"
 
 ### Category: Project Management (Not Skill-Related)
+
 - [ ] "Plan this sprint" (action, not skill creation)
 - [ ] "Create tasks in Linear" (action)
 - [ ] "Set up a Notion workspace" (action, not skill creation)
 - [ ] "Review this pull request" (action)
 
 ### Category: Documentation (General)
+
 - [ ] "Write documentation for this API"
 - [ ] "Create a README for this project"
 - [ ] "Generate API docs"
 - [ ] "Document this codebase"
 
 ### Category: Educational Requests
+
 - [ ] "How do I write good YAML?"
 - [ ] "Teach me about progressive disclosure"
 - [ ] "What are Anthropic's skill guidelines?"
 - [ ] "Explain MCP servers"
 
 ### Category: Other Meta Tasks
+
 - [ ] "Create a prompt for X" (use promptor skill instead)
 - [ ] "Generate a system prompt" (use promptor)
 - [ ] "Build a custom agent" (different from skill)
 
 ### Category: Existing Skill Usage (Not Creation)
+
 - [ ] "Use the frontend-design skill" (using, not creating)
 - [ ] "Run the skill-creator skill" (using existing skill)
 - [ ] "Apply the tdd-hybrid workflow" (using, not creating)
 
 ### Category: Edge Cases
+
 - [ ] "skill" (just the word, no context)
 - [ ] "factory" (just the word)
 - [ ] "meta" (just the word)
@@ -263,6 +281,7 @@ These test that skill-factory recognizes different ways users might express the 
 ## Continuous Testing
 
 ### When to Re-test
+
 - After modifying frontmatter description
 - After adding/removing trigger phrases
 - Before public release
@@ -270,6 +289,7 @@ These test that skill-factory recognizes different ways users might express the 
 - Quarterly (for maintained skills)
 
 ### How to Test Manually
+
 1. Open Claude Code or Claude.ai
 2. Clear conversation (fresh context)
 3. Try each test case
@@ -277,6 +297,7 @@ These test that skill-factory recognizes different ways users might express the 
 5. Record results in template above
 
 ### Automated Testing (Future)
+
 ```python
 # tests/run_trigger_tests.py (future implementation)
 import json

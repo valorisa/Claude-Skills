@@ -13,11 +13,13 @@ Skill Factory transforme des workflows, processus ou tâches répétitives en sk
 ## Fonctionnalités Clés
 
 ✅ **Suit les Patterns Officiels Anthropic**
+
 - Divulgation progressive à 3 niveaux (frontmatter → SKILL.md → references/)
 - Conception par catégorie (Création de Documents, Automatisation de Workflows, Enhancement MCP)
 - Structure token-efficiente (<5,000 mots dans le fichier principal)
 
 ✅ **Package de Production Complet**
+
 - Frontmatter YAML optimisé avec phrases de déclenchement
 - Instructions structurées avec portes de validation
 - Fichiers de référence pour divulgation progressive
@@ -25,12 +27,14 @@ Skill Factory transforme des workflows, processus ou tâches répétitives en sk
 - Suites de tests (déclenchement, fonctionnel, performance)
 
 ✅ **Assurance Qualité**
+
 - Validation automatisée (structure, sécurité, déclenchements)
 - Tests de précision des déclenchements (cible >90%)
 - Comparaison de performance baseline
 - Processus de raffinement itératif
 
 ✅ **Prêt pour Distribution**
+
 - Structure adaptée GitHub
 - Instructions d'installation
 - Templates de workflow CI/CD
@@ -49,6 +53,7 @@ Utilisez Skill Factory quand vous devez :
 - **Préparer des skills pour déploiement équipe** ou publication publique
 
 **Ne pas utiliser pour :**
+
 - Prototypage rapide → Utilisez `/skill-creator` à la place
 - Tâches simples ponctuelles sans valeur de réutilisation
 - Tâches générales de codage ou documentation
@@ -65,6 +70,7 @@ Pensez à skill-creator comme "mode croquis" et skill-factory comme "mode produc
 ### Pour Claude Code
 
 1. Copiez le dossier `skill-factory/` vers votre répertoire de skills Claude :
+
    ```bash
    cp -r skill-factory ~/.claude/skills/
    ```
@@ -72,6 +78,7 @@ Pensez à skill-creator comme "mode croquis" et skill-factory comme "mode produc
 2. Redémarrez Claude Code ou rafraîchissez les skills.
 
 3. Vérifiez l'installation :
+
    ```bash
    ls ~/.claude/skills/skill-factory/
    # Devrait afficher : SKILL.md, references/, scripts/, tests/
@@ -80,6 +87,7 @@ Pensez à skill-creator comme "mode croquis" et skill-factory comme "mode produc
 ### Pour Claude.ai
 
 1. Zippez le dossier `skill-factory/` :
+
    ```bash
    zip -r skill-factory.zip skill-factory/
    ```
@@ -99,6 +107,7 @@ Pensez à skill-creator comme "mode croquis" et skill-factory comme "mode produc
 ```
 
 Skill Factory va :
+
 1. Classifier le cas d'usage (Catégorie 1, 2, ou 3)
 2. Choisir le pattern architectural
 3. Concevoir un frontmatter optimal avec phrases de déclenchement
@@ -116,6 +125,7 @@ Skill Factory va :
 ```
 
 Skill Factory va :
+
 1. Valider la structure et la sécurité
 2. Analyser la couverture des phrases de déclenchement
 3. Vérifier la qualité des instructions
@@ -214,6 +224,7 @@ python ../skill-factory/scripts/validate_skill.py .
 ```
 
 Sortie attendue :
+
 ```
 ✅ Validation du skill RÉUSSIE
    ✅ SKILL.md trouvé
@@ -283,6 +294,7 @@ Voir `references/examples.md` pour des exemples réels complets :
 **Problème :** Skill Factory ne se charge pas quand vous demandez de créer un skill
 
 **Correction :** Essayez des phrases plus spécifiques :
+
 - "Use skill-factory pour créer un skill pour X"
 - "Construis un skill production-ready pour Y"
 - "Génère un package de skill Claude complet"
@@ -292,6 +304,7 @@ Voir `references/examples.md` pour des exemples réels complets :
 **Problème :** Le skill que vous avez créé ne se déclenche pas de manière fiable
 
 **Correction :** Passez par le mode révision de Skill Factory :
+
 ```
 "Review this skill for trigger quality"
 ```
@@ -303,6 +316,7 @@ Skill Factory auditera les phrases de déclenchement et suggérera des améliora
 **Problème :** `python scripts/validate_skill.py .` rapporte des erreurs
 
 **Problèmes courants :**
+
 1. Fichier pas nommé exactement `SKILL.md` (sensible à la casse)
 2. Frontmatter manque des délimiteurs `---`
 3. Nom pas en kebab-case (utiliser tirets, pas espaces/underscores)
