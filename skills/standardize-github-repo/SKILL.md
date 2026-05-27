@@ -18,20 +18,25 @@ Processus automatique de standardisation des repositories GitHub, déclenché au
 ## Automatic Triggers
 
 ### Phase 1: Pré-création du repo GitHub
+
 Détecter ces phrases et proposer le processus AVANT git init :
+
 - "on va (en) faire un repo GitHub de ce projet"
 - "créons un repo GitHub"
 - "je veux publier ça sur GitHub"
 - "transformons ça en repo GitHub"
 
 ### Phase 2: Pré-publication (checkpoint)
+
 Détecter ces phrases et vérifier la checklist de standardisation :
+
 - "je vais publier sur GitHub"
 - "push vers GitHub"
 - "créer une PR"
 - "git push origin"
 
 **Action :** Vérifier automatiquement :
+
 - ✅ README.md existe et suit le template standard ?
 - ✅ README.fr.md existe ?
 - ✅ `.github/workflows/markdown-lint.yml` existe ?
@@ -43,6 +48,7 @@ Si manquant → Proposer : "Ce repo n'est pas encore standardisé. Voulez-vous a
 ## Opt-Out Mechanism
 
 Si l'utilisateur dit :
+
 - "pas besoin du processus de standardisation ici"
 - "skip la standardisation pour ce repo"
 - "nul besoin du processus ici"
@@ -51,7 +57,7 @@ Si l'utilisateur dit :
 
 ## Process Overview
 
-```
+```text
 Phase 0: Pre-Flight Check (silent)
   ↓
 Phase 1: Repository Analysis (automatic)
@@ -74,11 +80,12 @@ Phase 5: Finalization
   → Commit READMEs
   → GitHub About instructions
   → Push & verify CI
-```
+```text
 
 ## Phase 0: Pre-Flight Check
 
 **Si trigger détecté, vérifier silencieusement :**
+
 1. Est-ce un repo Git ? (`git rev-parse --git-dir`)
 2. README.md existe et suit le standard ?
 3. README.fr.md existe ?
@@ -94,33 +101,40 @@ Phase 5: Finalization
 Scanner le repo pour détecter :
 
 **Languages :**
+
 - Extensions de fichiers (`.py`, `.go`, `.js`, `.rs`, etc.)
 - Manifestes : `package.json`, `go.mod`, `Cargo.toml`, `requirements.txt`
 
 **Frameworks & Dependencies :**
+
 - Node.js : `package.json` → dependencies
 - Python : `requirements.txt`, `pyproject.toml`
 - Go : `go.mod`
 - Rust : `Cargo.toml`
 
 **Project Type :**
+
 - CLI tool : `bin/`, `cmd/`, `main.go`, `__main__.py`, shebangs
 - Library : `lib/`, `src/`, `index.js`, `__init__.py`
 - Application : `app/`, `public/`, `templates/`
 - Documentation : principalement `.md`, répertoire `docs/`
 
 **Testing :**
+
 - Fichiers tests : `*_test.go`, `test_*.py`, `*.spec.js`
 - Frameworks : Jest, pytest, Go testing
 - Coverage : `coverage/`, `.coverage`, `c.out`
 
 **Containerization :**
+
 - `Dockerfile`, `docker-compose.yml` présents ?
 
 **CI/CD :**
+
 - `.github/workflows/*.yml` présent ?
 
 **License :**
+
 - Détecter depuis `LICENSE`, `LICENSE.md`
 - Type : MIT, Apache 2.0, GPL, etc.
 
@@ -133,17 +147,20 @@ Scanner le repo pour détecter :
 Générer une liste de badges contextuels basée sur l'analyse Phase 1 :
 
 **Categories :**
+
 - **Mandatory :** License, Primary Language
 - **Contextual :** CI Status (si workflows), Docker (si Dockerfile), Tests (si suite détectée)
 - **Optional :** Coverage, Platform, Version
 
 **Format Shield.io :**
+
 ```markdown
 [![Label](https://img.shields.io/badge/Label-Value-Color)](URL)
-```
+```text
 
 **Présentation :**
-```
+
+```text
 📛 Badges suggérés pour [Project Name]:
 ✓ License: MIT
 ✓ Language: Python 3.12+
@@ -154,7 +171,7 @@ Générer une liste de badges contextuels basée sur l'analyse Phase 1 :
 ? Version: v1.0.0
 
 Voulez-vous garder tous ces badges ? Modifications ?
-```
+```text
 
 **User response :** Valider/ajuster
 
@@ -167,7 +184,8 @@ Proposer **3 versions** optimisées :
 **Version C - Pedagogical :** Focus sur apprentissage et accessibilité
 
 **Exemple :**
-```
+
+```text
 Version A (Technical) - 248 chars:
 "High-performance CLI tool for automated Docker container security 
 scanning using Trivy and Grype. Supports multi-arch builds, parallel 
@@ -185,7 +203,7 @@ in plain language, and teaches best practices. No prior security knowledge
 required."
 
 Choisissez une version ou mixez des éléments.
-```
+```text
 
 **User response :** Sélectionner/mixer/custom
 
@@ -196,6 +214,7 @@ Choisissez une version ou mixez des éléments.
 Générer 20 topics groupés par catégorie :
 
 **Categories :**
+
 - Languages (3-4 topics)
 - Technologies (4-5 topics)
 - Domain (4-5 topics)
@@ -203,7 +222,8 @@ Générer 20 topics groupés par catégorie :
 - Audience/Purpose (2-3 topics)
 
 **Exemple :**
-```
+
+```text
 🏷️ Topics suggérés (20 total):
 
 [Languages] python, bash, powershell
@@ -213,9 +233,10 @@ Générer 20 topics groupés par catégorie :
 [Audience] beginner-friendly, tutorial, learning
 
 Validez-vous cette liste ? Modifications ?
-```
+```text
 
 **Rules :**
+
 - Lowercase uniquement
 - Hyphens (pas spaces/underscores)
 - Max 50 chars par topic
@@ -243,11 +264,13 @@ Validez-vous cette liste ? Modifications ?
 
 **Workflow collaboratif :**
 Pour chaque section :
+
 1. Claude propose un draft basé sur l'analyse Phase 1
 2. User valide/ajuste
 3. Claude passe à la section suivante
 
 **Questions clés :**
+
 - Section 4 : "Quel problème résout ce projet ?"
 - Section 5 : "Fonctionnalités manquantes dans l'analyse ?"
 - Section 7 : "Étapes spéciales d'installation ?"
@@ -260,14 +283,17 @@ Pour chaque section :
 **Basé sur le type de projet détecté :**
 
 **CLI Tool :**
+
 - Screenshots de terminal (commandes + résultats)
 - Optionnel : Asciinema recordings
 
 **Library :**
+
 - Exemples de code exhaustifs avec commentaires ligne par ligne
 - API documentation (signatures, paramètres)
 
 **Application :**
+
 - Screenshots UI (écrans clés, workflows)
 - Exemples de code (intégration)
 - Optionnel : Diagrammes d'architecture
@@ -275,6 +301,7 @@ Pour chaque section :
 **Action :** Demander assets visuels si applicable
 
 **Organisation images :**
+
 - Stockage : `docs/images/` ou `assets/images/`
 - Noms descriptifs : `installation-output.png`, `scan-results.png`
 - Références : `![Alt](docs/images/file.png)`
@@ -285,10 +312,12 @@ Pour chaque section :
 2. Générer table des matières avec anchor links
 3. Valider liens internes
 4. Ajouter language switcher en haut :
-   ```markdown
-   🇺🇸 [English](README.md) | 🇫🇷 [Français](README.fr.md)
+
+      ```markdown
+      🇺🇸 [English](README.md) | 🇫🇷 [Français](README.fr.md)
    ```
-5. Présenter README.md complet pour revue finale
+
+1. Présenter README.md complet pour revue finale
 
 **User response :** Approuver ou ajuster
 
@@ -297,17 +326,20 @@ Pour chaque section :
 ### Step 3.1: Full Translation
 
 Traduire README.md en français en préservant :
+
 - Structure (mêmes sections, même ordre)
 - Formatting (headers, listes, code blocks, liens)
 - Termes techniques en anglais (code, commandes, noms d'outils)
 
 **Keep in English :**
+
 - Code snippets, commands, variable names
 - URLs, GitHub usernames
 - Acronymes techniques (CLI, API, CI/CD)
 - Noms d'outils (Docker, npm, pip)
 
 **Translate to French :**
+
 - Prose, descriptions, explications
 - Headers de sections
 - Items de listes (sauf code)
@@ -327,7 +359,7 @@ Ajouter switcher dans les deux fichiers :
 
 ```markdown
 🇺🇸 [English](README.md) | 🇫🇷 [Français](README.fr.md)
-```
+```text
 
 ## Phase 4: CI Markdown Linting
 
@@ -341,9 +373,10 @@ Ajouter switcher dans les deux fichiers :
   "MD013": false,
   "MD033": false
 }
-```
+```text
 
 **Rationale :**
+
 - `MD013`: Disable line length (URLs longues, code blocks)
 - `MD033`: Allow inline HTML (badges Shield.io, image sizing)
 
@@ -373,9 +406,10 @@ jobs:
         uses: DavidAnson/markdownlint-cli2-action@v16
         with:
           globs: '**/*.md'
-```
+```text
 
 **Behavior :**
+
 - Triggers : push/PR sur `*.md`
 - Scope : Tous les `*.md` du repo
 - Failure : Pipeline fail si violations
@@ -384,12 +418,14 @@ jobs:
 ### Step 4.3: Local Validation & Correction
 
 **Action :**
+
 1. Lancer MarkdownLint localement sur tous `*.md`
 2. Reporter les violations catégorisées
 
 **Classification :**
 
 **Simple (Auto-Fix) :**
+
 - MD009: Trailing spaces → Strip
 - MD010: Hard tabs → Convert to spaces
 - MD012: Multiple blank lines → Reduce to 1
@@ -397,11 +433,13 @@ jobs:
 - MD032: List spacing → Add blank lines
 
 **Delicate (Consult User) :**
+
 - MD001: Header level skip → Structural issue ?
 - MD025: Multiple H1 → Quel H1 garder ?
 - MD033: Inline HTML in prose → Rewrite as Markdown ?
 
 **Process :**
+
 1. Auto-fix simple violations
 2. Présenter delicate violations avec options
 3. User choisit action
@@ -419,7 +457,7 @@ git commit -m "Add Markdown linting CI with strict rules
 - Validate on push/PR for any *.md file changes
 
 Co-Authored-By: Claude Sonnet 4.5 (1M context) <noreply@anthropic.com>"
-```
+```text
 
 ## Phase 5: Finalization
 
@@ -436,13 +474,13 @@ git commit -m "Add comprehensive bilingual README (EN/FR)
 - Zero MarkdownLint violations
 
 Co-Authored-By: Claude Sonnet 4.5 (1M context) <noreply@anthropic.com>"
-```
+```text
 
 ### Step 5.2: GitHub About Configuration Instructions
 
 Fournir instructions step-by-step pour configurer About section :
 
-```
+```text
 📝 GitHub About Section Configuration:
 
 1. Navigate to: https://github.com/valorisa/[repo-name]
@@ -459,25 +497,27 @@ Fournir instructions step-by-step pour configurer About section :
 5. Save changes
 
 ✅ GitHub About configured!
-```
+```text
 
 ### Step 5.3: Push & Verify CI
 
 ```bash
 git push origin main
-```
+```text
 
 Vérifier workflow CI passe :
+
 ```bash
 gh run list --workflow=markdown-lint.yml --limit 1
-```
+```text
 
 **Expected :** ✓ Markdown Lint (green checkmark)
 
 **Si CI fail :** Investiguer et corriger
 
 **User notification :**
-```
+
+```text
 ✅ Standardization Complete!
 
 Files committed:
@@ -492,7 +532,7 @@ CI Status: ✅ Passing
 Next steps:
   1. Configure GitHub About section (instructions above)
   2. Review README rendering on GitHub
-```
+```text
 
 ## Manual Invocation via Skill
 

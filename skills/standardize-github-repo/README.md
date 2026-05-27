@@ -16,5 +16,4 @@ Full documentation available in the main skill file.
 
 ## Author
 
-valorisa - https://github.com/valorisa
-
+valorisa - <https://github.com/valorisa>
