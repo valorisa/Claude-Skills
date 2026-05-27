@@ -318,7 +318,7 @@ This creates:
 │ /tdd-hybrid                                                 │
 │ → Test-first development with LIGHT/FULL triage             │
 │ → RED → GREEN → REFACTOR cycle                              │
-│ → Mandatory verification before completion                   │
+│ → Mandatory verification before completion                  │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
