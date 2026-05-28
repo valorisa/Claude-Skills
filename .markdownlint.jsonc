@@ -22,6 +22,9 @@
     "style": "consistent"
   },
 
+  // MD024 - Multiple headings with same content - Allow (common in test/reference files)
+  "MD024": false,
+
   // MD060 - Table column spacing - Disabled (cosmetic)
   "MD060": false
 }
