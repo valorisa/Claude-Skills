@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-14-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-15-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -104,6 +104,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
 | [rescue-tokens](./skills/rescue-tokens/README.md) | Rate limits, avertissements contexte, ou réponses lentes | Prévient le gaspillage de tokens qui cause les rate limits. **Commencez ici si vous hésitez!** |
+| [token-optimization](./token-optimization/README.md) | Coûts tokens élevés, contexte gonflé, sessions lentes, cache invalidé | Optimisation systématique sur 4 axes : gestion cache, context forking, sélection modèle, filtrage entrées. Réduction prouvée de 70-80% des coûts. |
 
 ### Pour Démarrer un Nouveau Travail
 
@@ -152,7 +153,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Skills Disponibles (Référence Détaillée)
 
-Cette collection comprend **13 skills** organisées en workflows et utilitaires.
+Cette collection comprend **14 skills** organisées en workflows et utilitaires.
 
 > **💡 Note sur les Déclencheurs :** Quand vous mentionnez un mot-clé déclencheur dans votre conversation avec Claude, la skill s'active automatiquement. Par exemple, dire "J'ai des avertissements rate limit" active `rescue-tokens`.
 
@@ -225,6 +226,18 @@ Détecte et corrige automatiquement gaspillage tokens : conversations éternelle
 **Résultats vérifiés :** 90% réduction tokens en scénarios urgence.
 
 [📖 Documentation Complète](./skills/rescue-tokens/SKILL.md)
+
+##### [token-optimization](./token-optimization/README.md)
+
+**Optimisation systématique tokens sur 4 axes critiques.**
+
+Optimise consommation tokens Claude Code via gestion cache (prévenir invalidation), context forking (agents isolés), sélection modèle/effort (raisonnement approprié), et filtrage entrées (RTK, Stagehand). Inclut audit sessions, templates CLAUDE.md, et outils monitoring.
+
+**Résultats documentés :** 750$/mois → 100$/mois (réduction 85%).
+
+**Déclencheurs :** `tokens`, `coût`, `cher`, `contexte`, `cache`, `session lente`, `optimiser`
+
+[📖 Documentation Complète](./token-optimization/SKILL.md)
 
 ##### [standardize-github-repo](./skills/standardize-github-repo/README.md)
 

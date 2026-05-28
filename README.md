@@ -1,7 +1,7 @@
 # Claude Skills Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-14-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-15-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/methodology-TDD-green.svg)](https://en.wikipedia.org/wiki/Test-driven_development)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -104,6 +104,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | When to Use | Why You Need This |
 |-------|-------------|-------------------|
 | [rescue-tokens](./skills/rescue-tokens/README.md) | Getting rate limits, context warnings, or slow responses | Prevents token waste that causes rate limits. **Start here if unsure!** |
+| [token-optimization](./token-optimization/README.md) | High token costs, context bloat, slow sessions, cache invalidation | Systematic optimization across 4 axes: cache management, context forking, model selection, input filtering. Proven to reduce costs by 70-80%. |
 
 ### For Starting New Work
 
@@ -152,7 +153,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Available Skills (Detailed Reference)
 
-This collection includes **13 skills** organized into workflows and utilities.
+This collection includes **14 skills** organized into workflows and utilities.
 
 > **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 
@@ -225,6 +226,18 @@ Automatically detects and fixes token waste: eternal conversations, verbose outp
 **Verified results:** 90% token reduction in emergency scenarios.
 
 [📖 Full Documentation](./skills/rescue-tokens/SKILL.md)
+
+##### [token-optimization](./token-optimization/README.md)
+
+**Systematic token optimization across 4 critical axes.**
+
+Optimizes Claude Code token consumption through cache management (prevent invalidation), context forking (isolated agents), model/effort selection (appropriate reasoning), and input filtering (RTK, Stagehand). Includes session auditing, CLAUDE.md templates, and monitoring tools.
+
+**Documented results:** $750/month → $100/month (85% reduction).
+
+**Triggers:** `tokens`, `cost`, `expensive`, `context`, `cache`, `slow session`, `optimize`
+
+[📖 Full Documentation](./token-optimization/SKILL.md)
 
 ##### [standardize-github-repo](./skills/standardize-github-repo/README.md)
 
