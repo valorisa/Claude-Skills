@@ -143,6 +143,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
+| [skills-smart-manager](./skills/skills-smart-manager/README.md) | Session lente, contexte >60%, gestion skills chargées, optimisation tokens | Meta-skill qui surveille et gère toutes les autres skills. Décharge automatiquement skills obsolètes, détecte conflits, recommande skills selon type projet, effectue vérifications santé. Prévient surcharge contexte et optimise performances session. |
 | [skill-factory](./skills/skill-factory/README.md) | Créer skills production-ready avec validation et tests | Meta-skill avancée suivant le guide officiel Anthropic. Génère packages de skills complets avec scripts de validation, suites de tests, et structure prête pour distribution. Utilisez pour skills de qualité professionnelle. |
 | [skill-creator](./skills/skill-creator/README.md) | Prototypage rapide de skills personnalisées | Outil léger pour itération rapide. Guide via structure basique. Utilisez pour skills simples ou expérimentation rapide. |
 | [find-bugs](./skills/find-bugs/README.md) | Chasse aux bugs systématique dans codebase | Approche structurée pour trouver et documenter bugs. |
