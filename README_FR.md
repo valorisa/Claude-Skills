@@ -104,7 +104,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
 | [rescue-tokens](./skills/rescue-tokens/README.md) | Rate limits, avertissements contexte, ou réponses lentes | Prévient le gaspillage de tokens qui cause les rate limits. **Commencez ici si vous hésitez!** |
-| [token-optimization](./token-optimization/README.md) | Coûts tokens élevés, contexte gonflé, sessions lentes, cache invalidé | Optimisation systématique sur 4 axes : gestion cache, context forking, sélection modèle, filtrage entrées. Réduction prouvée de 70-80% des coûts. |
+| [token-optimization](./skills/token-optimization/README.md) | Coûts tokens élevés, contexte gonflé, sessions lentes, cache invalidé | Optimisation systématique sur 4 axes : gestion cache, context forking, sélection modèle, filtrage entrées. Réduction prouvée de 70-80% des coûts. |
 
 ### Pour Démarrer un Nouveau Travail
 
@@ -227,7 +227,7 @@ Détecte et corrige automatiquement gaspillage tokens : conversations éternelle
 
 [📖 Documentation Complète](./skills/rescue-tokens/SKILL.md)
 
-##### [token-optimization](./token-optimization/README.md)
+##### [token-optimization](./skills/token-optimization/README.md)
 
 **Optimisation systématique tokens sur 4 axes critiques.**
 
@@ -237,7 +237,7 @@ Optimise consommation tokens Claude Code via gestion cache (prévenir invalidati
 
 **Déclencheurs :** `tokens`, `coût`, `cher`, `contexte`, `cache`, `session lente`, `optimiser`
 
-[📖 Documentation Complète](./token-optimization/SKILL.md)
+[📖 Documentation Complète](./skills/token-optimization/SKILL.md)
 
 ##### [standardize-github-repo](./skills/standardize-github-repo/README.md)
 

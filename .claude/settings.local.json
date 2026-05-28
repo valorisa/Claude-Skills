@@ -12,7 +12,8 @@
       "Bash(markdownlint-cli2 --fix token-optimization/README.md token-optimization/SKILL.md)",
       "Bash(markdownlint-cli2 token-optimization/**/*.md)",
       "Bash(git fetch *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(git mv *)"
     ]
   }
 }

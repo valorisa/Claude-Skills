@@ -104,7 +104,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | When to Use | Why You Need This |
 |-------|-------------|-------------------|
 | [rescue-tokens](./skills/rescue-tokens/README.md) | Getting rate limits, context warnings, or slow responses | Prevents token waste that causes rate limits. **Start here if unsure!** |
-| [token-optimization](./token-optimization/README.md) | High token costs, context bloat, slow sessions, cache invalidation | Systematic optimization across 4 axes: cache management, context forking, model selection, input filtering. Proven to reduce costs by 70-80%. |
+| [token-optimization](./skills/token-optimization/README.md) | High token costs, context bloat, slow sessions, cache invalidation | Systematic optimization across 4 axes: cache management, context forking, model selection, input filtering. Proven to reduce costs by 70-80%. |
 
 ### For Starting New Work
 
@@ -227,7 +227,7 @@ Automatically detects and fixes token waste: eternal conversations, verbose outp
 
 [📖 Full Documentation](./skills/rescue-tokens/SKILL.md)
 
-##### [token-optimization](./token-optimization/README.md)
+##### [token-optimization](./skills/token-optimization/README.md)
 
 **Systematic token optimization across 4 critical axes.**
 
@@ -237,7 +237,7 @@ Optimizes Claude Code token consumption through cache management (prevent invali
 
 **Triggers:** `tokens`, `cost`, `expensive`, `context`, `cache`, `slow session`, `optimize`
 
-[📖 Full Documentation](./token-optimization/SKILL.md)
+[📖 Full Documentation](./skills/token-optimization/SKILL.md)
 
 ##### [standardize-github-repo](./skills/standardize-github-repo/README.md)
 
