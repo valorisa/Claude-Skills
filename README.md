@@ -154,7 +154,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Available Skills (Detailed Reference)
 
-This collection includes **14 skills** organized into workflows and utilities.
+This collection includes **15 skills** organized into workflows and utilities.
 
 > **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 
@@ -277,6 +277,16 @@ Enhanced version of promptor with council-based validation and architectural del
 ---
 
 #### Development Utilities
+
+##### [skills-smart-manager](./skills/skills-smart-manager/README.md)
+
+**Meta-skill for intelligent skill lifecycle management.**
+
+Monitors, analyzes, and optimizes all other skills loaded in Claude Code sessions. Automatically unloads stale skills (unused >15 turns), detects conflicts between skills, recommends skills based on project type, performs health checks on MCP servers and APIs, cleans up temporary files, and archives session memory per repository. Prevents context bloat and optimizes session performance.
+
+**Triggers:** `optimize skills`, `clean up context`, `manage skills`, `free tokens`, `skill health check`, `session feels slow`, or when context >60% and multiple skills loaded
+
+[📖 Full Documentation](./skills/skills-smart-manager/SKILL.md)
 
 ##### [skill-creator](./skills/skill-creator/README.md)
 
