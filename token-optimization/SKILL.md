@@ -31,6 +31,7 @@ Before any work, run these two commands:
 ```
 
 **Systematic actions:**
+
 - Disable all MCPs not needed for current project
 - Disable all unused plugins
 - One project ≠ one global config → customize per project
@@ -38,6 +39,7 @@ Before any work, run these two commands:
 > Real example: empty session with Canva + Gmail + Google Calendar MCPs loaded = **23,000 tokens consumed before first keystroke**.
 
 **Red flags to check:**
+
 - More than 3 MCPs loaded
 - Plugins unrelated to current work
 - Base token count >10,000 on empty session
@@ -47,9 +49,11 @@ Before any work, run these two commands:
 ## Phase 2: Cache Management
 
 ### Principle
+
 Claude Code caches: system instructions (CLAUDE.md), tool/MCP list, and message history. Any **modification during session** invalidates this cache, causing complete re-billing of affected tokens.
 
 ### Imperative rules
+
 - **Never add a tool, MCP, or model mid-session.**
   Configure everything *before* starting, or in a dedicated setup session.
 - If a critical addition is required mid-session (heavy skill, MCP, critical command):
@@ -81,6 +85,7 @@ Claude Code caches: system instructions (CLAUDE.md), tool/MCP list, and message 
 | Load new file into context | Session state | Moderate |
 
 **Optimal session strategy:**
+
 ```
 1. Full configuration (MCP, tools, CLAUDE.md) → BEFORE starting
 2. Work session → NEVER modify configuration
@@ -95,22 +100,28 @@ For technical details on cache issues, see `references/cache-deep-dive.md`.
 ## Phase 3: Context Window Optimization
 
 ### Reduce default context window
+
 The 1M token window is tempting but dangerous: it encourages bad habits and overloads child agents.
 
 **Conditional recommendation:**
+
 - Small/medium codebase → limit to ~200,000 tokens in `settings.json`:
+
   ```json
   { "contextWindow": 200000 }
   ```
+
   *(not committed by default — use local file)*
 - Very large codebase → keep 1M, but optimize practices below even more aggressively.
 
 > **RAM analogy**: having 32GB RAM doesn't justify poor memory management. A constrained window forces better discipline.
 
 ### Context forking and isolated agents
+
 Agents inherit parent context at spawn time. **The longer you wait, the heavier they start.**
 
 Target behavior:
+
 - Call each skill or agent in a **forked context** (`context: fork` in parameters)
 - Agent works in its own window → at completion, returns *only the result*, not full history
 - When agent is destroyed, main context hasn't moved
@@ -125,12 +136,14 @@ Target behavior:
 | Codebase exploration | Native `explore` agent (uses IQ) already optimized for this |
 
 **Prompt to add to CLAUDE.md:**
+
 ```
 For any web search, systematically delegate to isolated subagent.
 Return only extracted relevant information, not full history.
 ```
 
 ### Compaction and Rewind
+
 - **Automatic compaction**: triggers when agent reaches ~80% of window. Desirable for agents, not for main session.
 - **Rewind** (double `Esc`): allows returning to previous conversation and deleting unnecessary context branch. Use immediately when going in wrong direction.
 
@@ -139,6 +152,7 @@ Return only extracted relevant information, not full history.
 ## Phase 4: Model & Reasoning Effort Selection
 
 ### Reasoning effort
+
 The effort system loops on the prompt to verify response quality. Each loop = additional tokens.
 
 | Situation | Recommended effort |
@@ -150,12 +164,14 @@ The effort system loops on the prompt to verify response quality. Each loop = ad
 > Rule: if the answer is clear in your mind, use `medium`. Ask Claude to **think with you**, not for you.
 
 ### Model choice
+
 - **Claude Code subscription** → use native Anthropic models (Sonnet / Opus). No proxy.
   - Opus: prefer for complex tasks despite latency
   - Sonnet: fast tasks, common code generation
 - **Proxy to other LLMs (GLM, Kimi...)**: only relevant if using SDK/API directly, not in standard Claude Code. Proxies are unstable and unoptimized.
 
 **Add to CLAUDE.md:**
+
 ```markdown
 ## Reasoning effort
 - Simple task / known command → minimal effort, no `think`
@@ -169,29 +185,36 @@ Never over-reason a simple task.
 ## Phase 5: Input Format Optimization
 
 ### Browser automation: DOM over screenshots
+
 Native Claude Code browser agent takes **screenshots** at each step → very costly in tokens and time.
 
 **Recommended alternative: [Stagehand / Agent Browser (Vercel)](https://github.com/browserbase/stagehand)**
+
 - Operates directly on DOM (invisible, no screenshots)
 - Installation: open new Claude Code instance → `Install [stagehand URL]`
 - Result: 10× faster, drastically reduced tokens
 
 ### Filter verbose CLI output
+
 Commands like `git status`, `git diff` are extremely verbose once injected into context.
 
 **Recommended tool: [RTK](https://github.com/simonw/rtk)** (developed by French developer)
+
 - Filters command output before context window injection
 - Example: `git status` goes from ~50 lines to ~5 essential lines → **~80% savings on this command**
 - Global installation:
+
   ```bash
   # Run in Claude Code
   npx rtk init --global
   ```
 
 ### Concise responses: Caveman Skill / CLAUDE.md
+
 By default, Claude Code is very verbose. Drastically reduce response volume:
 
 **Directives to add to CLAUDE.md:**
+
 ```markdown
 ## Response style
 Ultra-concise responses. Remove articles, politeness phrases, reformulations.
@@ -201,7 +224,9 @@ Get to the point. Format: short bullet points. No intro, no conclusion.
 **Caveman Skill** (available on GitHub, ~50k stars): ready-to-use directives to integrate directly into CLAUDE.md. See `references/claude-md-templates.md` for examples.
 
 ### Specify file paths explicitly
+
 Don't let Claude discover files on its own in commands:
+
 ```
 # ❌ Costly: Claude will list, explore, read
 "Update project memory"
@@ -211,6 +236,7 @@ Don't let Claude discover files on its own in commands:
 ```
 
 **Template for memory commands:**
+
 ```markdown
 ## Memory/Learning commands
 `/learn` command: updates ONLY the following files:
@@ -224,6 +250,7 @@ Do not scan other files unless explicitly instructed.
 ## Phase 6: Validation & Monitoring
 
 ### Check context consumption
+
 After implementing optimizations, verify:
 
 ```bash
@@ -231,12 +258,15 @@ After implementing optimizations, verify:
 ```
 
 **Success criteria:**
+
 - Base session <5,000 tokens (with necessary MCPs only)
 - After 10 interactions: <30,000 tokens
 - No agents exceeding 50,000 tokens for isolated tasks
 
 ### Team monitoring
+
 For teams needing consumption tracking:
+
 - Local dashboard tool (created by reference article author): displays sessions, called models, tokens per session
 - More useful for managers/leads than solo developers
 - See references below for link
@@ -250,12 +280,14 @@ For teams needing consumption tracking:
 ### High token count despite optimizations
 
 **Diagnosis steps:**
+
 1. Run `/context` → identify which MCPs are loaded
 2. Check `settings.json` → verify contextWindow setting
 3. Review recent commands → identify verbose outputs
 4. Check agent spawns → verify context forking
 
 **Common fixes:**
+
 - Disable unused MCPs
 - Add RTK filtering for git commands
 - Move to subagents for research tasks
@@ -264,11 +296,13 @@ For teams needing consumption tracking:
 ### Cache invalidation happening frequently
 
 **Diagnosis:**
+
 1. Check if skills are being loaded mid-session
 2. Verify CLAUDE.md isn't changing
 3. Look for tool additions in session
 
 **Fixes:**
+
 - Preload all needed skills at session start
 - Lock CLAUDE.md configuration
 - Use dedicated setup session for config changes
@@ -276,11 +310,13 @@ For teams needing consumption tracking:
 ### Agents consuming too many tokens
 
 **Diagnosis:**
+
 1. Check if agents inherit bloated parent context
 2. Verify agents aren't loading unnecessary MCPs
 3. Look for verbose tool outputs in agent history
 
 **Fixes:**
+
 - Spawn agents earlier (lighter parent context)
 - Use `context: fork` parameter
 - Return only results, not full agent history
@@ -294,6 +330,7 @@ For teams needing consumption tracking:
 **User says:** "Set up new project with optimal token configuration"
 
 **Actions:**
+
 1. Create minimal CLAUDE.md with concise response directives
 2. Configure contextWindow based on codebase size
 3. Enable only essential MCPs for project type
@@ -308,6 +345,7 @@ For teams needing consumption tracking:
 **User says:** "My sessions are consuming too many tokens, help diagnose"
 
 **Actions:**
+
 1. Run `/context` to audit current state
 2. Check loaded MCPs and plugins
 3. Review recent command outputs for verbosity
@@ -322,6 +360,7 @@ For teams needing consumption tracking:
 **User says:** "Research best practices for React Server Components"
 
 **Actions:**
+
 1. Spawn isolated subagent with context fork
 2. Subagent performs web searches
 3. Subagent extracts key findings only
@@ -335,11 +374,13 @@ For teams needing consumption tracking:
 ## References
 
 For detailed technical information:
+
 - `references/cache-deep-dive.md` — Cache behavior and invalidation patterns
 - `references/claude-md-templates.md` — Ready-to-use CLAUDE.md configuration blocks
 - `references/tools.md` — External tools (Stagehand, RTK) setup guides
 
 **External resources:**
+
 - [Anthropic Prompt Caching Documentation](https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching)
 - [Stagehand Browser Automation](https://github.com/browserbase/stagehand)
 - [RTK CLI Output Filter](https://github.com/simonw/rtk)

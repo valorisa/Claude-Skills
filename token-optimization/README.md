@@ -16,6 +16,7 @@ This skill helps you drastically reduce token costs in Claude Code by addressing
 ## Installation
 
 ### Claude Code
+
 ```bash
 # Copy to skills directory
 cp -r token-optimization ~/.claude/skills/
@@ -24,6 +25,7 @@ cp -r token-optimization ~/.claude/skills/
 ```
 
 ### Verification
+
 ```bash
 # Check if skill loaded
 /skills
@@ -34,11 +36,13 @@ cp -r token-optimization ~/.claude/skills/
 ## Quick Start
 
 ### Step 1: Audit your session
+
 ```
 "Audit my current session for token optimization opportunities"
 ```
 
 The skill will:
+
 - Check loaded MCPs and plugins
 - Measure base token consumption
 - Identify optimization opportunities
@@ -47,17 +51,20 @@ The skill will:
 ### Step 2: Apply optimizations
 
 Common quick wins:
+
 - Disable unnecessary MCPs (keeps only 2-3 essential)
 - Add concise response directives to CLAUDE.md
 - Size context window appropriately for your codebase
 - Install RTK for CLI output filtering
 
 ### Step 3: Verify savings
+
 ```bash
 /context    # Check new token count
 ```
 
 Expected results:
+
 - Base session: <5,000 tokens (vs 20,000+)
 - Standard workflow: 30k tokens (vs 140k+)
 - 70-80% overall reduction
@@ -65,27 +72,33 @@ Expected results:
 ## Use Cases
 
 ### Scenario 1: High token bills
+
 **You say:** "My Claude Code costs are too high, help me optimize"
 
 **Skill does:**
+
 - Runs session audit
 - Identifies waste sources
 - Implements optimizations
 - Measures savings
 
 ### Scenario 2: Slow sessions
+
 **You say:** "My sessions are becoming slow and bloated"
 
 **Skill does:**
+
 - Analyzes context growth patterns
 - Configures context forking for agents
 - Sets up output filtering
 - Implements compaction strategy
 
 ### Scenario 3: New project setup
+
 **You say:** "Set up optimal token configuration for this new project"
 
 **Skill does:**
+
 - Analyzes codebase size
 - Recommends context window
 - Creates CLAUDE.md with optimizations
@@ -94,21 +107,25 @@ Expected results:
 ## Key Features
 
 ### Cache Management
+
 - Detects mid-session configuration changes
 - Warns about cache invalidation costs
 - Recommends optimal session strategies
 
 ### Context Optimization
+
 - Sizes context window per codebase
 - Configures agent context forking
 - Implements delegation patterns
 
 ### Output Filtering
+
 - Recommends RTK for CLI commands
 - Configures Stagehand for browser automation
 - Adds concise response directives
 
 ### Monitoring
+
 - Real-time token consumption tracking
 - Before/after comparisons
 - Team dashboard support (optional)
@@ -116,6 +133,7 @@ Expected results:
 ## Examples
 
 ### Example 1: Session audit
+
 ```
 You: "Check my current token usage"
 
@@ -131,6 +149,7 @@ Savings potential: ~20k base, ~60% per session
 ```
 
 ### Example 2: Web research
+
 ```
 You: "Research React Server Components best practices"
 
@@ -144,6 +163,7 @@ Main context impact: 500 tokens (vs 5k+ direct)
 ```
 
 ### Example 3: Configuration
+
 ```
 You: "Optimize this project"
 
@@ -161,14 +181,17 @@ Base session: 3k tokens (vs 23k before)
 ## Testing
 
 ### Validate skill structure
+
 ```bash
 python scripts/validate_skill.py .
 ```
 
 ### Run trigger tests
+
 See `tests/trigger-tests.md` for validation queries.
 
 ### Run functional tests
+
 See `tests/functional-tests.md` for complete test scenarios.
 
 ## Troubleshooting
@@ -204,6 +227,7 @@ See `tests/functional-tests.md` for complete test scenarios.
 ## Contributing
 
 Contributions welcome! Please:
+
 1. Validate changes with `python scripts/validate_skill.py .`
 2. Run trigger and functional tests
 3. Update documentation
