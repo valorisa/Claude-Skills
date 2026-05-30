@@ -14,6 +14,7 @@ Processus automatique de standardisation des repositories GitHub, déclenché au
 ## Critical Rule: Separate Language Files
 
 **IMPORTANT**: Documentation MUST use separate files per language:
+
 - `README.md` → English only (EN/US)
 - `README.fr.md` → French only (FR/FR)
 - **NO mixed languages within a single file**
