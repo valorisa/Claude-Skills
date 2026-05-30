@@ -11,6 +11,15 @@ Processus automatique de standardisation des repositories GitHub, déclenché au
 
 **How to apply:** Détecter les triggers et proposer le processus complet si le repo n'est pas déjà standardisé.
 
+## Critical Rule: Separate Language Files
+
+**IMPORTANT**: Documentation MUST use separate files per language:
+- `README.md` → English only (EN/US)
+- `README.fr.md` → French only (FR/FR)
+- **NO mixed languages within a single file**
+
+This applies to ALL documentation standardization work.
+
 ## Automatic Triggers
 
 ### Phase 1: Pré-création du repo GitHub
