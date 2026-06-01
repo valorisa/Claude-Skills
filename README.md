@@ -284,6 +284,7 @@ Anti-compliance debate assistant for politics, economics, and philosophy. System
 **Triggers:** `rodin`, `/rodin`, `débat socratique`, `challenge my position`, or discussing societal topics
 
 **Key features:**
+
 - Anti-compliance protocol: contradicts directly instead of validating
 - Systematic steelmanning: reconstructs opposing views in strongest form
 - Classification system: labels every major claim

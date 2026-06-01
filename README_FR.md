@@ -284,6 +284,7 @@ Assistant de débat anti-complaisance pour politique, économie et philosophie. 
 **Déclencheurs :** `rodin`, `/rodin`, `débat socratique`, `challenge my position`, ou discussion de sujets sociétaux
 
 **Fonctionnalités clés :**
+
 - Protocole anti-complaisance : contredit directement au lieu de valider
 - Steelmanning systématique : reconstruit positions adverses sous forme la plus forte
 - Système de classification : étiquette chaque affirmation majeure

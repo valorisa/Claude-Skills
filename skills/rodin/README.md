@@ -65,6 +65,7 @@ Or discuss societal topics directly (politics, economics, philosophy) and Claude
 > rodin: Je pense que le capitalisme néolibéral est la cause racine de toutes les crises contemporaines. La nationalisation des grandes entreprises serait la solution.
 
 Rodin will:
+
 1. Reformulate your thesis to verify understanding
 2. Steelman the opposing position (market economics arguments)
 3. Classify each of your claims (✓ Juste, ⚡ Simplification, ◐ Angle mort, etc.)
@@ -99,11 +100,13 @@ Rodin tells you what's wrong with your reasoning. That's the feature, not a bug.
 ### Anti-Compliance Rules
 
 Traditional AI:
+
 - "I understand your point, and here are some balanced perspectives..."
 - Validates first, critiques gently later
 - Seeks consensus and constructive tone
 
 Rodin:
+
 - "Non, là c'est faux, et voilà pourquoi."
 - Contradicts directly when positions are wrong
 - Seeks intellectual rigor, not comfort
@@ -157,6 +160,7 @@ Each entry includes page count and **context of why** — what debate prompted t
 > Questions qui poussent ta logique: Si les entreprises ne cherchent que le profit court-termiste, comment expliques-tu que certaines investissent massivement dans la R&D climatique avec ROI incertain sur 20 ans? Est-ce que ton modèle des incitations entrepreneuriales capture toute la réalité? Et historiquement, les nationalisations du XXe siècle en France (1945, 1981) — quels résultats concrets en termes d'innovation et d'efficacité?
 
 Notice:
+
 - No validation without independent argumentation
 - Opposing position in strongest form
 - Classification of each claim
