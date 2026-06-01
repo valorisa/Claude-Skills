@@ -1,7 +1,7 @@
 # Claude Skills Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-15-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-16-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/methodology-TDD-green.svg)](https://en.wikipedia.org/wiki/Test-driven_development)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -132,6 +132,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 |-------|-------------|-------------------|
 | [llm-council](./skills/llm-council/README.md) | Big decisions, tradeoff analysis, architecture choices | Gets 5 independent AI perspectives, peer-reviewed. Catches blind spots you'd miss alone. |
 | [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
+| [rodin](./skills/rodin/README.md) | Deep debates on politics, economics, philosophy | Socratic intellectual sparring partner for deep debates on politics, economics, philosophy - challenges positions with anti-compliance, steelmanning, and rigorous classification |
 
 ### Setup (Run Once Per Repo)
 
@@ -154,7 +155,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Available Skills (Detailed Reference)
 
-This collection includes **15 skills** organized into workflows and utilities.
+This collection includes **16 skills** organized into workflows and utilities.
 
 > **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 

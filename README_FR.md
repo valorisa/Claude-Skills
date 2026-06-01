@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-15-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-16-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -132,6 +132,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 |-------|------------------|------------------------------|
 | [llm-council](./skills/llm-council/README.md) | Grandes décisions, analyse compromis, choix architecture | Obtient 5 perspectives IA indépendantes, évaluées par les pairs. Détecte les angles morts que vous manqueriez seul. |
 | [promptor](./skills/promptor/README.md) | Créer prompts optimisés pour outils IA | Génère prompts prêts pour production via 18 techniques d'optimisation. Prêt à copier-coller. |
+| [rodin](./skills/rodin/README.md) | Débats profonds sur politique, économie, philosophie | Partenaire intellectuel socratique pour débats profonds sur politique, économie, philosophie - défie les positions avec anti-complaisance, steelmanning et classification rigoureuse |
 
 ### Setup (Exécuter Une Fois Par Repo)
 
@@ -154,7 +155,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Skills Disponibles (Référence Détaillée)
 
-Cette collection comprend **15 skills** organisées en workflows et utilitaires.
+Cette collection comprend **16 skills** organisées en workflows et utilitaires.
 
 > **💡 Note sur les Déclencheurs :** Quand vous mentionnez un mot-clé déclencheur dans votre conversation avec Claude, la skill s'active automatiquement. Par exemple, dire "J'ai des avertissements rate limit" active `rescue-tokens`.
 
