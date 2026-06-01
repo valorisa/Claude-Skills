@@ -275,6 +275,23 @@ Produit prompts agnostiques domaine, auditables, prêts copier-coller via 18 hac
 
 Version améliorée de promptor avec validation basée conseil et délibération architecturale.
 
+##### [rodin](./skills/rodin/README.md)
+
+**Partenaire intellectuel socratique pour débats sociétaux profonds.**
+
+Assistant de débat anti-complaisance pour politique, économie et philosophie. Steelmann systématiquement les arguments opposés, classifie les affirmations (✓ Juste, ~ Contestable, ⚡ Simplification, ◐ Angle mort, ✗ Faux), et défie les positions avec rigueur intellectuelle. Maintient bibliographie persistante suivant livres et recommandations issues des débats.
+
+**Déclencheurs :** `rodin`, `/rodin`, `débat socratique`, `challenge my position`, ou discussion de sujets sociétaux
+
+**Fonctionnalités clés :**
+- Protocole anti-complaisance : contredit directement au lieu de valider
+- Steelmanning systématique : reconstruit positions adverses sous forme la plus forte
+- Système de classification : étiquette chaque affirmation majeure
+- Ancrage historique : convoque précédents pertinents de philosophie, économie, sociologie
+- Persistance bibliographique : maintient `biblio-rodin.md` avec contexte du pourquoi chaque livre importe
+
+[📖 Documentation Complète](./skills/rodin/README.md)
+
 ---
 
 #### Utilitaires Développement

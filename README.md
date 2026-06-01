@@ -275,6 +275,23 @@ Produces domain-agnostic, auditable, copy-paste-ready prompts using 18 optimizat
 
 Enhanced version of promptor with council-based validation and architectural deliberation.
 
+##### [rodin](./skills/rodin/README.md)
+
+**Socratic intellectual sparring partner for deep societal debates.**
+
+Anti-compliance debate assistant for politics, economics, and philosophy. Systematically steelmans opposing arguments, classifies claims (✓ Juste, ~ Contestable, ⚡ Simplification, ◐ Angle mort, ✗ Faux), and challenges positions with intellectual rigor. Maintains persistent bibliography tracking books and recommendations from debates.
+
+**Triggers:** `rodin`, `/rodin`, `débat socratique`, `challenge my position`, or discussing societal topics
+
+**Key features:**
+- Anti-compliance protocol: contradicts directly instead of validating
+- Systematic steelmanning: reconstructs opposing views in strongest form
+- Classification system: labels every major claim
+- Historically anchored: convokes relevant precedents from philosophy, economics, sociology
+- Bibliography persistence: maintains `biblio-rodin.md` with context of why each book matters
+
+[📖 Full Documentation](./skills/rodin/README.md)
+
 ---
 
 #### Development Utilities
