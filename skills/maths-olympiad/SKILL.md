@@ -1,3 +1,8 @@
+---
+name: maths-olympiad
+description: Un workflow multi-agents avancé conçu pour résoudre, vérifier et mettre en forme des preuves rigoureuses pour les compétitions de mathématiques (telles que l'IMO, Putnam, USAMO, AIME). Il s'appuie sur des agents de résolution parallèles, une vérification adversariale avec isolation de contexte, un "mode profond" (deep mode) pour le calcul borné, et une passe de présentation finale pour générer des preuves élégantes en LaTeX. L'objectif est d'optimiser la précision conditionnelle (ne proposer une solution que si elle est certaine) tout en interdisant formellement l'accès au web pour préserver l'intégrité du raisonnement.
+---
+
 # Math Olympiad Solver
 
 ## The five things that change outcomes
