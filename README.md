@@ -312,6 +312,7 @@ Advanced pipeline for solving, verifying, and formatting proofs for math competi
 **Triggers:** `maths-olympiad`, `/maths-olympiad`, competition math problem, `solve this olympiad`, `verify this proof`, `IMO`, `Putnam`, `USAMO`, `AIME`
 
 **Key features:**
+
 - Dual context isolation: verifier blind to solver's thinking trace AND other verifiers' verdicts
 - Pattern-specific adversarial attacks (12 named checks: #4, #18, #40…)
 - Calibrated abstention with partial results documented
