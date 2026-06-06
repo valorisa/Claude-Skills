@@ -1,7 +1,7 @@
 # Claude Skills Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-18-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-19-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/methodology-TDD-green.svg)](https://en.wikipedia.org/wiki/Test-driven_development)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -134,6 +134,12 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
 | [rodin](./skills/rodin/README.md) | Deep debates on politics, economics, philosophy | Socratic intellectual sparring partner for deep debates on politics, economics, philosophy - challenges positions with anti-compliance, steelmanning, and rigorous classification |
 
+### For Mathematics & Formal Proofs
+
+| Skill | When to Use | Why You Need This |
+| ----- | ----------- | ----------------- |
+| [maths-olympiad](https://github.com/valorisa/Claude-Skills/blob/main/skills/maths-olympiad/README.md) | Solving or verifying competition math problems (IMO, Putnam, USAMO, AIME) | Multi-agent parallel solving with adversarial verification and context isolation. Produces verified LaTeX proofs. Abstains rather than guessing. |
+
 ### Setup (Run Once Per Repo)
 
 | Skill | When to Use | Why You Need This |
@@ -155,7 +161,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Available Skills (Detailed Reference)
 
-This collection includes **18 skills** organized into workflows and utilities.
+This collection includes **19 skills** organized into workflows and utilities.
 
 > **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 
@@ -292,6 +298,28 @@ Anti-compliance debate assistant for politics, economics, and philosophy. System
 - Bibliography persistence: maintains `biblio-rodin.md` with context of why each book matters
 
 [📖 Full Documentation](./skills/rodin/README.md)
+
+---
+
+#### Mathematics & Formal Proofs
+
+##### [maths-olympiad](https://github.com/valorisa/Claude-Skills/blob/main/skills/maths-olympiad/README.md)
+
+**Multi-agent workflow for rigorous competition mathematics.**
+
+Advanced pipeline for solving, verifying, and formatting proofs for math competitions (IMO, Putnam, USAMO, AIME). Runs 8–12 parallel solver agents with internal self-improvement cycles, adversarial verifiers with strict context isolation (verifier never sees solver's reasoning trace), asymmetric vote thresholds (4 HOLDS to confirm, 2 HOLE FOUND to refute), a "deep mode" for bounded computation, and a final LaTeX presentation pass. Optimizes conditional accuracy: will say "no confident solution" with partial results rather than guess.
+
+**Triggers:** `maths-olympiad`, `/maths-olympiad`, competition math problem, `solve this olympiad`, `verify this proof`, `IMO`, `Putnam`, `USAMO`, `AIME`
+
+**Key features:**
+
+- Dual context isolation: verifier blind to solver's thinking trace AND other verifiers' verdicts
+- Pattern-specific adversarial attacks (12 named checks: #4, #18, #40…)
+- Calibrated abstention with partial results documented
+- Deep mode: bounded computation (mod arithmetic, small-case enumeration) when pure reasoning abstains
+- Presentation pass: verified proof reformatted for elegance and concision in LaTeX
+
+[📖 Full Documentation](https://github.com/valorisa/Claude-Skills/blob/main/skills/maths-olympiad/SKILL.md)
 
 ---
 
