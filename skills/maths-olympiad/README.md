@@ -23,6 +23,7 @@ Ce skill implémente un workflow multi-agents rigoureux pour résoudre et vérif
 ## 📂 Structure des Références
 
 Le skill s'appuie sur plusieurs fichiers de référence pour ses invites (prompts) adversariales et de présentation :
+
 - `references/solver_heuristics.md` — Angles d'attaque initiaux pour les solveurs.
 - `references/verifier_patterns.md` — Les 12 vérifications adversariales (ex: Pattern #40 pour les lemmes d'une ligne).
 - `references/adversarial_prompts.md` — Invites prêtes à l'emploi pour les vérificateurs.
