@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-17-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-19-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -134,6 +134,12 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | [promptor](./skills/promptor/README.md) | Créer prompts optimisés pour outils IA | Génère prompts prêts pour production via 18 techniques d'optimisation. Prêt à copier-coller. |
 | [rodin](./skills/rodin/README.md) | Débats profonds sur politique, économie, philosophie | Partenaire intellectuel socratique pour débats profonds sur politique, économie, philosophie - défie les positions avec anti-complaisance, steelmanning et classification rigoureuse |
 
+### Pour les Mathématiques & Preuves Formelles
+
+| Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
+|-------|------------------|------------------------------|
+| [maths-olympiad](./skills/maths-olympiad/README.md) | Résoudre ou vérifier des problèmes de mathématiques de compétition (IMO, Putnam, USAMO, AIME) | Résolution parallèle multi-agents avec vérification adversariale et isolation de contexte. Produit des preuves LaTeX vérifiées. S'abstient plutôt que de deviner. |
+
 ### Setup (Exécuter Une Fois Par Repo)
 
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
@@ -155,7 +161,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Skills Disponibles (Référence Détaillée)
 
-Cette collection comprend **17 skills** organisées en workflows et utilitaires.
+Cette collection comprend **19 skills** organisées en workflows et utilitaires.
 
 > **💡 Note sur les Déclencheurs :** Quand vous mentionnez un mot-clé déclencheur dans votre conversation avec Claude, la skill s'active automatiquement. Par exemple, dire "J'ai des avertissements rate limit" active `rescue-tokens`.
 
@@ -292,6 +298,28 @@ Assistant de débat anti-complaisance pour politique, économie et philosophie. 
 - Persistance bibliographique : maintient `biblio-rodin.md` avec contexte du pourquoi chaque livre importe
 
 [📖 Documentation Complète](./skills/rodin/README.md)
+
+---
+
+#### Mathématiques & Preuves Formelles
+
+##### [maths-olympiad](./skills/maths-olympiad/README.md)
+
+**Workflow multi-agents pour les mathématiques de compétition rigoureuses.**
+
+Pipeline avancé pour résoudre, vérifier et mettre en forme des preuves pour les concours de mathématiques (IMO, Putnam, USAMO, AIME). Lance 8 à 12 agents solveurs parallèles avec cycles d'auto-amélioration internes, des vérificateurs adversariaux avec isolation stricte du contexte (le vérificateur ne voit jamais la trace de raisonnement du solveur), des seuils de vote asymétriques (4 HOLDS pour confirmer, 2 HOLE FOUND pour réfuter), un "deep mode" pour le calcul borné, et une passe de présentation LaTeX finale. Optimise la précision conditionnelle : retourne "no confident solution" avec résultats partiels plutôt que de deviner.
+
+**Déclencheurs :** `maths-olympiad`, `/maths-olympiad`, problème de maths de compétition, `solve this olympiad`, `verify this proof`, `IMO`, `Putnam`, `USAMO`, `AIME`
+
+**Fonctionnalités clés :**
+
+- Double isolation de contexte : le vérificateur est aveugle à la trace de raisonnement du solveur ET aux verdicts des autres vérificateurs
+- Attaques adversariales spécifiques aux patterns (12 vérifications nommées : #4, #18, #40…)
+- Abstention calibrée avec résultats partiels documentés
+- Deep mode : calcul borné (arithmétique modulaire, énumération petits cas) quand le raisonnement pur s'abstient
+- Passe de présentation : preuve vérifiée reformatée pour élégance et concision en LaTeX
+
+[📖 Documentation Complète](./skills/maths-olympiad/SKILL.md)
 
 ---
 
