@@ -84,15 +84,18 @@ ANCRER → RAISONNER → AGIR → OBSERVER → RÉÉVALUER → VÉRIFIER → NAR
 ### Flux complet
 
 **1. Diagnostic** — Ancrer avant de toucher.
+
 - Ouvrir/afficher/screenshotter l'artefact tel quel.
 - Rédiger un constat honnête, points précis, sans édulcorer : « ligne 47 : le z-index masque le menu sur mobile », pas « quelques petits soucis ».
 - Ne rien modifier à cette étape.
 
 **2. Validation** — Présenter le diagnostic à l'utilisateur.
+
 - Plan des corrections, ordonné par impact.
 - Sur un gros chantier : gate ici, attendre l'accord avant de continuer.
 
 **3. Correction** — Appliquer, puis re-vérifier comme en route ARTEFACT.
+
 - Relancer les vraies vérifications (build, lint, screenshot).
 - Re-regarder l'artefact après correction.
 - Rapporter l'état final honnêtement : corrections appliquées, résidus éventuels signalés.
