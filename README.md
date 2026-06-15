@@ -1,7 +1,7 @@
 # Claude Skills Collection
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-19-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-20-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/methodology-TDD-green.svg)](https://en.wikipedia.org/wiki/Test-driven_development)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
@@ -139,6 +139,12 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | When to Use | Why You Need This |
 | ----- | ----------- | ----------------- |
 | [maths-olympiad](https://github.com/valorisa/Claude-Skills/blob/main/skills/maths-olympiad/README.md) | Solving or verifying competition math problems (IMO, Putnam, USAMO, AIME) | Multi-agent parallel solving with adversarial verification and context isolation. Produces verified LaTeX proofs. Abstains rather than guessing. |
+
+### For Quality-Assured Work
+
+| Skill | When to Use | Why You Need This |
+|-------|-------------|-------------------|
+| [fabuleux](./skills/fabuleux/README.md) | Any task where you want verified, honest, non-bloated output | Routes effort by task type: ARTEFACT (screenshot + vision loop), PROSE (subtraction pass), ANALYSIS (claim verification), AUDIT (honest diagnosis → correction), SIMPLE (direct answer). Eliminates "probably works" reporting. |
 
 ### Setup (Run Once Per Repo)
 
@@ -320,6 +326,20 @@ Advanced pipeline for solving, verifying, and formatting proofs for math competi
 - Presentation pass: verified proof reformatted for elegance and concision in LaTeX
 
 [📖 Full Documentation](https://github.com/valorisa/Claude-Skills/blob/main/skills/maths-olympiad/SKILL.md)
+
+---
+
+#### Quality Discipline
+
+##### [fabuleux](./skills/fabuleux/README.md)
+
+**High-standard working discipline held for the full session.**
+
+Routes effort to the task type instead of applying one recipe to everything: ARTEFACT/AGENTIC (produce → screenshot → vision → fix → re-capture), PROSE (draft + mandatory subtraction pass), ANALYSIS/ADVICE (verify every claim, useful truth over flattery), AUDIT (honest diagnosis → validation → correction with real proof), SIMPLE/ONE-SHOT (direct answer, no overhead). Distilled from Fable 5's real sessions.
+
+**Triggers:** `fabuleux`, `/fabuleux`, `mode fabuleux`, `niveau Fable 5`, `qualité maximale`, `sois exigeant`, `audit fabuleux`, `relis vraiment ce que tu produis`, or any request for thorough, verified, non-bloated work
+
+[📖 Full Documentation](./skills/fabuleux/README.md)
 
 ---
 

@@ -1,7 +1,7 @@
 # Collection de Skills Claude
 
 [![Licence: MIT](https://img.shields.io/badge/Licence-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Skills](https://img.shields.io/badge/skills-19-blue.svg)](./skills)
+[![Skills](https://img.shields.io/badge/skills-20-blue.svg)](./skills)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-compatible-purple.svg)](https://claude.ai/code)
 [![TDD](https://img.shields.io/badge/méthodologie-TDD-green.svg)](https://fr.wikipedia.org/wiki/Test_driven_development)
 [![PRs Bienvenues](https://img.shields.io/badge/PRs-bienvenues-brightgreen.svg)](./CONTRIBUTING.md)
@@ -139,6 +139,12 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
 | [maths-olympiad](./skills/maths-olympiad/README.md) | Résoudre ou vérifier des problèmes de mathématiques de compétition (IMO, Putnam, USAMO, AIME) | Résolution parallèle multi-agents avec vérification adversariale et isolation de contexte. Produit des preuves LaTeX vérifiées. S'abstient plutôt que de deviner. |
+
+### Pour un Travail de Qualité Vérifiée
+
+| Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
+|-------|------------------|------------------------------|
+| [fabuleux](./skills/fabuleux/README.md) | Toute tâche où vous voulez une sortie vérifiée, honnête, non gonflée | Route l'effort selon le type de tâche : ARTEFACT (boucle screenshot + vision), PROSE (passe de soustraction), ANALYSE (vérification de chaque affirmation), AUDIT (diagnostic honnête → correction), SIMPLE (réponse directe). Élimine le reporting « ça marche probablement ». |
 
 ### Setup (Exécuter Une Fois Par Repo)
 
@@ -320,6 +326,20 @@ Pipeline avancé pour résoudre, vérifier et mettre en forme des preuves pour l
 - Passe de présentation : preuve vérifiée reformatée pour élégance et concision en LaTeX
 
 [📖 Documentation Complète](./skills/maths-olympiad/SKILL.md)
+
+---
+
+#### Discipline Qualité
+
+##### [fabuleux](./skills/fabuleux/README.md)
+
+**Discipline de travail haut de gamme tenue toute la session.**
+
+Route l'effort selon le type de tâche au lieu d'appliquer la même recette à tout : ARTEFACT/AGENTIQUE (produire → screenshot → vision → corriger → re-capturer), PROSE (draft + passe de soustraction obligatoire), ANALYSE/CONSEIL (vérifier chaque affirmation, vérité utile plutôt que flatterie), AUDIT (diagnostic honnête → validation → correction avec vraie preuve), SIMPLE/ONE-SHOT (réponse directe, pas de protocole). Distillé des vraies sessions de Fable 5.
+
+**Déclencheurs :** `fabuleux`, `/fabuleux`, `mode fabuleux`, `niveau Fable 5`, `qualité maximale`, `sois exigeant`, `audit fabuleux`, `relis vraiment ce que tu produis`, ou toute demande de travail soigné, vérifié, non gonflé
+
+[📖 Documentation Complète](./skills/fabuleux/README.md)
 
 ---
 
