@@ -65,11 +65,11 @@ Claude Code caches: system instructions (CLAUDE.md), tool/MCP list, and message 
 
 ```
 ┌─────────────────────────────────────────────┐
-│  BASE SYSTEM INSTRUCTIONS (CLAUDE.md + tools)│  ← Invalidated if tool added
+│ BASE SYSTEM INSTRUCTIONS (CLAUDE.md + tools)│  ← Invalidated if tool added
 ├─────────────────────────────────────────────┤
-│  SESSION STATE (project files, memory)       │  ← Invalidated if file changes
+│ SESSION STATE (project files, memory)       │  ← Invalidated if file changes
 ├─────────────────────────────────────────────┤
-│  MESSAGE HISTORY                             │  ← Invalidated if message edited
+│ MESSAGE HISTORY                             │  ← Invalidated if message edited
 │  msg 1 → msg 2 → msg 3 → ...                │     (invalidates everything after)
 └─────────────────────────────────────────────┘
 ```
