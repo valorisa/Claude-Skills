@@ -151,7 +151,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
-| [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md) | Première fois configuration nouveau repository | Crée issue tracker, labels triage, et structure documentation. Configuration unique. |
+| [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md) | Première fois configuration nouveau repository | Configure issue tracker (GitHub, GitLab, ou markdown local), vocabulaire labels triage, et structure docs domaine mono/multi-contexte. Configuration unique, invoquée manuellement uniquement. |
 
 ### Utilitaires
 
@@ -224,9 +224,9 @@ Analyse codebases pour améliorations architecturales informées par langage dom
 
 ##### [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md)
 
-**Configuration initiale du repository (exécuter une fois).**
+**Configuration initiale du repository (exécuter une fois, invoquée manuellement uniquement).**
 
-Configure issue tracker, crée 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX), met en place structure CONTEXT.md + docs/adr/. Configuration unique par repository.
+Explore d'abord le repo (git remote, CLAUDE.md/AGENTS.md existant, CONTEXT.md), puis guide à travers trois décisions une par une : issue tracker (GitHub, GitLab, markdown local sous `.scratch/`, ou autre), vocabulaire labels triage mappé aux cinq rôles canoniques (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), et structure docs domaine (mono-contexte `CONTEXT.md` ou multi-contexte `CONTEXT-MAP.md` pour monorepos). Écrit un bloc `## Agent skills` plus des fichiers `docs/agents/*.md` que les autres skills d'ingénierie consultent.
 
 ---
 
@@ -394,9 +394,9 @@ Cette collection implémente un **workflow spec-first, test-driven, vertical-sli
 
 Ceci crée :
 
-- Configuration GitHub Issues via `gh` CLI
-- 5 labels triage (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
-- `CONTEXT.md` pour documentation domaine
+- Configuration issue tracker (GitHub via `gh` CLI, GitLab via `glab` CLI, ou markdown local sous `.scratch/`)
+- Vocabulaire labels triage mappé aux cinq rôles canoniques (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`)
+- `CONTEXT.md` (ou `CONTEXT-MAP.md` pour monorepos multi-contexte) pour documentation domaine
 - `docs/adr/` pour décisions architecturales
 
 ### Cycle de Développement (Par Fonctionnalité)

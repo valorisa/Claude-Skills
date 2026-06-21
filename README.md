@@ -151,7 +151,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | When to Use | Why You Need This |
 |-------|-------------|-------------------|
-| [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md) | First time setting up a new repository | Creates issue tracker, triage labels, and documentation structure. One-time setup. |
+| [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md) | First time setting up a new repository | Configures issue tracker (GitHub, GitLab, or local markdown), triage label vocabulary, and single/multi-context domain doc layout. One-time setup, manually invoked only. |
 
 ### Utilities
 
@@ -224,9 +224,9 @@ Analyzes codebases for architectural improvements informed by domain language (C
 
 ##### [setup-matt-pocock-skills](./skills/setup-matt-pocock-skills/README.md)
 
-**Initial repository configuration (run once).**
+**Initial repository configuration (run once, manually invoked only).**
 
-Configures issue tracker, creates 5 triage labels (LIGHT/FULL/SHIP/BLOCKED/WONTFIX), sets up CONTEXT.md + docs/adr/ structure. One-time setup per repository.
+Explores the repo first (git remote, existing CLAUDE.md/AGENTS.md, CONTEXT.md), then walks through three decisions one at a time: issue tracker (GitHub, GitLab, local markdown under `.scratch/`, or other), triage label vocabulary mapped to the five canonical roles (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), and domain doc layout (single-context `CONTEXT.md` or multi-context `CONTEXT-MAP.md` for monorepos). Writes an `## Agent skills` block plus `docs/agents/*.md` files that other engineering skills read from.
 
 ---
 
@@ -394,9 +394,9 @@ This collection implements a **spec-first, test-driven, vertical-slice workflow*
 
 This creates:
 
-- GitHub Issues configuration via `gh` CLI
-- 5 triage labels (LIGHT/FULL/SHIP/BLOCKED/WONTFIX)
-- `CONTEXT.md` for domain documentation
+- Issue tracker configuration (GitHub via `gh` CLI, GitLab via `glab` CLI, or local markdown under `.scratch/`)
+- Triage label vocabulary mapped to the five canonical roles (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`)
+- `CONTEXT.md` (or `CONTEXT-MAP.md` for multi-context monorepos) for domain documentation
 - `docs/adr/` for architectural decisions
 
 ### Development Cycle (Per Feature)
