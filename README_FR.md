@@ -130,6 +130,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | Quand l'Utiliser | Pourquoi Vous en Avez Besoin |
 |-------|------------------|------------------------------|
+| [grill-me](./skills/grill-me/README.md) | Stress-tester un plan ou un design avant de s'engager | Interroge sans relâche, branche par branche de l'arbre de décision, jusqu'à révéler les angles morts. |
 | [llm-council](./skills/llm-council/README.md) | Grandes décisions, analyse compromis, choix architecture | Obtient 5 perspectives IA indépendantes, évaluées par les pairs. Détecte les angles morts que vous manqueriez seul. |
 | [promptor](./skills/promptor/README.md) | Créer prompts optimisés pour outils IA | Génère prompts prêts pour production via 18 techniques d'optimisation. Prêt à copier-coller. |
 | [rodin](./skills/rodin/README.md) | Débats profonds sur politique, économie, philosophie | Partenaire intellectuel socratique pour débats profonds sur politique, économie, philosophie - défie les positions avec anti-complaisance, steelmanning et classification rigoureuse |
@@ -167,7 +168,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Skills Disponibles (Référence Détaillée)
 
-Cette collection comprend **19 skills** organisées en workflows et utilitaires.
+Cette collection comprend **20 skills** organisées en workflows et utilitaires.
 
 > **💡 Note sur les Déclencheurs :** Quand vous mentionnez un mot-clé déclencheur dans votre conversation avec Claude, la skill s'active automatiquement. Par exemple, dire "J'ai des avertissements rate limit" active `rescue-tokens`.
 
@@ -264,6 +265,16 @@ Crée READMEs bilingues complets (EN/FR) avec contenu pédagogique, optimisation
 ---
 
 #### Prise de Décision Avancée
+
+##### [grill-me](./skills/grill-me/README.md)
+
+**Interrogatoire sans relâche via arbre de décision pour stress-tester un plan ou un design.**
+
+Interroge l'utilisateur branche par branche sur chaque nœud d'un arbre de décision jusqu'à compréhension mutuelle complète. Cartographie l'arbre en amont, challenge les omissions, résout les dépendances entre branches, puis applique quatre stress-tests (pire scénario, inversion, contrainte, ignorance) avant de livrer une synthèse de ce qui est solide, fragile et manquant.
+
+**Déclencheurs :** `grille-moi`, `grill me`, `stress-test this`, `challenge my plan`, présenter un plan/design/architecture et demander un avis critique
+
+[📖 Documentation Complète](./skills/grill-me/README.md)
 
 ##### [llm-council](./skills/llm-council/README.md)
 

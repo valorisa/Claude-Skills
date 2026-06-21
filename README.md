@@ -130,6 +130,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 | Skill | When to Use | Why You Need This |
 |-------|-------------|-------------------|
+| [grill-me](./skills/grill-me/README.md) | Stress-testing a plan or design before committing to it | Relentlessly interviews you branch-by-branch through the decision tree until blind spots surface. |
 | [llm-council](./skills/llm-council/README.md) | Big decisions, tradeoff analysis, architecture choices | Gets 5 independent AI perspectives, peer-reviewed. Catches blind spots you'd miss alone. |
 | [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
 | [rodin](./skills/rodin/README.md) | Deep debates on politics, economics, philosophy | Socratic intellectual sparring partner for deep debates on politics, economics, philosophy - challenges positions with anti-compliance, steelmanning, and rigorous classification |
@@ -167,7 +168,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 
 ## 📦 Available Skills (Detailed Reference)
 
-This collection includes **19 skills** organized into workflows and utilities.
+This collection includes **20 skills** organized into workflows and utilities.
 
 > **💡 Note on Triggers:** When you mention any of the trigger keywords in your conversation with Claude, the skill automatically activates. For example, saying "I'm getting rate limit warnings" activates `rescue-tokens`.
 
@@ -264,6 +265,16 @@ Creates comprehensive bilingual READMEs (EN/FR) with pedagogical content, GitHub
 ---
 
 #### Advanced Decision-Making
+
+##### [grill-me](./skills/grill-me/README.md)
+
+**Relentless decision-tree interview to stress-test a plan or design.**
+
+Interviews the user branch-by-branch through every node of a decision tree until mutual understanding is complete. Maps the decision tree upfront, challenges omissions, resolves cross-branch dependencies, then runs four stress tests (worst-case, inversion, constraint, ignorance) before delivering a synthesis of what's solid, fragile, and missing.
+
+**Triggers:** `grille-moi`, `grill me`, `stress-test this`, `challenge my plan`, presenting a plan/design/architecture and asking for critical review
+
+[📖 Full Documentation](./skills/grill-me/README.md)
 
 ##### [llm-council](./skills/llm-council/README.md)
 
