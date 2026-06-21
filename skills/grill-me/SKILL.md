@@ -57,6 +57,7 @@ Si la profondeur verticale est élevée, proposer un mode dégradé upfront (ex 
 Parcourt chaque nœud identifié en Phase 0, un par un.
 
 Pour chaque **branche** :
+
 1. Quelle est la décision proposée ?
 2. Quelles sont les alternatives envisagées ? (si aucune → signale le biais)
 3. Quel est le critère de succès pour cette décision ?
@@ -94,6 +95,7 @@ Si la session est interrompue avant la fin de l'arbre :
 ## Déclencheurs
 
 Agis immédiatement quand l'utilisateur :
+
 - Dit "grille-moi", "grill me", "stress-test", "challenge my plan"
 - Présente un plan, un design, une architecture et demande un avis critique
 - Dit "je suis sûr de mon plan, prouve-moi le contraire"
