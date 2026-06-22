@@ -133,6 +133,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | [grill-me](./skills/grill-me/README.md) | Stress-tester un plan ou un design avant de s'engager | Interroge sans relâche, branche par branche de l'arbre de décision, jusqu'à révéler les angles morts. |
 | [llm-council](./skills/llm-council/README.md) | Grandes décisions, analyse compromis, choix architecture | Obtient 5 perspectives IA indépendantes, évaluées par les pairs. Détecte les angles morts que vous manqueriez seul. |
 | [promptor](./skills/promptor/README.md) | Créer prompts optimisés pour outils IA | Génère prompts prêts pour production via 18 techniques d'optimisation. Prêt à copier-coller. |
+| [promptor-council](./skills/promptor-council/README.md) | Prompts critiques ou destinés à la production où l'auto-critique seule ne suffit pas | Ajoute un audit optionnel par conseil de 5 conseillers au pipeline de promptor, avec peer review en aveugle et verdict du président. |
 | [rodin](./skills/rodin/README.md) | Débats profonds sur politique, économie, philosophie | Partenaire intellectuel socratique pour débats profonds sur politique, économie, philosophie - défie les positions avec anti-complaisance, steelmanning et classification rigoureuse |
 
 ### Pour les Mathématiques & Preuves Formelles
@@ -294,9 +295,13 @@ Produit prompts agnostiques domaine, auditables, prêts copier-coller via 18 hac
 
 ##### [promptor-council](./skills/promptor-council/README.md)
 
-**Promptor v3 avec délibération multi-perspective.**
+**Promptor v3 avec audit optionnel par conseil multi-agents.**
 
-Version améliorée de promptor avec validation basée conseil et délibération architecturale.
+Même pipeline de validation 5 cercles et filtre 18 hacks que `promptor`, plus une Phase 4 optionnelle : quand l'auto-critique obtient moins de 4/5 ou que le domaine est critique pour la production (sécurité, compliance, légal), elle propose de soumettre le prompt généré à un LLM Council — 5 conseillers indépendants, peer review anonymisé en aveugle, et synthèse du président — puis génère un rapport HTML visuel et un transcript markdown complet. Ajoute aussi des vérifications conscientes de la compliance (détection de variables proxy corrélées, spécification obligatoire du workflow d'escalade humaine) absentes du `promptor` de base.
+
+**Déclencheurs :** Identiques à `promptor`, plus `[COUNCIL]` pour forcer l'audit du conseil indépendamment du score d'auto-critique
+
+[📖 Documentation Complète](./skills/promptor-council/README.md)
 
 ##### [rodin](./skills/rodin/README.md)
 
