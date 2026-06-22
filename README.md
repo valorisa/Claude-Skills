@@ -133,6 +133,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 | [grill-me](./skills/grill-me/README.md) | Stress-testing a plan or design before committing to it | Relentlessly interviews you branch-by-branch through the decision tree until blind spots surface. |
 | [llm-council](./skills/llm-council/README.md) | Big decisions, tradeoff analysis, architecture choices | Gets 5 independent AI perspectives, peer-reviewed. Catches blind spots you'd miss alone. |
 | [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
+| [promptor-council](./skills/promptor-council/README.md) | High-stakes or production-critical prompts where self-critique alone isn't enough | Adds an optional 5-advisor council audit on top of promptor's pipeline, with blind peer review and a chairman verdict. |
 | [rodin](./skills/rodin/README.md) | Deep debates on politics, economics, philosophy | Socratic intellectual sparring partner for deep debates on politics, economics, philosophy - challenges positions with anti-compliance, steelmanning, and rigorous classification |
 
 ### For Mathematics & Formal Proofs
@@ -294,9 +295,13 @@ Produces domain-agnostic, auditable, copy-paste-ready prompts using 18 optimizat
 
 ##### [promptor-council](./skills/promptor-council/README.md)
 
-**Promptor v3 with multi-perspective deliberation.**
+**Promptor v3 with optional multi-agent council audit.**
 
-Enhanced version of promptor with council-based validation and architectural deliberation.
+Same 5-circle validation pipeline and 18-hack filter as `promptor`, plus an optional Phase 4: when self-critique scores below 4/5 or the domain is production-critical (security, compliance, legal), it proposes routing the generated prompt through an LLM Council — 5 independent advisors, blind anonymized peer review, and a chairman synthesis — then generates a visual HTML report and a full markdown transcript. Also adds compliance-aware checks (correlated proxy variable detection, mandatory human-escalation workflow specs) not present in base `promptor`.
+
+**Triggers:** Same as `promptor`, plus `[COUNCIL]` to force the council audit regardless of self-critique score
+
+[📖 Full Documentation](./skills/promptor-council/README.md)
 
 ##### [rodin](./skills/rodin/README.md)
 
