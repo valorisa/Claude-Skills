@@ -132,6 +132,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 |-------|-------------|-------------------|
 | [grill-me](./skills/grill-me/README.md) | Stress-testing a plan or design before committing to it | Relentlessly interviews you branch-by-branch through the decision tree until blind spots surface. |
 | [llm-council](./skills/llm-council/README.md) | Big decisions, tradeoff analysis, architecture choices | Gets 5 independent AI perspectives, peer-reviewed. Catches blind spots you'd miss alone. |
+| [multi-llm-debate-grill-me](./skills/multi-llm-debate-grill-me/README.md) | Cross-checking a plan across several LLMs before committing to it | Runs a structured multi-model debate: silent grill-me framing, independent positions, cross-reading, revision, then a final judge synthesis. Complements `grill-me` (single-model) when you want independent models to challenge each other. |
 | [promptor](./skills/promptor/README.md) | Creating optimized prompts for AI tools | Generates production-ready prompts using 18 optimization techniques. Copy-paste-ready. |
 | [promptor-council](./skills/promptor-council/README.md) | High-stakes or production-critical prompts where self-critique alone isn't enough | Adds an optional 5-advisor council audit on top of promptor's pipeline, with blind peer review and a chairman verdict. |
 | [rodin](./skills/rodin/README.md) | Deep debates on politics, economics, philosophy | Socratic intellectual sparring partner for deep debates on politics, economics, philosophy - challenges positions with anti-compliance, steelmanning, and rigorous classification |
@@ -284,6 +285,14 @@ Interviews the user branch-by-branch through every node of a decision tree until
 Runs questions through a council of 5 AI advisors who independently analyze, peer-review anonymously, and synthesize a verdict. Based on Karpathy's LLM Council methodology.
 
 **Mandatory triggers:** `council this`, `run the council`, `war room this`, `pressure-test this`
+
+##### [multi-llm-debate-grill-me](./skills/multi-llm-debate-grill-me/README.md)
+
+**Structured multi-LLM debate protocol with a silent grill-me framing and a final judge.**
+
+Runs a plan, design, or project idea through several LLMs (Claude, DeepSeek, GLM, Qwen, etc.) via a controlled debate: each model performs a silent "grill me" style framing (Round 0), states an independent position (Round 1), cross-reads and reacts to the other models' answers (Round 2), produces a consolidated revision (Round 3), then a separate judge model arbitrates and synthesizes. Prevents both single-model blind spots and copy-chain drift between models. Pairs well with the `grill-me` skill, which the Round 0 framing is based on.
+
+**Triggers:** `multi-llm debate`, `debate this across models`, `run this through multiple LLMs`, presenting a plan/design and asking for a cross-model stress test
 
 ##### [promptor](./skills/promptor/README.md)
 

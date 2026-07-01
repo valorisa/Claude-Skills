@@ -132,6 +132,7 @@ cp -r skills/rescue-tokens ~/.claude/skills/
 |-------|------------------|------------------------------|
 | [grill-me](./skills/grill-me/README.md) | Stress-tester un plan ou un design avant de s'engager | Interroge sans relâche, branche par branche de l'arbre de décision, jusqu'à révéler les angles morts. |
 | [llm-council](./skills/llm-council/README.md) | Grandes décisions, analyse compromis, choix architecture | Obtient 5 perspectives IA indépendantes, évaluées par les pairs. Détecte les angles morts que vous manqueriez seul. |
+| [multi-llm-debate-grill-me](./skills/multi-llm-debate-grill-me/README.md) | Confronter un plan à plusieurs LLM avant de s'engager | Fait tourner un débat structuré multi-modèles : cadrage silencieux façon grill-me, positions indépendantes, lecture croisée, révision, puis synthèse d'un juge final. Complète `grill-me` (mono-modèle) quand vous voulez que plusieurs modèles indépendants se challengent entre eux. |
 | [promptor](./skills/promptor/README.md) | Créer prompts optimisés pour outils IA | Génère prompts prêts pour production via 18 techniques d'optimisation. Prêt à copier-coller. |
 | [promptor-council](./skills/promptor-council/README.md) | Prompts critiques ou destinés à la production où l'auto-critique seule ne suffit pas | Ajoute un audit optionnel par conseil de 5 conseillers au pipeline de promptor, avec peer review en aveugle et verdict du président. |
 | [rodin](./skills/rodin/README.md) | Débats profonds sur politique, économie, philosophie | Partenaire intellectuel socratique pour débats profonds sur politique, économie, philosophie - défie les positions avec anti-complaisance, steelmanning et classification rigoureuse |
@@ -284,6 +285,14 @@ Interroge l'utilisateur branche par branche sur chaque nœud d'un arbre de déci
 Soumet questions à conseil de 5 conseillers IA analysant indépendamment, révisant anonymement, et synthétisant verdict. Basé sur méthodologie LLM Council de Karpathy.
 
 **Déclencheurs obligatoires :** `council this`, `run the council`, `war room this`, `pressure-test this`
+
+##### [multi-llm-debate-grill-me](./skills/multi-llm-debate-grill-me/README.md)
+
+**Protocole de débat structuré multi-LLM avec cadrage silencieux façon grill-me et juge final.**
+
+Fait passer un plan, un design ou une idée de projet à travers plusieurs LLM (Claude, DeepSeek, GLM, Qwen, etc.) via un débat contrôlé : chaque modèle effectue d'abord un cadrage silencieux façon « grill me » (Round 0), donne une position indépendante (Round 1), lit et réagit aux réponses des autres modèles (Round 2), produit une révision consolidée (Round 3), puis un modèle juge distinct arbitre et synthétise. Évite à la fois les angles morts d'un modèle unique et l'effet de dérive d'une simple chaîne de copie entre modèles. Se combine bien avec la skill `grill-me`, dont s'inspire le cadrage du Round 0.
+
+**Déclencheurs :** `multi-llm debate`, `débat multi-LLM`, `confronte ce plan à plusieurs modèles`, présenter un plan/design et demander un stress-test croisé entre modèles
 
 ##### [promptor](./skills/promptor/README.md)
 
