@@ -62,11 +62,11 @@ exemples sont dans `references/moves.md` — lis-le avant un run si tu hésites 
 **Moves d'appoint** (secondaires — on n'en met pas d'office, on les dégaine quand le noyau
 sature ou que le sujet le demande) :
 
-6. **Fusion / combinaison** — colle le sujet à un champ sans rapport (sujet × autre domaine /
+1. **Fusion / combinaison** — colle le sujet à un champ sans rapport (sujet × autre domaine /
    autre objet) et regarde ce qui sort de la collision.
-7. **Soustraction / contrainte extrême** — retire l'élément central (« et si ça n'existait
+2. **Soustraction / contrainte extrême** — retire l'élément central (« et si ça n'existait
    pas ? ») ou impose une contrainte brutale (zéro budget, 10 minutes, interdit, une seule fois).
-8. **Transfert analogique** — comment une autre discipline (médecine, aviation, jeu, logistique)
+3. **Transfert analogique** — comment une autre discipline (médecine, aviation, jeu, logistique)
    résout *structurellement* ce type de problème, puis rapatrie le mécanisme.
 
 > Hors périmètre, volontairement : *check-the-check* (retourner l'audit sur lui-même) et
