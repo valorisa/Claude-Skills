@@ -20,6 +20,7 @@ Une tâche itérative sur un repo (CI cassée, lint à corriger, PR à faire pas
 
 C'est le point qui détermine si la boucle peut tourner seule ou doit impliquer l'humain :
 
+
 - **Objectif** (l'agent peut juger seul) : CI verte, tests passants, `markdownlint` sans erreur, build qui compile, PR mergeable sans conflit. → boucler jusqu'au critère.
 - **Subjectif** (l'agent ne peut pas juger seul) : qualité d'une doc bilingue, pertinence d'un roadmap, ton d'un README. → ne pas boucler sans critère ; demander à l'utilisateur quel test appliquer ("est-ce que la structure en 3 phases te convient ?"), ou proposer un critère proxy vérifiable (ex. "présence des sections X, Y, Z" plutôt que "qualité perçue").
 
@@ -28,6 +29,8 @@ Si la tâche mélange les deux (ex. fix CI + réécriture de doc), traiter chaqu
 ## Cadrage d'itération (garde-fou anti-dérive)
 
 Avant de lancer une boucle de correction :
+
+
 - Fixer un nombre max de tentatives (3–5 pour un fix CI ciblé ; ne pas dépasser sans repasser par l'utilisateur).
 - Détecter la stagnation : si la même erreur réapparaît après 2 tentatives différentes, ce n'est probablement pas un problème de syntaxe mais de compréhension — s'arrêter et exposer le blocage plutôt que de continuer à deviner.
 - Ne jamais silencieusement dépasser la limite convenue ; si elle est atteinte, rapporter l'état et demander comment procéder.
@@ -35,6 +38,8 @@ Avant de lancer une boucle de correction :
 ## Rollback
 
 Si une tentative aggrave l'état (nouvelle erreur CI, conflit introduit) :
+
+
 - Revenir à l'état stable connu avant de retenter (`git checkout -- <fichier>`, ou reset de la branche de travail si plusieurs commits sont impliqués).
 - Ne jamais empiler des correctifs sur un état déjà cassé sans comprendre pourquoi il l'est.
 
@@ -46,6 +51,7 @@ Si une tentative aggrave l'état (nouvelle erreur CI, conflit introduit) :
 ## Exemple appliqué
 
 Tâche : "CI markdownlint échoue sur ce repo, corrige-la."
+
 - Critère d'arrêt objectif : `gh pr checks` passe au vert.
 - Boucle : lire l'erreur exacte → corriger la ligne concernée → push → re-vérifier CI → si échec différent, recommencer ; si échec identique après 2 essais, arrêter et signaler.
 - Pas de rollback nécessaire si chaque commit est un fix isolé et vérifié avant le suivant.
