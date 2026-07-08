@@ -83,6 +83,7 @@ C'est ce qui sépare une Storm Recherche d'un rapport normal. Faire cette phase 
 4b. Vérifier chaque citation (agents en parallèle). Lancer des agents `general-purpose` en un seul message, un par grappe de citations distincte (regrouper les claims liés ; ~4–6 agents). Prompt-type : `Vérifie indépendamment cette citation contre sa source PRIMAIRE. Sois sceptique, ne te fie pas aux résumés de blogs secondaires. CLAIM : {claim + chiffre cité + source nommée}. Trouve la vraie source primaire, vérifie chiffre/date/contexte, et rends un verdict (VÉRIFIÉ / CORRIGÉ / NON TROUVÉ) avec preuve (URL + extrait).` Chaque agent retourne une liste de verdicts structurés pour sa grappe.
 
 4c. Appliquer les corrections. Éditer le rapport :
+
 - Corriger tout chiffre, titre, date ou caractérisation faux.
 - Baisser les scores de confiance là où la preuve s'est révélée mince ; rétrograder les preprints et claims disputés dans l'encadré "Signal contesté".
 - Ré-attribuer honnêtement les stats de sondage unique ou commandité.
