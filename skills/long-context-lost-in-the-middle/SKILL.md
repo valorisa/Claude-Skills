@@ -12,10 +12,10 @@ description: >
   le placement des morceaux de contexte (chunks) en début, milieu et fin,
   pour atténuer l'effet "Lost in the Middle" mis en évidence par Liu et al. (2023).
 references:
-  - title: Lost in the Middle: How Language Models Use Long Contexts
+  - title: "Lost in the Middle: How Language Models Use Long Contexts"
     url: https://arxiv.org/pdf/2307.03172.pdf
     year: 2023
-    authors: Nelson F. Liu et al.
+    authors: "Nelson F. Liu et al."
 ---
 
 # Skill: long-context-lost-in-the-middle
