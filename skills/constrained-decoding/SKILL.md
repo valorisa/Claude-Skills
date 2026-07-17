@@ -106,7 +106,6 @@ En pratique, tu structures la sortie globale comme :
 }
 ```
 
-
 La contrainte de format ne s'applique qu'au champ `final_answer`, pas au
 champ `reasoning`.
 
