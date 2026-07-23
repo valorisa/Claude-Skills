@@ -165,7 +165,6 @@ Pour obtenir des résultats utiles et éviter le bruit, quelques bonnes pratique
 ## Licence
 
 Repo Audit est proposée sous licence MIT. Tu peux l’adapter, la redistribuer et l’intégrer à tes propres workflows, sous réserve de conserver la mention de licence appropriée.
-```
 
 Citations :
 [1] Repo Audit — Deep analysis of Git history | ClaudSkills https://claudskills.com/skills/repo-audit/
