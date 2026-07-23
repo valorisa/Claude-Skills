@@ -40,6 +40,7 @@ Then explore locally (if available) or via GitHub API:
 4. Read the main entry point and core modules
 
 Build a mental model of:
+
 - What the project does
 - Tech stack and architecture
 - Execution modes or major features
@@ -52,6 +53,7 @@ Build a mental model of:
 Systematically read and analyze the source code. For each module, check for:
 
 ### Bugs
+
 - Logic errors in conditionals, setters, or property accessors
 - Incorrect use of standard library (e.g. `isinstance` with `typing` types instead of `abc`)
 - Wrong argument order in function calls
@@ -60,18 +62,21 @@ Systematically read and analyze the source code. For each module, check for:
 - Off-by-one errors in counters or indices
 
 ### Performance Issues
+
 - Busy-wait loops (while loops without sleep/blocking)
 - Missing connection pooling or caching
 - Redundant re-computation inside loops
 - Unbounded memory growth (queues, lists, caches)
 
 ### Security Issues
+
 - Dynamic code execution (`exec`, `eval`, `exec_module`) without input validation
 - World-readable file/directory creation without permission mode
 - Serialization of untrusted data (pickle, JSON from user input)
 - Credentials or secrets hardcoded or logged
 
 ### API Design Issues
+
 - Return type annotations that don't match actual return values
 - Inconsistent method naming or behavior across similar methods
 - Methods that silently swallow exceptions during retries
@@ -79,12 +84,14 @@ Systematically read and analyze the source code. For each module, check for:
 - Unclear or undocumented side effects
 
 ### Test Coverage Gaps
+
 - Features documented in README but with no tests
 - CLI commands with no integration tests
 - Timeout and retry logic with no verification tests
 - Platform-specific code paths never exercised
 
 ### Documentation Gaps
+
 - Features implemented but not mentioned in README
 - Behavior that contradicts documentation
 - Missing examples for non-obvious configuration options
@@ -96,19 +103,24 @@ Systematically read and analyze the source code. For each module, check for:
 Organize findings into four severity tiers:
 
 ### Critical (runtime failures, data loss, security)
+
 These break the software or expose serious vulnerabilities. Include:
+
 - File path and line number
 - What the bug is
 - Why it fails
 - Suggested fix (code snippet)
 
 ### High Priority (incorrect behavior, performance, API breakage)
+
 These cause incorrect behavior under common use cases or degrade performance significantly.
 
 ### Medium Priority (missing features, coverage gaps, bad UX)
+
 These don't break existing functionality but limit reliability or usability.
 
 ### Low / Nice-to-have (style, docs, minor improvements)
+
 Small improvements that improve maintainability or developer experience.
 
 ---
@@ -186,6 +198,7 @@ Each issue body must follow this structure:
 ```
 
 Rules:
+
 - Write all issues **in English**
 - One issue per finding (do not bundle unrelated problems)
 - Do not mention AI or automated tools in the issue body
@@ -204,6 +217,7 @@ After creating all issues, show the user a summary table:
 | #N    | title | High     |
 
 Then suggest next steps:
+
 - Which critical bugs to fix first
 - Whether a 1.0 release is advisable given the findings
 - Any architectural changes worth considering
