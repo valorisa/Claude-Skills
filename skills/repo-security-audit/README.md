@@ -166,8 +166,9 @@ Pour obtenir des résultats utiles et éviter le bruit, quelques bonnes pratique
 
 Repo Audit est proposée sous licence MIT. Tu peux l’adapter, la redistribuer et l’intégrer à tes propres workflows, sous réserve de conserver la mention de licence appropriée.
 
+## Citations
+
 ```text
-Citations :
 [1] Repo Audit — Deep analysis of Git history | ClaudSkills https://claudskills.com/skills/repo-audit/
 [2] README Doctor — Claude Skill, Tested (8.4/10) https://skillproof.dev/skills/readme-doctor
 [3] Auditing Readme · AgentStack https://agentstack.voostack.com/l/skill-qte77-claude-code-plugins-auditing-readme
