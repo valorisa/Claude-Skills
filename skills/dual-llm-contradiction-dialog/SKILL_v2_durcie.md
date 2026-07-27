@@ -36,6 +36,13 @@ language: fr
 >   sous le même mot « convergente », alors que la clause `[v2.2]` interdit cette
 >   fusion. La définition ne qualifie plus la clôture par décision humaine de
 >   « convergence ».
+> - [v2.2 — note méta] Ce tour de correction est lui-même une instance informelle du
+>   Round 4 : la validation précédente de LLM_B (3 points sur 4 validés, point 2
+>   réservé) tenait lieu de clôture provisoire ; la réécriture du bullet qui a suivi
+>   était un changement mineur (sans changement de but, de critères de succès/échec ni
+>   d'interdictions), traité par ajustement de la synthèse existante plutôt que par
+>   rebouclage complet (repartir du Round 0). La skill s'est ainsi comportée comme elle
+>   le prescrit, appliquée à elle-même de façon informelle..
 
 ## Métadonnées
 
