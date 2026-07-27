@@ -5,13 +5,14 @@ description: Orchestration d'un dialogue structuré entre deux LLMs (A et B) aut
   contradictions, garde-fous contre le contournement silencieux, et mécanismes explicites de
   révision de l'intention, de re-cartographie, de boucle itérative (avec consolidation et
   convergence définie) et de calibration.
-version: 2.1   # [v2.1] v2 durcie (revue croisée) + 2 micro-ajustements de spécification au Round 4
+version: 2.1
 language: fr
 ---
 
 # dual-llm-contradiction-dialog (v2.1)
 
 > Note de version :
+>
 > - v1 → v2 (durcie) : intégration de 6 améliorations issues d'une revue croisée
 >   (LLM_A + juge tiers DeepSeek), marquées `[v2]` — Prérequis/limites, Calibration/dosage,
 >   grille de cadrage différenciée (Round 0), tags `[subvertit l'intention]`/`[branche absente]`
@@ -139,10 +140,12 @@ perspectives tout en gardant la comparabilité, les deux LLM partagent un **tron
 minimal** (l'intention reformulée, les contraintes explicites, les interdictions —
 points 1-2 ci-dessus), mais appliquent une **grille de cadrage différenciée** selon leur
 rôle :
-  - LLM_A cadre prioritairement sous l'angle **risques / contraintes / interdictions /
-    critères d'échec** (son rôle d'interrogateur et de shield).
-  - LLM_B cadre prioritairement sous l'angle **opportunités / alternatives / cas
-    d'usage / critères de succès** (son rôle d'implémenteur et de challenger).
+
+- LLM_A cadre prioritairement sous l'angle **risques / contraintes / interdictions /
+  critères d'échec** (son rôle d'interrogateur et de shield).
+- LLM_B cadre prioritairement sous l'angle **opportunités / alternatives / cas
+  d'usage / critères de succès** (son rôle d'implémenteur et de challenger).
+
 Le tronc commun garantit que les deux analyses restent comparables ; la grille
 différenciée atténue l'effet homogénéisant d'un cadrage identique.
 
@@ -158,7 +161,6 @@ Dans ce round, tu produis ta propre analyse sans lire l'autre LLM.
    - Choix proposés.
    - Critères de succès.
    - Principaux risques.
-
 2. Génère ensuite de trois à sept angles morts sur ce même sujet (moteur `angle-mort`).
 
    Chaque angle suit le format :
@@ -172,6 +174,7 @@ Dans ce round, tu produis ta propre analyse sans lire l'autre LLM.
    extrême, transfert analogique.
 
    Tags :
+
    - `[à vérifier]` si l'angle repose sur un fait ou un chiffre à sourcer.
    - `[spéculatif]` si l'angle est un pari de point de vue.
    - [v2] `[subvertit l'intention]` si l'angle révèle que l'intention reformulée est
@@ -181,6 +184,7 @@ Dans ce round, tu produis ta propre analyse sans lire l'autre LLM.
      re-cartographie au Round 1.5).
 
    Filtre anti-slop (non négociable) :
+
    - Applique le test du remplacement.
    - Si tu peux remplacer le sujet par n'importe quel autre et que l'angle tient
      encore, supprime cet angle.
@@ -188,6 +192,7 @@ Dans ce round, tu produis ta propre analyse sans lire l'autre LLM.
      un fait nommé).
 
    Marqueur ⚡ (optionnel, un ou deux angles maximum) :
+
    - Marque le ou les angles les plus contre-intuitifs.
    - Ce sont ceux qui réorganisent le plus le sujet s'ils tiennent.
    - ⚡ ne valide rien, c'est un pari d'asymétrie, pas un verdict.
@@ -211,13 +216,11 @@ directement au Round 2.
      itérative (Round 4)** : repartir du Round 0 avec la nouvelle intention.
    - Si la révision est **mineure** (précision sans changer les critères) → mettre à
      jour l'intention reformulée et continuer au Round 2.
-
 2. **Re-cartographie** (si tag `[branche absente]`) :
    - Intégrer la branche absente révélée par l'angle, ou restructurer l'arbre si
      l'angle en invalide les prémisses.
    - Produire une cartographie révisée, qui remplace la cartographie initiale (pas
      d'empilement des deux).
-
 3. Documenter explicitement ce qui a été révisé (intention et/ou cartographie) et
    pourquoi, pour que la synthèse finale garde la trace de la révision.
 
@@ -294,6 +297,7 @@ comble cette lacune de gouvernance du processus.
 (ou en cours de Round 1.5/3), de façon mineure ou substantielle.
 
 **Règle de rebouclage** :
+
 - **Changement mineur** (précision d'un détail sans changer le but final, les critères
   de succès/échec, ni les interdictions) → **ajuster la synthèse** existante (pas de
   nouveau round complet). Documenter l'ajustement.
@@ -308,6 +312,7 @@ comble cette lacune de gouvernance du processus.
   jamais de zéro : elle repart du Round 0 **outillée de la synthèse précédente**.
 
 **Consolidation (non négociable)** :
+
 - Chaque itération produit une synthèse qui **intègre et remplace** la synthèse de
   l'itération précédente — pas d'empilement de synthèses partielles non consolidées
   (faille identifiée : une boucle sans consolidation accumulerait des synthèses
@@ -318,6 +323,7 @@ comble cette lacune de gouvernance du processus.
   qui a déclenché le rebouclage.
 
 **Critère de substantialité** (pour trancher mineur/substantiel) :
+
 - Substantiel = le changement modifie au moins un de : but final, critères de succès,
   critères d'échec, interdictions explicites.
 - Mineur = le changement précise un détail, un paramètre, un exemple, sans toucher aux
@@ -326,6 +332,7 @@ comble cette lacune de gouvernance du processus.
   itération de trop qu'une synthèse sur une intention obsolète.
 
 **Garde-fou anti-boucle infinie** [v2.1 amendé] :
+
 - [v2.1] **Définition de la convergence** : une itération est **convergente** quand
   elle ne produit **aucune nouvelle contradiction substantielle non résolue** par
   rapport à l'itération précédente, **ou** quand l'humain juge la synthèse
@@ -377,10 +384,11 @@ LLM_B :
 
 ## Format de sortie [v2 amendé]
 
-Tu  répondras toujours dans un format Markdown structuré, avec les sections suivantes,
+Tu répondras toujours dans un format Markdown structuré, avec les sections suivantes,
 adaptées au round en cours.
 
 ### Contexte reformulé
+
 - Intention. [v2] Grille de cadrage utilisée (risques/contraintes pour A,
   opportunités/alternatives pour B).
 - Contraintes.
@@ -388,28 +396,33 @@ adaptées au round en cours.
 - Hypothèses.
 
 ### Position initiale (Round 1)
+
 - Branches de décision.
 - Choix proposés.
 - Critères de succès.
 - Principaux risques.
 
 ### Angles morts (Round 1)
+
 - [Move] « Angle 1 » `[tag]` → Potentiel brut (15 mots maximum).
 - [Move] « Angle 2 » `[tag]` → Potentiel brut.
 - Et ainsi de suite.
 
 ### [v2] Révision / re-cartographie (Round 1.5, si applicable)
+
 - Angles `[subvertit l'intention]` / `[branche absente]` détectés.
 - Intention révisée (ou maintenue, avec justification).
 - Cartographie révisée (si applicable).
 - Itération déclenchée (si révision substantielle).
 
 ### Lecture de l'autre LLM (Round 2)
+
 - Résumé de sa position.
 - Contradictions détectées (n°1, n°2, … avec Affirmation A / B, Type, Impact, Question).
 - Contournements silencieux potentiels (cas n°1, n°2, …).
 
 ### Synthèse (Round 3)
+
 - Points compatibles.
 - Points contradictoires (non résolus).
 - Angles complémentaires.
@@ -419,11 +432,13 @@ adaptées au round en cours.
 - Éléments nécessitant vérification externe.
 
 ### [v2] Itérations (Round 4, si applicable) [v2.1 amendé]
+
 - Itération N : déclencheur, changement (mineur/substantiel), synthèse consolidée.
 - [v2.1] Synthèse précédente transmise comme contexte (oui/non).
 - [v2.1] État de convergence (convergente / non convergente, et pourquoi).
 
 ### Avertissement
+
 - Ce dialogue teste la cohérence interne, pas la validité externe ni la faisabilité
   réelle.
 - [v2] Prérequis supposés (LLM capables, orchestrateur humain fiable) — signaler si
@@ -457,6 +472,7 @@ adaptées au round en cours.
     options.
 
 Tu peux réutiliser ce protocole pour :
+
 - Des plans de repo GitHub (orchestrateurs multi-agents, CI/CD, automatisation).
 - Des designs de skill (comme ceux que tu écris).
 - Des architectures système ou produit.
