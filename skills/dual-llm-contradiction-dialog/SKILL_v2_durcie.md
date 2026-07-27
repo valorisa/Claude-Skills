@@ -16,7 +16,7 @@ language: fr
 > - v1 → v2 (durcie) : intégration de 6 améliorations issues d'une revue croisée
 >   (LLM_A + juge tiers DeepSeek), marquées `[v2]` — Prérequis/limites, Calibration/dosage,
 >   grille de cadrage différenciée (Round 0), tags `[subvertit l'intention]`/`[branche absente]`
->   - Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
+>   plus Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
 >   ajouts de discipline/format. Verdict du juge : VALIDÉ.
 > - v2 → v2.1 : 2 micro-ajustements de spécification au Round 4 (marqués `[v2.1]`) —
 >   transmission explicite de la synthèse précédente comme contexte au rebouclage
@@ -30,6 +30,12 @@ language: fr
 >   anti-théâtre de rigueur à la sortie) ; (3) « l'humain tranche » au Round 2 point 6 ;
 >   (4) 3ᵉ palier de calibration (mode compressé : cadrage délégué à un rôle, l'autre
 >   challengeant le résultat).
+> - [v2.2 amendé] Validation croisée par LLM_B : réécriture du bullet `[v2.1]` de
+>   définition de la convergence (Round 4) pour éliminer une contradiction logique
+>   résiduelle — le bullet fusionnait convergence réelle et clôture par décision humaine
+>   sous le même mot « convergente », alors que la clause `[v2.2]` interdit cette
+>   fusion. La définition ne qualifie plus la clôture par décision humaine de
+>   « convergence ».
 
 ## Métadonnées
 
@@ -387,10 +393,12 @@ comble cette lacune de gouvernance du processus.
 
 **Garde-fou anti-boucle infinie et clôture** [v2.1 amendé, v2.2 amendé] :
 
-- [v2.1] **Définition de la convergence** : une itération est **convergente** quand
-  elle ne produit **aucune nouvelle contradiction substantielle non résolue** par
-  rapport à l'itération précédente, **ou** quand l'humain juge la synthèse
-  satisfaisante et ne déclenche pas de nouvelle itération.
+- [v2.1 amendé v2.2] **Définition de la convergence** : une itération est
+  **convergente** quand elle ne produit **aucune nouvelle contradiction substantielle
+  non résolue** par rapport à l'itération précédente. Voir ci-dessous la distinction
+  entre **convergence réelle** et **clôture par décision humaine** — cette dernière
+  n'est **pas** une convergence au sens de cette définition, même si elle met fin au
+  processus.
 - [v2.2] **Deux types de clôture — à distinguer absolument** (anti-théâtre de rigueur
   à la sortie) :
   - **Convergence réelle** : plus aucune contradiction substantielle non résolue. La
@@ -403,10 +411,10 @@ comble cette lacune de gouvernance du processus.
     masquées sous une fausse « convergence ». Le protocole protège contre le biais
     humain à l'entrée (transmission) ; il doit aussi s'en protéger à la sortie
     (clôture) : une clôture prématurée non documentée est un théâtre de rigueur.
-- Si **plus de 3 itérations non convergentes** (au sens ci-dessus) sont nécessaires,
-  c'est un signal que le sujet est mal posé ou que les contraintes sont incompatibles →
-  **remonter à l'humain** avec les contradictions résiduelles plutôt que continuer à
-  itérer. Le renvoi à l'humain est le filet de sécurité ultime.
+- Si **plus de 3 itérations non convergentes** (au sens de la définition ci-dessus)
+  sont nécessaires, c'est un signal que le sujet est mal posé ou que les contraintes
+  sont incompatibles → **remonter à l'humain** avec les contradictions résiduelles
+  plutôt que continuer à itérer. Le renvoi à l'humain est le filet de sécurité ultime.
 
 ## Juge final (optionnel) [v2 amendé, v2.2 amendé]
 
@@ -513,7 +521,8 @@ adaptées au round en cours.
 
 - Itération N : déclencheur, changement (mineur/substantiel), synthèse consolidée.
 - [v2.1] Synthèse précédente transmise comme contexte (oui/non).
-- [v2.1] État de convergence (convergente / non convergente, et pourquoi).
+- [v2.1] État de convergence (convergente au sens de la définition / non convergente,
+  et pourquoi).
 - [v2.2] Type de clôture (convergence réelle / clôture par décision humaine).
 
 ### Avertissement
