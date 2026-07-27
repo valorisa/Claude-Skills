@@ -16,7 +16,7 @@ language: fr
 > - v1 → v2 (durcie) : intégration de 6 améliorations issues d'une revue croisée
 >   (LLM_A + juge tiers DeepSeek), marquées `[v2]` — Prérequis/limites, Calibration/dosage,
 >   grille de cadrage différenciée (Round 0), tags `[subvertit l'intention]`/`[branche absente]`
->   + Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
+>   - Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
 >   ajouts de discipline/format. Verdict du juge : VALIDÉ.
 > - v2 → v2.1 : 2 micro-ajustements de spécification au Round 4 (marqués `[v2.1]`) —
 >   transmission explicite de la synthèse précédente comme contexte au rebouclage
