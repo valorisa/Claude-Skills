@@ -2,27 +2,34 @@
 name: dual-llm-contradiction-dialog
 description: Orchestration d'un dialogue structuré entre deux LLMs (A et B) autour d'un même
   sujet, avec cadrage d'intention, génération d'angles morts, recherche systématique de
-  contradictions, garde-fous contre le contournement silencieux, et mécanismes explicites de
-  révision de l'intention, de re-cartographie, de boucle itérative (avec consolidation et
-  convergence définie) et de calibration.
-version: 2.1
+  contradictions, garde-fous contre le contournement silencieux, mécanismes explicites de
+  révision de l'intention, de re-cartographie, de boucle itérative (avec consolidation,
+  convergence définie et compromis d'indépendance assumé), et calibration à trois paliers.
+version: 2.2
 language: fr
 ---
 
-# dual-llm-contradiction-dialog (v2.1)
+# dual-llm-contradiction-dialog (v2.2)
 
 > Note de version :
 >
 > - v1 → v2 (durcie) : intégration de 6 améliorations issues d'une revue croisée
 >   (LLM_A + juge tiers DeepSeek), marquées `[v2]` — Prérequis/limites, Calibration/dosage,
 >   grille de cadrage différenciée (Round 0), tags `[subvertit l'intention]`/`[branche absente]`
->   - Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
+>   + Round 1.5 de révision/re-cartographie, Round 4 de boucle itérative avec consolidation,
 >   ajouts de discipline/format. Verdict du juge : VALIDÉ.
-> - v2 → v2.1 : 2 micro-ajustements de spécification au Round 4 (marqués `[v2.1]`), identifiés
->   par le juge comme failles résiduelles mineures ne remettant pas en cause la cohérence :
->   (1) transmission explicite de la synthèse précédente comme contexte lors d'un rebouclage
->   au Round 0 (anti-perte d'acquis) ; (2) définition formelle de la « convergence » du
->   garde-fou anti-boucle infinie. Le reste du protocole est inchangé.
+> - v2 → v2.1 : 2 micro-ajustements de spécification au Round 4 (marqués `[v2.1]`) —
+>   transmission explicite de la synthèse précédente comme contexte au rebouclage
+>   (anti-perte d'acquis) ; définition formelle de la convergence. Verdict du juge :
+>   VALIDÉ définitif.
+> - v2.1 → v2.2 : intégration de 4 points issus de la revue par LLM_B (l'implémenteur qui
+>   a vécu la skill sur le projet), marqués `[v2.2]` — (1) compromis indépendance du
+>   Round 1 / anti-perte-d'acquis du Round 4 assumé explicitement (indépendance affaiblie
+>   mais informée à l'itération 2+) ; (2) distinction convergence réelle / clôture par
+>   décision humaine (contradictions résiduelles acceptées listées explicitement,
+>   anti-théâtre de rigueur à la sortie) ; (3) « l'humain tranche » au Round 2 point 6 ;
+>   (4) 3ᵉ palier de calibration (mode compressé : cadrage délégué à un rôle, l'autre
+>   challengeant le résultat).
 
 ## Métadonnées
 
@@ -39,7 +46,7 @@ Ton objectif n'est pas de produire une réponse unique "belle" le plus vite poss
 Ton objectif est de :
 
 - Comprendre l'intention de l'utilisateur.
-- Générer des angles morts sur son sujet.
+- Générer des angles morts sur ton sujet.
 - Exposer ta position propre.
 - Lire celle de l'autre LLM.
 - Trouver les contradictions entre vos deux positions.
@@ -69,27 +76,47 @@ peut dégénérer en "théâtre de rigueur" (donner l'illusion de profondeur san
   fidèlement les sorties d'un LLM à l'autre. Un humain biaisé peut omettre des angles
   ou contradictions gênants, vidant la lecture croisée de sa substance. C'est une
   hypothèse de bon fonctionnement, pas une garantie.
+- [v2.2] **Le biais humain est un risque aux DEUX extrémités du processus** : à l'entrée
+  (transmission infidèle des sorties) ET à la sortie (clôture prématurée d'une synthèse
+  non convergée — voir Round 4). Le protocole protège les deux, mais l'humain reste le
+  garant ultime ; sa défaillance à un bout ou à l'autre vide la skill de sa substance.
 - **Ce que la skill NE garantit PAS** : la validité externe ni la faisabilité réelle.
   Elle teste la cohérence interne des plans. Un plan logiquement cohérent peut échouer
   en pratique. Ne jamais présenter une synthèse cohérente comme une vérité du monde.
+- [v2.2] **« Validé » ne veut pas dire « sans angle mort »** : une validation (par un
+  juge ou par la pratique) porte sur la cohérence interne et les failles connues au
+  moment de la validation ; elle n'épuise pas les angles morts possibles. Continuer à
+  mordre la skill elle-même à l'usage.
 
-## [v2] Calibration / dosage
+## [v2] Calibration / dosage [v2.2 amendé]
 
 La skill appliquée intégralement sur un sujet simple risque l'**usine à gaz** ou la
 **paralysie mutuelle** (grill-me exige l'exhaustivité, angle-mort pousse à diverger,
 intent-guard ramène au cadre, multi-llm-debate impose un processus lourd — les quatre
-peuvent se neutraliser plutôt que se réguler). Doser selon l'enjeu :
+peuvent se neutraliser plutôt que se réguler). Doser selon l'enjeu. Trois paliers :
 
-- **Décisions à fort enjeu** (architecture, plan de repo, décision irréversible) :
-  appliquer les rounds complets (0 → 1 → 1.5 → 2 → 3, + 4 si itération).
-- **Décisions simples ou réversibles** : raccourcir — Round 0 minimal, Round 1
-  (position + 1-3 angles seulement), Round 3 direct. Pas de lecture croisée lourde.
-- **Règle de dosage** : la profondeur de l'exploration (grill-me) et le nombre d'angles
-  (angle-mort) doivent être proportionnés à l'enjeu et à la réversibilité de la
-  décision. Ne pas appliquer tous les moves d'angle-mort systématiquement.
-- **Signal d'alarme** : si le processus produit beaucoup de structure pour peu de
-  substance (angles génériques, contradictions triviales), c'est un signe d'usine à
-  gaz — raccourcir ou arrêter.
+- **Palier 1 — Rounds complets** (décisions à fort enjeu : architecture, plan de repo,
+  décision irréversible) : appliquer les rounds complets (0 → 1 → 1.5 → 2 → 3, + 4 si
+  itération), avec Round 0 et Round 1 écrits explicitement par les deux LLM.
+- **Palier 2 — Version raccourcie** (décisions d'enjeu moyen ou réversibles) : Round 0
+  minimal, Round 1 (position + 1-3 angles seulement), Round 3 direct. Pas de lecture
+  croisée lourde.
+- [v2.2] **Palier 3 — Mode compressé / cadrage délégué** (décisions où un seul rôle peut
+  cadrer efficacement) : le cadrage (Round 0) et la position initiale (Round 1) sont
+  **délégués à un seul rôle** (ex. LLM_A briefe), l'autre rôle **challengeant directement
+  le résultat** (avis critique) — sans Round 0/1 écrits explicitement par les deux.
+  C'est le mode **dominant observé sur le projet SwiftUIToolLab** (v2-E, 🅱️, OCR, v2-H,
+  pont E/S). Il reste soumis à la discipline (lecture croisée, intent-guard, synthèse à
+  désaccords visibles), mais allège la phase amont. Le nommer explicitement quand il est
+  utilisé, pour ne pas laisser croire à une exécution littérale des rounds.
+
+**Règle de dosage** : la profondeur de l'exploration (grill-me) et le nombre d'angles
+(angle-mort) doivent être proportionnés à l'enjeu et à la réversibilité de la décision.
+Ne pas appliquer tous les moves d'angle-mort systématiquement.
+
+**Signal d'alarme** : si le processus produit beaucoup de structure pour peu de substance
+(angles génériques, contradictions triviales), c'est un signe d'usine à gaz — raccourcir
+ou arrêter.
 
 ## Identité et rôles
 
@@ -114,6 +141,10 @@ peuvent se neutraliser plutôt que se réguler). Doser selon l'enjeu :
 - [v2] Si l'intention/les contraintes changent substantiellement en cours de route,
   vous rebouclez (Round 4) en consolidant les synthèses — pas d'accumulation de
   synthèses partielles.
+- [v2.2] L'indépendance du Round 1 est **pleine à l'itération 1**, mais **affaiblie et
+  informée aux itérations 2+** (le contexte de la synthèse précédente est transmis —
+  voir Round 4). Ce compromis est assumé : une convergence informée vaut mieux qu'une
+  divergence artificiellement reconduite (voir Round 4 pour le détail).
 
 ## Round 0 — Cadrage (intent-guard et cartographie) [v2 amendé]
 
@@ -151,9 +182,13 @@ différenciée atténue l'effet homogénéisant d'un cadrage identique.
 
 Tu ne livres pas encore ta position détaillée ici. Tu prépares le terrain.
 
-## Round 1 — Position initiale et angles morts (indépendante) [v2 amendé]
+## Round 1 — Position initiale et angles morts (indépendante) [v2 amendé, v2.2 amendé]
 
-Dans ce round, tu produis ta propre analyse sans lire l'autre LLM.
+Dans ce round, tu produis ta propre analyse sans lire l'autre LLM. [v2.2] À l'itération
+1, cette indépendance est **pleine**. Aux itérations 2+ (après un rebouclage Round 4),
+elle est **affaiblie mais informée** : tu reçois la synthèse consolidée précédente comme
+contexte d'acquis (voir Round 4), et tu dois alors chercher activement à **diverger sur
+les points non résolus** plutôt qu'à reconduire l'alignement de cette synthèse.
 
 1. Donne ta position initiale sur le sujet :
    - Contexte reformulé.
@@ -228,7 +263,7 @@ Ce round comble la faille de la v1 : la v1 permettait de réviser l'intention **
 les angles (Round 0), mais pas **après** — un angle mort subversif pouvait être écarté
 au nom de la fidélité à une intention pourtant remise en cause.
 
-## Round 2 — Lecture croisée et chasse aux contradictions [v2 amendé]
+## Round 2 — Lecture croisée et chasse aux contradictions [v2 amendé, v2.2 amendé]
 
 Dans ce round, tu lis la position initiale et les angles de l'autre LLM. L'utilisateur
 te les fournit.
@@ -255,7 +290,10 @@ Tu dois :
      technique.
 6. [v2] Vérifie aussi les angles de l'autre tagués `[subvertit l'intention]` /
    `[branche absente]` : s'ils sont fondés, les intégrer à la révision (retour au
-   Round 1.5 si nécessaire, avant de poursuivre la synthèse).
+   Round 1.5 si nécessaire, avant de poursuivre la synthèse). [v2.2] Quand les deux
+   LLM ne sont pas d'accord sur le caractère « fondé » d'un tel angle, **l'humain
+   tranche** (par cohérence avec le Round 1.5, qui confie déjà ce tranchage à
+   l'humain pour les angles de la même itération).
 
 Tu ne fusionnes pas encore les plans ici. Tu exposes les contradictions et les risques.
 
@@ -277,6 +315,10 @@ Dans ce round, tu proposes une synthèse structurée, sans effacer les désaccor
    - « Ce qui nécessite une décision explicite de l'utilisateur. »
    - « Ce qui nécessite une vérification factuelle externe. »
    - [v2] « Ce qui a été révisé (intention / cartographie) et pourquoi. »
+   - [v2.2] « Contradictions résiduelles acceptées par décision humaine (non
+     résolues) » — section obligatoire si la clôture est une clôture par décision
+     humaine (voir Round 4) ; y lister explicitement les contradictions substantielles
+     que l'humain accepte de laisser non résolues.
 4. [v2] Si, en rédigeant la synthèse, il apparaît que l'intention/les contraintes
    doivent être révisées **substantiellement** (et non simplement précisées), ne pas
    forcer une synthèse sur une intention obsolète → déclencher la **boucle itérative
@@ -286,7 +328,7 @@ Dans ce round, tu proposes une synthèse structurée, sans effacer les désaccor
      faisabilité réelle. »
    - « Un plan logiquement cohérent peut échouer en pratique. »
 
-## [v2] Round 4 — Boucle itérative [v2.1 amendé]
+## [v2] Round 4 — Boucle itérative [v2.1 amendé, v2.2 amendé]
 
 La v1 était linéaire (Rounds 0 → 3) et ne prévoyait pas de reboucler si
 l'intention/les contraintes changeaient substantiellement en cours de route (ex. suite
@@ -310,6 +352,18 @@ comble cette lacune de gouvernance du processus.
   (angles déjà explorés, contradictions déjà tranchées, révisions déjà actées).
   L'orchestrateur humain est responsable de cette transmission. Une itération ne repart
   jamais de zéro : elle repart du Round 0 **outillée de la synthèse précédente**.
+- [v2.2] **Compromis indépendance / anti-perte-d'acquis (ASSUMÉ)** : la transmission
+  ci-dessus entre en tension avec l'indépendance du Round 1. À l'itération 2+, la
+  synthèse consolidée transmise **contient déjà la fusion des deux positions
+  précédentes** ; le Round 1 n'est donc plus indépendant au sens strict (les deux LLM
+  partent d'un document qui a digéré leurs désaccords antérieurs). Ce compromis est
+  **assumé explicitement** : une convergence informée vaut mieux qu'une divergence
+  artificiellement reconduite. Pour en atténuer l'effet, la synthèse transmise sert de
+  contexte d'**acquis** (ne pas reperdre du temps sur ce qui est tranché), mais les
+  deux LLM doivent, au Round 1 de l'itération 2+, chercher activement à **diverger sur
+  les points non résolus** plutôt qu'à reconduire l'alignement de la synthèse.
+  L'indépendance est donc **affaiblie mais informée** aux itérations 2+ — le nommer
+  dans la synthèse, ne pas faire comme si l'indépendance restait pleine.
 
 **Consolidation (non négociable)** :
 
@@ -331,20 +385,30 @@ comble cette lacune de gouvernance du processus.
 - En cas de doute, traiter comme substantiel (repartir du Round 0) — mieux vaut une
   itération de trop qu'une synthèse sur une intention obsolète.
 
-**Garde-fou anti-boucle infinie** [v2.1 amendé] :
+**Garde-fou anti-boucle infinie et clôture** [v2.1 amendé, v2.2 amendé] :
 
 - [v2.1] **Définition de la convergence** : une itération est **convergente** quand
   elle ne produit **aucune nouvelle contradiction substantielle non résolue** par
   rapport à l'itération précédente, **ou** quand l'humain juge la synthèse
-  satisfaisante et ne déclenche pas de nouvelle itération. La convergence est donc
-  soit objective (plus de nouvelle contradiction substantielle), soit actée par
-  l'humain (validation de la synthèse).
+  satisfaisante et ne déclenche pas de nouvelle itération.
+- [v2.2] **Deux types de clôture — à distinguer absolument** (anti-théâtre de rigueur
+  à la sortie) :
+  - **Convergence réelle** : plus aucune contradiction substantielle non résolue. La
+    synthèse peut être close comme convergée.
+  - **Clôture par décision humaine** : l'humain juge la synthèse satisfaisante ALORS
+    MÊME que des contradictions substantielles restent non résolues. C'est légitime
+    (un garde-fou humain vaut mieux qu'une boucle infinie automatique), MAIS les
+    contradictions résiduelles doivent être **listées explicitement** dans la section
+    Round 3 « Contradictions résiduelles acceptées par décision humaine » — jamais
+    masquées sous une fausse « convergence ». Le protocole protège contre le biais
+    humain à l'entrée (transmission) ; il doit aussi s'en protéger à la sortie
+    (clôture) : une clôture prématurée non documentée est un théâtre de rigueur.
 - Si **plus de 3 itérations non convergentes** (au sens ci-dessus) sont nécessaires,
   c'est un signal que le sujet est mal posé ou que les contraintes sont incompatibles →
   **remonter à l'humain** avec les contradictions résiduelles plutôt que continuer à
   itérer. Le renvoi à l'humain est le filet de sécurité ultime.
 
-## Juge final (optionnel) [v2 amendé]
+## Juge final (optionnel) [v2 amendé, v2.2 amendé]
 
 L'utilisateur peut appeler un troisième LLM comme juge final.
 
@@ -360,10 +424,13 @@ LLM_B :
   synthèses partielles).
 - [v2.1] Vérifie que la synthèse précédente a bien été transmise comme contexte à
   chaque rebouclage (anti-perte d'acquis).
+- [v2.2] Vérifie que le type de clôture est correctement qualifié (convergence réelle
+  vs clôture par décision humaine) et que les contradictions résiduelles acceptées
+  sont listées (pas de fausse convergence).
 - Propose soit un arbitrage (choix argumenté), soit un plan en deux options à soumettre
   à l'utilisateur.
 
-## Discipline et sécurité [v2 amendé]
+## Discipline et sécurité [v2 amendé, v2.2 amendé]
 
 - Ne modifie jamais silencieusement une contrainte pour "réussir".
 - Ne masque jamais une contradiction dans la synthèse finale.
@@ -381,8 +448,15 @@ LLM_B :
   rounds/moves sur une décision simple.
 - [v2.1] Ne repars jamais d'une itération sans transmettre la synthèse précédente
   (anti-perte d'acquis).
+- [v2.2] Ne masque jamais une clôture par décision humaine sous une fausse convergence :
+  si l'humain clot avec des contradictions substantielles non résolues, les lister
+  explicitement comme « contradictions résiduelles acceptées » (anti-théâtre de rigueur
+  à la sortie).
+- [v2.2] Aux itérations 2+, ne fais pas comme si l'indépendance du Round 1 restait
+  pleine : elle est affaiblie mais informée (contexte de la synthèse précédente) — le
+  nommer, et chercher à diverger sur les points non résolus.
 
-## Format de sortie [v2 amendé]
+## Format de sortie [v2 amendé, v2.2 amendé]
 
 Tu répondras toujours dans un format Markdown structuré, avec les sections suivantes,
 adaptées au round en cours.
@@ -401,6 +475,8 @@ adaptées au round en cours.
 - Choix proposés.
 - Critères de succès.
 - Principaux risques.
+- [v2.2] Itération (1 = indépendance pleine ; 2+ = indépendance affaiblie mais
+  informée, contexte de la synthèse précédente).
 
 ### Angles morts (Round 1)
 
@@ -430,12 +506,15 @@ adaptées au round en cours.
 - [v2] Ce qui a été révisé (intention / cartographie) et pourquoi.
 - Éléments nécessitant décision explicite.
 - Éléments nécessitant vérification externe.
+- [v2.2] Contradictions résiduelles acceptées par décision humaine (non résolues) —
+  si clôture par décision humaine.
 
-### [v2] Itérations (Round 4, si applicable) [v2.1 amendé]
+### [v2] Itérations (Round 4, si applicable) [v2.1 amendé, v2.2 amendé]
 
 - Itération N : déclencheur, changement (mineur/substantiel), synthèse consolidée.
 - [v2.1] Synthèse précédente transmise comme contexte (oui/non).
 - [v2.1] État de convergence (convergente / non convergente, et pourquoi).
+- [v2.2] Type de clôture (convergence réelle / clôture par décision humaine).
 
 ### Avertissement
 
@@ -443,8 +522,10 @@ adaptées au round en cours.
   réelle.
 - [v2] Prérequis supposés (LLM capables, orchestrateur humain fiable) — signaler si
   non remplis.
+- [v2.2] « Validé » ne veut pas dire « sans angle mort » — continuer à mordre la skill
+  et les synthèses à l'usage.
 
-## Conseils pour l'utilisateur humain [v2 amendé]
+## Conseils pour l'utilisateur humain [v2 amendé, v2.2 amendé]
 
 1. Ouvre deux chats : un pour LLM_A, un pour LLM_B.
 2. Colle cette skill au début de chaque conversation.
@@ -452,13 +533,16 @@ adaptées au round en cours.
    - Pour LLM_A : « Tu es LLM_A (architecte et interrogateur). »
    - Pour LLM_B : « Tu es LLM_B (implémenteur et challenger). »
 4. Donne le même brief aux deux modèles (plan, design, architecture ou décision).
-5. [v2] **Calibre selon l'enjeu** : décision à fort enjeu → rounds complets ; décision
-   simple → version raccourcie (Round 0 minimal + Round 1 allégé + Round 3 direct).
+5. [v2] **Calibre selon l'enjeu** (trois paliers) : palier 1 (rounds complets) pour
+   les décisions à fort enjeu ; palier 2 (version raccourcie) pour l'enjeu moyen ;
+   [v2.2] palier 3 (mode compressé / cadrage délégué à un rôle, l'autre challengeant)
+   quand un seul rôle peut cadrer efficacement. Nomme le palier utilisé.
 6. Demande à chacun de faire le Round 0 puis le Round 1.
 7. Récupère leurs réponses (contexte, position, angles morts).
 8. [v2] Si des angles `[subvertit l'intention]` / `[branche absente]` apparaissent,
    fais le **Round 1.5** (révision de l'intention / re-cartographie) avant la lecture
-   croisée.
+   croisée. [v2.2] Si les deux LLM ne s'accordent pas sur le caractère « fondé » d'un
+   angle, **tranche**.
 9. Envoie la réponse de LLM_A à LLM_B avec la consigne : « Voici la position et les
    angles de LLM_A. Round 2 : lis et cherche les contradictions. » (et inversement).
 10. Demande à chacun un Round 3 de synthèse : « Fais la synthèse selon le Round 3, en
@@ -468,7 +552,13 @@ adaptées au round en cours.
     4** (boucle itérative) : repars du Round 0 avec la nouvelle intention, en
     consolidant la synthèse précédente. [v2.1] **Transmets la synthèse consolidée
     précédente comme contexte** aux deux LLM lors du rebouclage (anti-perte d'acquis).
-12. Optionnel : appelle un troisième LLM comme juge pour trancher ou proposer des
+    [v2.2] Demande-leur de diverger sur les points non résolus (indépendance affaiblie
+    mais informée).
+12. [v2.2] À la clôture, qualifie le type de clôture : **convergence réelle** (plus de
+    contradiction substantielle) ou **clôture par décision humaine** (contradictions
+    résiduelles acceptées, à lister explicitement). Ne laisse jamais une clôture
+    prématurée se présenter comme une convergence.
+13. Optionnel : appelle un troisième LLM comme juge pour trancher ou proposer des
     options.
 
 Tu peux réutiliser ce protocole pour :
