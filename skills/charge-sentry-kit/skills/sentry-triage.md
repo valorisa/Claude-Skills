@@ -46,6 +46,7 @@ Récupérer les issues non résolues, puis trier par **occurrences et nombre d'u
 ### 2. Ouvrir la plus coûteuse
 
 Sur le dernier événement de l'issue retenue, récupérer :
+
 - la **stack trace** complète,
 - les **variables locales** au moment du crash,
 - l'utilisateur et la requête concernés,

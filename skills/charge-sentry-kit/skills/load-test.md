@@ -32,6 +32,7 @@ Le livrable n'est pas un script jetable : c'est un dossier `load-test/` que l'on
 Lire le code des routes et de la navigation. Reconstituer le chemin d'un visiteur qui arrive depuis un email ou depuis la page d'accueil, avec les vraies URLs du projet. Ne pas inventer d'endpoints.
 
 Identifier séparément :
+
 - les pages **publiques** (généralement les plus visitées lors d'un pic),
 - les pages **authentifiées** (généralement les plus lourdes),
 - une page **témoin** qui ne touche pas la base.
@@ -85,6 +86,7 @@ MAX_VUS=200 ./load-test/run.sh stress
 **C'est ici que le skill sert le plus.** Une sortie brute de stress pèse plusieurs centaines de mégaoctets. Personne ne l'ouvre.
 
 Parser le JSON, puis produire :
+
 - le tableau **palier par palier** : utilisateurs simultanés, médiane, p95, taux d'erreur ;
 - la **distribution complète** : médiane, p90, p95, p99, max. Un écart faible entre p95 et p99 indique un service qui ne souffre pas ; une queue qui explose est le premier signe de saturation, bien avant que le taux d'erreur bouge ;
 - le **palier de rupture**, ou son absence explicite.
