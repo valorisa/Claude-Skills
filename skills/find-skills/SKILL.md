@@ -28,7 +28,7 @@ The Skills CLI (`npx skills`) is the package manager for the open agent skills e
 - `npx skills add <package>` - Install a skill from GitHub or other sources
 - `npx skills update` - Update all installed skills
 
-**Browse skills at:** https://skills.sh/
+**Browse skills at:** <https://skills.sh/>
 
 ## How to Help Users Find Skills
 
@@ -45,6 +45,7 @@ When a user asks for help with something, identify:
 Before running a CLI search, check the [skills.sh leaderboard](https://skills.sh/) to see if a well-known skill already exists for the domain. The leaderboard ranks skills by total installs, surfacing the most popular and battle-tested options.
 
 For example, top skills for web development include:
+
 - `vercel-labs/agent-skills` — React, Next.js, web design (100K+ installs each)
 - `anthropics/skills` — Frontend design, document processing (100K+ installs)
 
@@ -89,7 +90,7 @@ React and Next.js performance optimization guidelines from Vercel Engineering.
 To install it:
 npx skills add vercel-labs/agent-skills@react-best-practices
 
-Learn more: https://skills.sh/vercel-labs/agent-skills/react-best-practices
+Learn more: <https://skills.sh/vercel-labs/agent-skills/react-best-practices>
 ```
 
 ### Step 6: Offer to Install
