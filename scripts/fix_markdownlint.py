@@ -7,6 +7,7 @@ from pathlib import Path
 FENCE_RE = re.compile(r'^\s*(`{3,}|~{3,})')
 HEADING_RE = re.compile(r'^(#{1,6})\s+(.*?)(\s+#+)?\s*$')
 LIST_ITEM_RE = re.compile(r'^\s*(?:[-*+]|\d{1,9}[.)])\s+')
+CONT_RE = re.compile(r'^ {1,3}\S')
 BARE_URL_RE = re.compile(r'(?<![<(\["\'=])https?://[^\s<>`]+')
 PUNCT = '.,;:!?'
 EXCLUDE = {'.git', 'node_modules'}
@@ -54,14 +55,29 @@ def fix_md034(line):
         parts[i] = BARE_URL_RE.sub(wrap_url, parts[i])
     return ''.join(parts)
 
+def tighten_lists(lines, mask):
+    """Supprime les lignes vides entre une puce et sa continuation indentée."""
+    out = []
+    n = len(lines)
+    for i, ln in enumerate(lines):
+        if (ln.strip() == '' and not mask[i]
+                and 0 < i and i + 1 < n
+                and not mask[i-1] and not mask[i+1]
+                and (LIST_ITEM_RE.match(lines[i-1]) or CONT_RE.match(lines[i-1]))
+                and CONT_RE.match(lines[i+1])):
+            continue
+        out.append(ln)
+    return out
+
 def fix_md032(lines, mask):
-    """Insere les lignes vides manquantes autour de chaque bloc de liste."""
+    """Insere les lignes vides manquantes autour de chaque bloc de liste,
+    sans jamais couper une puce de sa continuation indentée."""
     out, i, n = [], 0, len(lines)
     while i < n:
         if mask[i] or not LIST_ITEM_RE.match(lines[i]):
             out.append(lines[i]); i += 1; continue
         j = i
-        while j < n and not mask[j] and LIST_ITEM_RE.match(lines[j]):
+        while j < n and not mask[j] and (LIST_ITEM_RE.match(lines[j]) or CONT_RE.match(lines[j])):
             j += 1
         if out and out[-1].strip():
             out.append('')
@@ -73,11 +89,13 @@ def fix_md032(lines, mask):
 
 def process(path):
     p = Path(path)
-    lines = p.read_text(encoding='utf-8').split('\n')
+    orig = p.read_text(encoding='utf-8').split('\n')
+    mask0 = fence_mask(orig)
+    lines = tighten_lists(orig, mask0)
     mask = fence_mask(lines)
-    new = [ln if msk else fix_md034(fix_md026(ln)) for ln, msk in zip(lines, mask)]
-    final = fix_md032(new, mask)
-    if final != lines:
+    lines = [ln if msk else fix_md034(fix_md026(ln)) for ln, msk in zip(lines, mask)]
+    final = fix_md032(lines, mask)
+    if final != orig:
         p.write_text('\n'.join(final), encoding='utf-8')
         return True
     return False
