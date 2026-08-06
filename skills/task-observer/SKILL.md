@@ -86,20 +86,16 @@ Un seul `awk` remplace ton pipeline de 3 commandes :
 
 - Pré-filtre mécanique : `sort -u .task-observer/log.md`
 - Les préfixes `DO:`/`DONT:`/`PREFER:` groupent les règles par catégorie au tri,
-
   ce qui rend la revue humaine triviale.
 
 - Consolidation sémantique vraie : revue humaine hebdomadaire, ou sur
-
   demande ("synthétise mon log").
 
 ## Notes de portabilité et validation
 
 - Le timestamp exige un shell POSIX/GNU (macOS, Linux, WSL, Git Bash).
-
   Sous Windows natif PowerShell : utiliser WSL/Git Bash ou `[DATE-NA]`.
 
 - Critère d'acceptation : après 10 sessions, au moins 1 entrée par session
-
   en moyenne et au moins 50% des entrées jugées utiles en revue hebdo.
   Sinon : ajuster les déclencheurs. Jamais la mécanique d'écriture.
