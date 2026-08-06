@@ -67,6 +67,9 @@ d'une phrase impérative courte en anglais. Aucun autre mot avant :
     DONT: ...
     PREFER: ...
 
+Ces préfixes désignent des réflexes conditionnels : ils deviennent actifs
+quand la situation décrite se reproduit, jamais ici et maintenant.
+
 ## Exemples
 
 L'utilisateur dit "non, je voulais dire ripgrep". Tu corriges, tu livres la
