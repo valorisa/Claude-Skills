@@ -77,13 +77,13 @@ L'autre challenge directement le résultat.
 
 Nommer explicitement ce palier quand il est utilisé.
 
-**Protection anti-ancrage**
+#### Protection anti-ancrage
 
 Avant de lire la position adverse,
 le challenger génère 2 à 3 angles morts à l'aveugle
 à partir du seul brief.
 
-**Verrou anti-sophistication**
+#### Verrou anti-sophistication
 
 Une règle, une section, un champ ou une étape supplémentaire
 doit être justifié par un problème observé,
@@ -112,7 +112,7 @@ Avant toute prise de position visible:
    - dépendances majeures
    - profondeur approximative
 
-**Tronc commun + grille différenciée**
+#### Tronc commun + grille différenciée
 
 Tronc commun minimal partagé:
 
@@ -181,14 +181,14 @@ Tags:
 - `[branche absente]`:
   branche absente de la cartographie ou arbre invalidé.
 
-**Filtre anti-slop**
+#### Filtre anti-slop
 
 Non négociable.
 
 Test du remplacement:
 si l'angle tient avec n'importe quel sujet, supprime-le.
 
-**Marqueur ⚡**
+#### Marqueur ⚡
 
 Optionnel, 1 à 2 angles max.
 ⚡ ne valide rien.
@@ -203,7 +203,7 @@ ont émergé au Round 1.
 
 Sinon, passer au Round 2.
 
-**Règle de séquencement**
+#### Règle de séquencement
 
 Le Round 2 doit impérativement avoir lieu
 avant tout rebouclage au Round 4.
@@ -211,7 +211,7 @@ avant tout rebouclage au Round 4.
 Le second LLM doit pouvoir analyser l'angle subversif
 et éventuellement l'infirmer.
 
-**Révision d'intention**
+#### Révision d'intention
 
 Si tag `[subvertit l'intention]`:
 
@@ -228,7 +228,7 @@ Si tag `[subvertit l'intention]`:
 - Révision mineure:
   mise à jour et continuer au Round 2.
 
-**Re-cartographie**
+#### Re-cartographie
 
 Si tag `[branche absente]`:
 
@@ -260,7 +260,7 @@ Tu lis la position et les angles de l'autre LLM.
    - métrique de succès modifiée
    - interdiction violée au nom de l'intention
 
-Rappelle que c'est un échec de gouvernance.
+   Rappelle que c'est un échec de gouvernance.
 
 6. Vérifie les angles `[subvertit l'intention]`
    ou `[branche absente]` de l'autre.
@@ -317,18 +317,18 @@ Un plan cohérent peut échouer en pratique. »
 Reboucle quand intention ou contraintes changent après Round 3,
 ou en cours de Round 1.5 ou Round 3.
 
-**Déclenchement**
+#### Déclenchement
 
 Toujours subordonné au Round 2.
 
-**Règle de rebouclage**
+#### Règle de rebouclage
 
 - Changement mineur:
   ajuste la synthèse existante. Documente.
 - Changement substantiel:
   repars du Round 0 avec intention révisée.
 
-**Critère de substantialité**
+#### Critère de substantialité
 
 - Substantiel:
   modifie but final, critères de succès ou d'échec,
@@ -338,7 +338,7 @@ Toujours subordonné au Round 2.
 - En cas de doute:
   substantiel.
 
-**Transmission des acquis**
+#### Transmission des acquis
 
 La synthèse consolidée précédente est transmise comme contexte
 aux deux LLM.
@@ -347,7 +347,7 @@ L'orchestrateur humain en est responsable.
 
 Une itération repart du Round 0 outillée par cette synthèse.
 
-**Filtre de pertinence**
+#### Filtre de pertinence
 
 - Changement mineur:
   intégralité de la synthèse précédente.
@@ -359,7 +359,7 @@ Une itération repart du Round 0 outillée par cette synthèse.
 - En cas de doute sur un élément:
   caduc.
 
-**Compromis indépendance et anti-perte d'acquis**
+#### Compromis indépendance et anti-perte d'acquis
 
 Aux itérations 2+, l'indépendance du Round 1 est affaiblie
 mais informée.
@@ -367,7 +367,7 @@ mais informée.
 Nommer ce compromis dans la synthèse.
 Chercher activement à diverger sur les points non résolus.
 
-**Consolidation**
+#### Consolidation
 
 Non négociable.
 
@@ -380,7 +380,7 @@ Numéroter les itérations et indiquer les déclencheurs.
 L'historique peut être conservé par l'orchestrateur,
 mais la synthèse courante reste minimale.
 
-**Garde-fou anti-boucle infinie**
+#### Garde-fou anti-boucle infinie
 
 - Convergence réelle:
   aucune nouvelle contradiction substantielle non résolue.
