@@ -6,7 +6,7 @@ Ce dossier contient des utilitaires pour maintenir la qualité de la documentati
 
 ### À quoi ça sert ?
 
-Lors de l'importation de nouvelles skills depuis des dépôts externes, leurs fichiers *.md contiennent souvent des erreurs de formatage qui font échouer notre pipeline CI (markdownlint-cli2).
+Lors de l'importation de nouvelles skills depuis des dépôts externes, leurs fichiers *.md contiennent souvent des erreurs de formatage qui font échouer le pipeline CI (markdownlint-cli2).
 
 Bien que markdownlint possède une option --fix, celle-ci ne corrige qu'une partie des règles. Ce script Python corrige automatiquement les règles non auto-fixables les plus courantes :
 
